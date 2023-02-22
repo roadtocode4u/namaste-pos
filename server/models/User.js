@@ -2,10 +2,24 @@ import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema(
   {
-    fullName: String,
-    phone: String,
-    email: String,
-    password: String,
+    fullName: {
+      type: String,
+      required: [true, 'please enter your name'],
+    },
+    phone: {
+      type: String,
+      required: [true, 'please enter your phone'],
+    },
+    email: {
+      type: String,
+      required: [true, 'please enter your email'],
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: [true, 'please enter your password'],
+      minlength: [6, 'password must include more than 6 characters'],
+    },
   },
   { timestamps: true }
 );
