@@ -4,21 +4,21 @@ const userSchema = new mongoose.Schema(
   {
     fullName: {
       type: String,
-      required: [true, 'Please enter your Name'],
+      required: [true, 'please enter your name'],
     },
     phone: {
       type: String,
-      required: [true, 'Please enter your Phone'],
+      required: [true, 'please enter your phone'],
     },
     email: {
       type: String,
-      required: [true, 'Please enter your Email'],
+      required: [true, 'please enter your email'],
       unique: true,
     },
     password: {
       type: String,
-      required: [true, 'Please enter your Password'],
-      minlength: [6, 'Password must include more than 6 characters'],
+      required: [true, 'please enter your password'],
+      minlength: [6, 'password must include more than 6 characters'],
     },
   },
   { timestamps: true }
