@@ -31,6 +31,11 @@ app.post('/signup',async(req,res )=>{
 
   const emptyFields = [];
 
+  if (!fullName) emptyFields.push("fullName");
+  if (!phone) emptyFields.push("phone");
+  if (!email) emptyFields.push("email");
+  if (!password) emptyFields.push("password");
+
   if (emptyFields.length > 0) {
     return res.json({
       success: false,
@@ -39,10 +44,10 @@ app.post('/signup',async(req,res )=>{
   }
 
     const user = new User({
-      fullName: fullName,
-      phone: phone,
-      email: email,
-      password: password,
+      fullName,
+      phone,
+      email,
+      password
     });
   
     const savedUser = await user.save();
