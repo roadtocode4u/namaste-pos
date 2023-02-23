@@ -1,0 +1,79 @@
+.signup-form-container {
+    font-family: 'Poppins', sans-serif !important;
+    padding: 20px 40px !important;
+    width: 130%;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 0 14px 20px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    position: relative;
+}
+
+.signup-form-input {
+    width: 100%;
+    height: 40px;
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+.signup-form-input:focus {
+    outline: none;
+}
+
+.mymodal {
+    position: fixed;
+    top: 50%;
+    left: 47%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 500px) {
+    .signup-form-container{
+        width: 120%;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .signup-form-container{
+        width: 115%;
+    }
+}
+
+.myoverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.signup-page-heading {
+    font-size: 25px;
+    text-align: center;
+}
+
+.signupModal-closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.signup-page-btn {
+    padding: 5px;
+    margin: 3px;
+    width: 150px;
+    border-radius: 30px;
+    border: none;
+    background-color: #efad19;
+    box-shadow: 0px 3px 1px -2px rgb(0, 0, 0);
+}
+
+.signup-page-btn:hover {
+    box-shadow: 3px 4px 2px -2px rgb(0, 0, 0);
+}
