@@ -1,9 +1,11 @@
 import express from 'express';
+
 import mongoose from 'mongoose';
 import dotenv from "dotenv";
 import User from './models/User.js'
 dotenv.config();
 mongoose.set('strictQuery', false);
+
 
 const app = express();
 app.use(express.json());
@@ -25,6 +27,7 @@ app.get('/health', (req, res) => {
     message: 'Server is running'
   })
 })
+
 
 app.post('/signup',async(req,res )=>{
   const { fullName, phone, email, password } = req.body;
@@ -59,6 +62,26 @@ app.post('/signup',async(req,res )=>{
     });
 });
 
+app.post("/login", async(req, res) =>{
+  const user = await User.findOne({
+    email: req.body.email,
+    password: req.body.password,
+  })
+
+  if(user) {
+    res.send({
+    success: true,
+    message: "User logged in successfully",
+    user: user
+    })
+  }
+  else{
+    res.send({
+      success: false,
+      message: "user name or password is incorrect"
+    })
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`The server is running on port ${PORT} 🚀`);
