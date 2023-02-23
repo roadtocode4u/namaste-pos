@@ -13,25 +13,25 @@ app.get('/health', (req, res) => {
 })
 
 app.post("/login", async(req, res) =>{
-    const user = await User.findOne({
-      email: req.body.email,
-      password: req.body.password,
+  const user = await User.findOne({
+    email: req.body.email,
+    password: req.body.password,
+  })
+
+  if(user) {
+    res.send({
+    success: true,
+    message: "User logged in successfully",
+    user: user
     })
-  
-    if(user) {
-      res.send({
-      success: true,
-      message: "User logged in successfully",
-      user: user
-      })
-    }
-    else{
-      res.send({
-        success: false,
-        message: "user name or password is incorrect"
-      })
-    }
-  });
+  }
+  else{
+    res.send({
+      success: false,
+      message: "user name or password is incorrect"
+    })
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`The server is running on port ${PORT} 🚀`);
