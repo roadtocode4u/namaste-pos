@@ -1,10 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import './Signup.css'
 import Modal from "react-modal";
+import axios from 'axios';
+import swal from "sweetalert";
+import { useNavigate } from 'react-router-dom';
 
 Modal.setAppElement("#root");
 
 function Signup(props) {
+
+  const navigate = useNavigate();
+
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+
+  async function addUser() {
+    const response = await axios.post('/signup', {
+      fullName,
+      email,
+      password,
+      phone
+    })
+
+    if (response.data.success) {
+      await swal({
+        title: "Signup Successfully !!",
+        text: response.data.message,
+        icon: "success",
+        button: "Aww yiss!",
+      });
+
+      window.location.href = '/'
+
+    }
+
+    else {
+      swal(response.data.message)
+    }
+
+    setFullName("");
+    setEmail("");
+    setPassword("");
+    setPhone("");
+  }
 
   return (
     <>
@@ -30,6 +70,7 @@ function Signup(props) {
               type="text"
               className="signup-form-input"
               id="name"
+              value={fullName} onChange={(e) => { setFullName(e.target.value) }}
             />
           </div>
 
@@ -40,16 +81,7 @@ function Signup(props) {
               type="email"
               className="signup-form-input"
               id="email"
-            />
-          </div>
-
-          <div className="mb-3">
-            <input
-              required
-              placeholder="Password"
-              type="text"
-              className="signup-form-input"
-              id="phone"
+              value={email} onChange={(e) => { setEmail(e.target.value) }}
             />
           </div>
 
@@ -57,13 +89,25 @@ function Signup(props) {
             <input
               required
               placeholder="Phone"
-              type="password"
+              type="text"
               className="signup-form-input"
-              id="passwrod"
+              id="phone"
+              value={phone} onChange={(e) => { setPhone(e.target.value) }}
             />
           </div>
 
-          <button type="button" className="signup-page-btn">
+          <div className="mb-3">
+            <input
+              required
+              placeholder="Password"
+              type="password"
+              className="signup-form-input"
+              id="password"
+              value={password} onChange={(e) => { setPassword(e.target.value) }}
+            />
+          </div>
+
+          <button type="button" className="signup-page-btn" onClick={addUser}>
             <b><i class="fa-solid fa-user-plus"></i> Sign Up</b>
           </button>
         </form>
