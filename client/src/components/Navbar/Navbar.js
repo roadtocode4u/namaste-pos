@@ -37,16 +37,12 @@ export default function Navbar() {
                 <div className="collapse navbar-collapse navbar-sizing" id="navbarNav" style={{ display: "flex", flexDirection: "row", justifyContent: "flex-end" }}>
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/signup">
-                                <span className='nav_register nav-color signup-btn' onClick={toggleModalSignup}> <i class="fa-solid fa-user-plus"></i> <b>Signup</b></span>
-                            </Link>
+                            <span className='nav_register nav-color signup-btn' onClick={toggleModalSignup}> <i class="fa-solid fa-user-plus"></i> <b>Signup</b></span>
                         </li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/login">
-                                <span className='nav_register nav-color login-btn' onClick={toggleModalLogin} ><i class="fa-solid fa-right-to-bracket"></i> <b>Login</b></span>
-                            </Link>
+                            <span className='nav_register nav-color login-btn' onClick={toggleModalLogin} ><i class="fa-solid fa-right-to-bracket"></i> <b>Login</b></span>
                         </li>
                     </ul>
 

@@ -1,7 +1,6 @@
 import React from "react";
 import './Login.css'
 import Modal from "react-modal";
-import { Link } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
@@ -19,11 +18,9 @@ function Login(props) {
       >
         <form className='form-elements text-center login-form-container'>
           <p className="login-page-heading">Login</p>
-          <Link to="/">
-            <span onClick={props.toggleModalLogin} className="loginModal-closeBtn">
-              &times;
-            </span>
-          </Link>
+          <span onClick={props.toggleModalLogin} className="loginModal-closeBtn">
+            &times;
+          </span>
 
           <div className="mb-3">
             <input

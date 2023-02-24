@@ -1,7 +1,6 @@
 import React from "react";
 import './Signup.css'
 import Modal from "react-modal";
-import { Link } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
@@ -20,11 +19,9 @@ function Signup(props) {
         <form className='form-elements text-center signup-form-container'>
           <p className="signup-page-heading">Sign up</p>
 
-          <Link to="/">
-            <span onClick={props.toggleModalSignup} className="signupModal-closeBtn">
-              &times;
-            </span>
-          </Link>
+          <span onClick={props.toggleModalSignup} className="signupModal-closeBtn">
+            &times;
+          </span>
 
           <div className="mb-3">
             <input
