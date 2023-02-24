@@ -68,7 +68,7 @@ function Signup() {
           </div>
 
           <button type="button" className="signup-page-btn">
-            <b>Sign Up</b>
+            <b><i class="fa-solid fa-user-plus"></i> Sign Up</b>
           </button>
         </form>
       </Modal>

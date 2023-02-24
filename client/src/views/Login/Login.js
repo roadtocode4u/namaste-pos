@@ -49,7 +49,7 @@ function Login() {
           </div>
 
           <button type="button" className="login-page-btn">
-            <b>Login</b>
+            <b><i class="fa-solid fa-right-to-bracket"></i> Login</b>
           </button>
         </form>
       </Modal>

@@ -1,0 +1,19 @@
+.navbar{
+    box-shadow: 0px 0px 0.5px 0.5px gray;
+}
+
+.nav-color {
+    color: black;
+}
+
+.navbar-toggler {
+    color: black;
+}
+
+.signup-btn{
+    margin-left: 6px;
+}
+
+.login-btn{
+    margin-left: 6px;
+}
