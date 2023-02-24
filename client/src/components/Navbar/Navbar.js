@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import './Navbar.css';
+import Signup from './../../views/Signup/Signup';
+import Login from './../../views/Login/Login';
 
 export default function Navbar() {
 
+    const [isSignupOpen, setIsSignupOpen] = useState(false);
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
+
+    function toggleModalLogin() {
+        setIsLoginOpen(!isLoginOpen)
+    }
+
+    function toggleModalSignup() {
+        setIsSignupOpen(!isSignupOpen)
+    }
+
     return (
         <>
+            <Signup toggleModalSignup={toggleModalSignup} isSignupOpen={isSignupOpen} />
+            <Login toggleModalLogin={toggleModalLogin} isLoginOpen={isLoginOpen} />
             <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-light bg-light">
                 <a class="navbar-brand" href="/"><b>NamastePos 🙏</b></a>
                 <button
@@ -23,14 +38,14 @@ export default function Navbar() {
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
                             <Link className="nav-link" to="/signup">
-                                <span className='nav_register nav-color signup-btn'> <i class="fa-solid fa-user-plus"></i> <b>Signup</b></span>
+                                <span className='nav_register nav-color signup-btn' onClick={toggleModalSignup}> <i class="fa-solid fa-user-plus"></i> <b>Signup</b></span>
                             </Link>
                         </li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
                             <Link className="nav-link" to="/login">
-                                <span className='nav_register nav-color login-btn'><i class="fa-solid fa-right-to-bracket"></i> <b>Login</b></span>
+                                <span className='nav_register nav-color login-btn' onClick={toggleModalLogin} ><i class="fa-solid fa-right-to-bracket"></i> <b>Login</b></span>
                             </Link>
                         </li>
                     </ul>

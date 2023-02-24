@@ -1,22 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import './Signup.css'
 import Modal from "react-modal";
+import { Link } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
-function Signup() {
+function Signup(props) {
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  function toggleModal() {
-    setIsOpen(!isOpen);
-  }
   return (
     <>
-      <button onClick={toggleModal}>Click</button>
       <Modal
-        isOpen={isOpen}
-        onRequestClose={toggleModal}
+        isOpen={props.isSignupOpen}
+        onRequestClose={props.toggleModalSignup}
         contentLabel="My dialog"
         className="mymodal"
         overlayClassName="myoverlay"
@@ -24,9 +19,13 @@ function Signup() {
       >
         <form className='form-elements text-center signup-form-container'>
           <p className="signup-page-heading">Sign up</p>
-          <span onClick={toggleModal} className="signupModal-closeBtn">
-            &times;
-          </span>
+
+          <Link to="/">
+            <span onClick={props.toggleModalSignup} className="signupModal-closeBtn">
+              &times;
+            </span>
+          </Link>
+
           <div className="mb-3">
             <input
               required

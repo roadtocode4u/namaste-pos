@@ -1,22 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import './Login.css'
 import Modal from "react-modal";
+import { Link } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
-function Login() {
+function Login(props) {
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  function toggleModal() {
-    setIsOpen(!isOpen);
-  }
   return (
     <>
-      <button onClick={toggleModal}>Click</button>
       <Modal
-        isOpen={isOpen}
-        onRequestClose={toggleModal}
+        isOpen={props.isLoginOpen}
+        onRequestClose={props.toggleModalLogin}
         contentLabel="My dialog"
         className="mymodal"
         overlayClassName="myoverlay"
@@ -24,10 +19,12 @@ function Login() {
       >
         <form className='form-elements text-center login-form-container'>
           <p className="login-page-heading">Login</p>
-          <span onClick={toggleModal} className="loginModal-closeBtn">
-            &times;
-          </span>
-        
+          <Link to="/">
+            <span onClick={props.toggleModalLogin} className="loginModal-closeBtn">
+              &times;
+            </span>
+          </Link>
+
           <div className="mb-3">
             <input
               required
