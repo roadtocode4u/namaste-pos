@@ -3,13 +3,10 @@ import './Signup.css'
 import Modal from "react-modal";
 import axios from 'axios';
 import swal from "sweetalert";
-import { useNavigate } from 'react-router-dom';
 
 Modal.setAppElement("#root");
 
 function Signup(props) {
-
-  const navigate = useNavigate();
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
