@@ -89,10 +89,7 @@ app.post('/signup', async (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-  const user = await User.findOne({
-    email: req.body.email,
-    password: req.body.password,
-  });
+  const { email, password } = req.body;
 
   if (!email || !password) {
     return res.json({
@@ -101,14 +98,16 @@ app.post('/login', async (req, res) => {
     });
   }
 
+  const user = await User.findOne({ email, password });
+
   if (user) {
-    res.send({
+    return res.json({
       success: true,
       message: 'User logged in successfully',
       user: user,
     });
   } else {
-    res.send({
+    return res.json({
       success: false,
       message: 'user name or password is incorrect',
     });
