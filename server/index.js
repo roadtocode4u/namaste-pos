@@ -94,6 +94,13 @@ app.post('/login', async (req, res) => {
     password: req.body.password,
   });
 
+  if (!email || !password) {
+    return res.json({
+      success: false,
+      message: 'Email and password are required',
+    });
+  }
+
   if (user) {
     res.send({
       success: true,
