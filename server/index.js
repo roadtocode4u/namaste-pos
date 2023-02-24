@@ -56,6 +56,15 @@ app.post('/signup', async (req, res) => {
     });
   }
 
+  // validations to check if phone already exist start
+  const existingUserPhone = await User.findOne({ phone: phone });
+  if (existingUserPhone) {
+    return res.json({
+      success: false,
+      message: 'Phone already exists',
+    });
+  }
+
   try {
     const user = new User({
       fullName,
