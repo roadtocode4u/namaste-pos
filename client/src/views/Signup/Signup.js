@@ -38,6 +38,12 @@ function Signup(props) {
 
     else {
       swal(response.data.message)
+      await swal({
+        title: "Error",
+        text: response.data.message,
+        icon: "error",
+        button: "😥",
+      });
     }
 
     setFullName("");
