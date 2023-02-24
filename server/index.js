@@ -1,5 +1,5 @@
 import express from 'express';
-
+import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import User from './models/User.js';
@@ -73,6 +73,9 @@ app.post('/signup', async (req, res) => {
       password,
     });
 
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+
     const savedUser = await user.save();
 
     res.json({
@@ -98,9 +101,10 @@ app.post('/login', async (req, res) => {
     });
   }
 
-  const user = await User.findOne({ email, password });
+  const user = await User.findOne({ email });
+  const validPassword = await bcrypt.compare(password, user.password);
 
-  if (user) {
+  if (validPassword) {
     return res.json({
       success: true,
       message: 'User logged in successfully',
