@@ -1,13 +1,8 @@
-
 import React, { useState } from "react";
 import './Login.css'
 import Modal from "react-modal";
 import axios from 'axios';
 import swal from "sweetalert";
-
-import React from 'react';
-import './Login.css';
-import Modal from 'react-modal';
 
 
 Modal.setAppElement('#root');
@@ -91,12 +86,6 @@ function Login(props) {
 
           <button type="button" className="login-page-btn" onClick={addUser}>
             <b><i class="fa-solid fa-right-to-bracket"></i> Login</b>
-
-          <button type="button" className="login-page-btn">
-            <b>
-              <i class="fa-solid fa-right-to-bracket"></i> Login
-            </b>
-
           </button>
         </form>
       </Modal>
