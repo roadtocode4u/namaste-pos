@@ -29,8 +29,8 @@ function Signup(props) {
       });
 
       window.location.href = '/';
-    } else {
-      swal(response.data.message);
+    } 
+    else {
       await swal({
         title: 'Error',
         text: response.data.message,
