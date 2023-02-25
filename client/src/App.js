@@ -1,9 +1,9 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Home from './views/Home/Home'
-import Navbar from './components/Navbar/Navbar'
-import Signup from './views/Signup/Signup'
-import Login from './views/Login/Login'
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './views/Home/Home';
+import Navbar from './components/Navbar/Navbar';
+import Signup from './views/Signup/Signup';
+import Login from './views/Login/Login';
 
 function App() {
   return (
@@ -15,8 +15,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </>
-
-  )
+  );
 }
 
-export default App
+export default App;

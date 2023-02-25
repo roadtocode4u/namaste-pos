@@ -113,11 +113,11 @@ app.post('/login', async (req, res) => {
   } else {
     return res.json({
       success: false,
-      message: 'user name or password is incorrect',
+      message: 'Username or Password is incorrect',
     });
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`The server is running on port ${PORT} 🚀`);
+  console.log(`The server is Running on Port ${PORT} 🚀`);
 });

@@ -1,52 +1,48 @@
-import React, { useState } from "react";
-import './Signup.css'
-import Modal from "react-modal";
+import React, { useState } from 'react';
+import './Signup.css';
+import Modal from 'react-modal';
 import axios from 'axios';
-import swal from "sweetalert";
+import swal from 'sweetalert';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 function Signup(props) {
-
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
 
   async function addUser() {
     const response = await axios.post('/signup', {
       fullName,
       email,
       password,
-      phone
-    })
+      phone,
+    });
 
     if (response.data.success) {
       await swal({
-        title: "Signup Successfully !!",
+        title: 'Signup Successfully !!',
         text: response.data.message,
-        icon: "success",
-        button: "Aww yiss!",
+        icon: 'success',
+        button: 'Aww yiss!',
       });
 
-      window.location.href = '/'
-
-    }
-
-    else {
-      swal(response.data.message)
+      window.location.href = '/';
+    } else {
+      swal(response.data.message);
       await swal({
-        title: "Error",
+        title: 'Error',
         text: response.data.message,
-        icon: "error",
-        button: "😥",
+        icon: 'error',
+        button: '😥',
       });
     }
 
-    setFullName("");
-    setEmail("");
-    setPassword("");
-    setPhone("");
+    setFullName('');
+    setEmail('');
+    setPassword('');
+    setPhone('');
   }
 
   return (
@@ -57,12 +53,13 @@ function Signup(props) {
         contentLabel="My dialog"
         className="mymodal"
         overlayClassName="myoverlay"
-        closeTimeoutMS={500}
-      >
-        <form className='form-elements text-center signup-form-container'>
+        closeTimeoutMS={500}>
+        <form className="form-elements text-center signup-form-container">
           <p className="signup-page-heading">Sign up</p>
 
-          <span onClick={props.toggleModalSignup} className="signupModal-closeBtn">
+          <span
+            onClick={props.toggleModalSignup}
+            className="signupModal-closeBtn">
             &times;
           </span>
 
@@ -73,7 +70,10 @@ function Signup(props) {
               type="text"
               className="signup-form-input"
               id="name"
-              value={fullName} onChange={(e) => { setFullName(e.target.value) }}
+              value={fullName}
+              onChange={(e) => {
+                setFullName(e.target.value);
+              }}
             />
           </div>
 
@@ -84,7 +84,10 @@ function Signup(props) {
               type="email"
               className="signup-form-input"
               id="email"
-              value={email} onChange={(e) => { setEmail(e.target.value) }}
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
             />
           </div>
 
@@ -95,7 +98,10 @@ function Signup(props) {
               type="text"
               className="signup-form-input"
               id="phone"
-              value={phone} onChange={(e) => { setPhone(e.target.value) }}
+              value={phone}
+              onChange={(e) => {
+                setPhone(e.target.value);
+              }}
             />
           </div>
 
@@ -106,17 +112,22 @@ function Signup(props) {
               type="password"
               className="signup-form-input"
               id="password"
-              value={password} onChange={(e) => { setPassword(e.target.value) }}
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             />
           </div>
 
           <button type="button" className="signup-page-btn" onClick={addUser}>
-            <b><i class="fa-solid fa-user-plus"></i> Sign Up</b>
+            <b>
+              <i class="fa-solid fa-user-plus"></i> Sign Up
+            </b>
           </button>
         </form>
       </Modal>
     </>
-  )
+  );
 }
 
-export default Signup
+export default Signup;
