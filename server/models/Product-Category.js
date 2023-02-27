@@ -13,9 +13,15 @@ const productCategorySchema = mongoose.Schema(
             required: true
         },
 
-        isCategoryAvailable: Boolean,
+        isCategoryAvailable: {
+            type: Boolean,
+            default: true
+        },
 
-        catUpdateTime: Date,
+        catUpdateTime: {
+            type: Date,
+            default: Date.now 
+        },
 
         itemImgUrl: {
             type: String,
