@@ -3,7 +3,8 @@ import mongoose, { Schema } from "mongoose";
 const diningTableSchema = new mongoose.Schema({
     tableNumber: {
         type:Number,
-        required: [true, 'tablenumber cannot be empty']
+        required: [true, 'tablenumber cannot be empty'],
+        unique:true
     },
     capacity:{
         type:Number,
