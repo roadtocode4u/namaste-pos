@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 const invoiceSchema = new mongoose.Schema({
     invoiceNumber: {
         type: Number,
-        required: [true, "invoiceNumber annot be empty"]
+        required: [true, "invoiceNumber cannot be empty"]
     },
     invoiceDate: {
-        type: String,
-        required: [true, "invoiceDate cannot be empty"]
+        type: Date,
+        default: Date.now
     },
     invoiceTotal: {
         type: Number,
@@ -18,7 +18,7 @@ const invoiceSchema = new mongoose.Schema({
         required: [true, "discount cannot be empty"]
     },
     tax: {
-        type: String,
+        type: Number,
         requied: [true, "tax cannot be empty"]
     },
     user: {
