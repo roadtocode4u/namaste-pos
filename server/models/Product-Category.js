@@ -5,12 +5,12 @@ const productCategorySchema = mongoose.Schema(
 
         categoryType: {
             type: String,
-            required: true
+            required: [true, 'category type cannot be empty']
         },
 
         categoryTitle: {
             type: String,
-            required: true
+            required: [true, 'category title cannot be empty']
         },
 
         isCategoryAvailable: {
@@ -25,7 +25,7 @@ const productCategorySchema = mongoose.Schema(
 
         itemImgUrl: {
             type: String,
-            required: true
+            required: [true, 'item Image url cannot be empty']
         }
     },
     {
