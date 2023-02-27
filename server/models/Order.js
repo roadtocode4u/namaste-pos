@@ -2,23 +2,54 @@ import mongoose, { Schema } from "mongoose";
 
 const orderSchema = new mongoose.Schema(
     {
-        orderId: String,
-        tableNumber: Number,
+        orderId: {
+            type: String,
+            required: true
+        },
+
+        tableNumber: {
+            type: Number,
+            required: true
+        },
+
         userId: {
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
-        orderType: String,
+
+        orderType: {
+            type: String,
+            enum: ['dine-in', 'take-out', 'delivery'],
+            required: true,
+        },
+
         items: [
             {
-              name: String,
-              price: Number,
-              quantity: Number,
+              name: {
+                type: String,
+                required: true,
+              },
+              price: {
+                type: Number,
+                required: true,
+              },
+              quantity: {
+                type: Number,
+                required: true,
+              },
               modifier: String
             },
         ],
+
         orderComments: String,
-        status: String,
+
+        status: {
+            type: String,
+            enum: ['pending', 'preparing', 'ready', 'delivered', 'cancelled'],
+            default: 'pending',
+            required: true,
+          },
+          
         feedback: String
     }
 )
