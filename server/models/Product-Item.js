@@ -3,17 +3,18 @@ import mongoose from 'mongoose'
 const productItemSchema = mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required:  [true, "title cannot be empty"]
     },
 
     price: {
         type: Number,
-        required: true
+        required: [true, "number cannot be empty"]
+
     },
 
     imgUrl: {
         type: String,
-        required: true
+        required: [true, "imgUrl cannot be empty"]
     },
 
     description: String,
