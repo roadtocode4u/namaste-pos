@@ -1,8 +1,14 @@
 import mongoose, { Schema } from "mongoose";
 
 const diningTableSchema = new mongoose.Schema({
-    tableNumber: Number,
-    capacity:Number,
+    tableNumber: {
+        type:Number,
+        required: [true, 'tablenumber cannot be empty']
+    },
+    capacity:{
+        type:Number,
+        required:[true, 'capacity cannot be empty']
+    },
     numberoftable:Number,
     occupied: Boolean,
     occupiedBy:{
@@ -10,7 +16,10 @@ const diningTableSchema = new mongoose.Schema({
         ref: "User"
     } ,
     tablelocation:String,
-    tableservice:String
+    tableservice:{
+        type:String,
+        required:[true, 'tableservice cannot be empty']
+    }
 },{
     timestamps: true
 });
