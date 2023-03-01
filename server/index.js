@@ -154,6 +154,18 @@ app.get('/productItem/:id', async (req, res) => {
   });
 });
 
+// GET productItem?title= => get productItem by title
+app.get('/productItem', async (req, res) => {
+  const { title } = req.query;
+  const productItem = await ProductItem.findOne({ title });
+
+  res.json({
+    success: true,
+    message: 'ProductItem fetched successfully',
+    data: productItem,
+  });
+});
+
 
 /* Product Item APIs Ends Here */
 
