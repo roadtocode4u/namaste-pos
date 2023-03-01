@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
+import  { Schema, model } from "mongoose";
 
-const productItemSchema = mongoose.Schema({
+const productItemSchema = new Schema({
     title: {
         type: String,
         required:  [true, "title cannot be empty"]
@@ -23,6 +23,6 @@ const productItemSchema = mongoose.Schema({
     timestamps: true
 });
 
-const ProductItem = mongoose.model('ProductItem', productItemSchema)
+const ProductItem = model('ProductItem', productItemSchema)
 
 export default ProductItem;
