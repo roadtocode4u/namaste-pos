@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 
-const productCategorySchema = mongoose.Schema(
+const productCategorySchema = new Schema(
     {
 
         categoryType: {
@@ -33,6 +33,6 @@ const productCategorySchema = mongoose.Schema(
     }
 );
 
-const ProductCategory = mongoose.model("ProductCategory", productCategorySchema);
+const ProductCategory = model("ProductCategory", productCategorySchema);
 
 export default ProductCategory;

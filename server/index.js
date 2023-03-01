@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import User from './models/User.js';
 import ProductItem from './models/ProductItem.js';
+import ProductCategory from './models/ProductCategory.js';
 dotenv.config();
 mongoose.set('strictQuery', false);
 
@@ -157,6 +158,55 @@ app.get('/productItem/:id', async (req, res) => {
 
 /* Product Item APIs Ends Here */
 
+/* Product Category APIs Started here */
+
+/* POST productCategory = create productCategory */
+app.post('/productCategory', async (req, res) => {
+  const { categoryType, categoryTitle, isCategoryAvailable, catUpdateTime, itemImgUrl } = req.body;
+  // validations will go here
+  const productcategory = new ProductCategory({
+    categoryType,
+    categoryTitle,
+    isCategoryAvailable,
+    catUpdateTime,
+    itemImgUrl
+  });
+  const savedProductCategory = await productcategory.save();
+
+  res.json({
+    success: true,
+    message: "Product category fetched successfully",
+    data: savedProductCategory,
+  })
+})
+
+/* GET producctCategory?title => get productCategory by title */ 
+app.get('/productCategory', async (req,res)=>{
+  const { title } = req.query;
+
+  const productCategory = await ProductCategory.find({
+    title: { $regex: title, $options: 'i' }
+})
+
+res.json({
+  success: true,
+  description: "Product category  fetched successfully",
+  data: productCategory,
+})
+
+})
+
+/* GET productCategorys => get all productCategorys */
+app.get('/productCategorys', async (req,res)=>{
+  const productCategorys = await ProductCategory.find();
+
+res.json({
+  success: true,
+  description: "Product category  fetched successfully",
+  data: productCategorys,
+})
+
+})
 app.listen(PORT, () => {
   console.log(`The server is Running on Port ${PORT} 🚀`);
 });
