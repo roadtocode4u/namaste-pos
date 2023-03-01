@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const invoiceSchema = new mongoose.Schema({
+const invoiceSchema = new Schema({
     invoiceNumber: {
         type: Number,
         required: [true, "invoiceNumber cannot be empty"]
@@ -34,6 +34,6 @@ const invoiceSchema = new mongoose.Schema({
         timestamps: true
     });
 
-const Invoice = mongoose.model("Invoice", invoiceSchema)
+const Invoice = model("Invoice", invoiceSchema)
 
 export default Invoice;
