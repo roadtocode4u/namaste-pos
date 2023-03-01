@@ -17,12 +17,6 @@ const orderSchema = new mongoose.Schema(
             ref: 'User'
         },
 
-        orderType: {
-            type: String,
-            enum: ['dine-in', 'take-out', 'delivery'],
-            required: [true, "orderType cannot be empty"]
-        },
-
         items: [
             {
               name: {
@@ -40,6 +34,12 @@ const orderSchema = new mongoose.Schema(
               modifier: String
             },
         ],
+
+        orderType: {
+          type: String,
+          enum: ['dine-in', 'take-out', 'delivery'],
+          required: [true, "orderType cannot be empty"]
+      },
 
         orderComments: String,
 
