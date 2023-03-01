@@ -158,9 +158,9 @@ app.get('/productItem/:id', async (req, res) => {
 
 /* Product Item APIs Ends Here */
 
-/* Product Category APIs Started here */
+// Product Category APIs Started here 
 
-/* POST productCategory = create productCategory */
+// POST productCategory = create productCategory 
 app.post('/productCategory', async (req, res) => {
   const { categoryType, categoryTitle, isCategoryAvailable, catUpdateTime, itemImgUrl } = req.body;
   // validations will go here
@@ -180,7 +180,7 @@ app.post('/productCategory', async (req, res) => {
   })
 })
 
-/* GET producctCategory?title => get productCategory by title */ 
+// GET producctCategory?title => get productCategory by title 
 app.get('/productCategory', async (req,res)=>{
   const { title } = req.query;
 
@@ -196,17 +196,62 @@ res.json({
 
 })
 
-/* GET productCategorys => get all productCategorys */
-app.get('/productCategorys', async (req,res)=>{
-  const productCategorys = await ProductCategory.find();
+// GET productCategoriess => get all productCategories
+app.get('/productCategories', async (req,res)=>{
+  const productCategories = await ProductCategory.find();
 
 res.json({
   success: true,
   description: "Product category  fetched successfully",
-  data: productCategorys,
+  data: productCategories,
+})
 })
 
-})
+// PUT productCategoy/:id => update productCategoy by id
+app.put('/productCategory/:id', async (req, res) => {
+  const { id } = req.params;
+  const { categoryType, categoryTitle, isCategoryAvailable, catUpdateTime, itemImgUrl } = req.body;
+
+  await ProductCategory.updateOne(
+    {
+      _id: id,
+    },
+    {
+      $set: {
+        categoryType, 
+        categoryTitle, 
+        isCategoryAvailable, 
+        catUpdateTime, 
+        itemImgUrl
+      },
+    }
+  );
+
+  const updatedProductCategory = await ProductCategory.findById(id);
+
+  res.json({
+    success: true,
+    message: 'Product category updated successfully',
+    data: updatedProductCategory,
+  });
+});
+
+// DELETE productCategory/:id => delete productCategory by id
+app.delete('/productCategory/:id', async (req, res) => {
+  const { id } = req.params;
+  const productCategory = await ProductCategory.deleteOne({
+    _id: id,
+  });
+
+  res.json({
+    success: true,
+    message: 'Product category deleted successfully',
+    data: productCategory,
+  });
+});
+
+// Product Category APIs Ends Here 
+
 app.listen(PORT, () => {
   console.log(`The server is Running on Port ${PORT} 🚀`);
 });
