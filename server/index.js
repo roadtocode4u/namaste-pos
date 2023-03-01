@@ -5,7 +5,9 @@ import dotenv from 'dotenv';
 import User from './models/User.js';
 import ProductItem from './models/ProductItem.js';
 import ProductCategory from './models/ProductCategory.js';
-dotenv.config();
+
+import Order from './models/Order.js';
+
 mongoose.set('strictQuery', false);
 
 const app = express();
@@ -155,6 +157,18 @@ app.get('/productItem/:id', async (req, res) => {
   });
 });
 
+// GET productItem?title= => get productItem by title
+app.get('/productItem', async (req, res) => {
+  const { title } = req.query;
+  const productItem = await ProductItem.findOne({ title });
+
+  res.json({
+    success: true,
+    message: 'ProductItem fetched successfully',
+    data: productItem,
+  });
+});
+
 
 /* Product Item APIs Ends Here */
 
@@ -207,50 +221,65 @@ res.json({
 })
 })
 
-// PUT productCategoy/:id => update productCategoy by id
-app.put('/productCategory/:id', async (req, res) => {
-  const { id } = req.params;
-  const { categoryType, categoryTitle, isCategoryAvailable, catUpdateTime, itemImgUrl } = req.body;
 
-  await ProductCategory.updateOne(
-    {
-      _id: id,
-    },
-    {
-      $set: {
-        categoryType, 
-        categoryTitle, 
-        isCategoryAvailable, 
-        catUpdateTime, 
-        itemImgUrl
-      },
-    }
-  );
+/*---------- Order APIs Starts Here ----------*/
 
-  const updatedProductCategory = await ProductCategory.findById(id);
 
-  res.json({
-    success: true,
-    message: 'Product category updated successfully',
-    data: updatedProductCategory,
-  });
-});
+/*----- 1-create order API -----*/
+app.post('/order', async(req, res)=>{
 
-// DELETE productCategory/:id => delete productCategory by id
-app.delete('/productCategory/:id', async (req, res) => {
-  const { id } = req.params;
-  const productCategory = await ProductCategory.deleteOne({
-    _id: id,
-  });
+  const { userId, tableNumber, orderType, items, orderComments} = req.body;
 
-  res.json({
-    success: true,
-    message: 'Product category deleted successfully',
-    data: productCategory,
-  });
-});
+  const totalOrders = await Order.countDocuments();
+  const orderId = totalOrders+1;
 
-// Product Category APIs Ends Here 
+
+// validations to check if all the required fields are filled or not
+  const requiredFields = ["tableNumber", "items", "orderType"];
+  const emptyFields = requiredFields.filter(field=>!req.body[field])
+
+  if (emptyFields.length > 0) {
+    return res.json({
+      success: false,
+      message: `${emptyFields.join(', ')} cannot be empty`,
+    });
+  }
+
+  try{
+    const order = new Order({
+      orderId,
+      userId,
+      tableNumber,
+      orderType,
+      items,
+      orderComments
+    })
+  
+    const savedOrder = await order.save();
+    
+    res.json({
+      success: true,
+      message: 'Order placed successfully',
+      data: savedOrder,
+    });
+
+  }catch(err){
+    res.json({
+      success: false,
+      message: err.message
+    });
+  }
+
+})
+
+/*----- 2-Get orders API -----*/
+
+
+/*---------- Order APIs Ends Here ----------*/
+
+
+
+
 
 app.listen(PORT, () => {
   console.log(`The server is Running on Port ${PORT} 🚀`);
