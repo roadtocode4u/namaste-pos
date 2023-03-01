@@ -175,6 +175,7 @@ app.get('/productItem', async (req, res) => {
 
 
 /*----- 1-create order API -----*/
+
 app.post('/order', async(req, res)=>{
 
   const { userId, tableNumber, orderType, items, orderComments} = req.body;
@@ -222,6 +223,28 @@ app.post('/order', async(req, res)=>{
 })
 
 /*----- 2-Get orders API -----*/
+
+// 2.1-Get all orders
+app.get('/orders', async(req, res)=>{
+
+  try{
+    const orders = await Order.find();
+
+    res.json({
+      success: true,
+      message: 'Orders fetched successfully',
+      results: orders.length,
+      data: orders,
+    })
+
+  }catch(err){
+    res.json({
+      success: false,
+      message: err.message
+    })
+  }
+})
+
 
 
 /*---------- Order APIs Ends Here ----------*/
