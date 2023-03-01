@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import User from './models/User.js';
+import ProductItem from './models/ProductItem.js';
 dotenv.config();
 mongoose.set('strictQuery', false);
 
@@ -117,6 +118,30 @@ app.post('/login', async (req, res) => {
     });
   }
 });
+
+/* Product Item APIs Starts Here */
+
+app.post('/productItem', async (req, res) => {
+  const { title, price, description, imgUrl } = req.body;
+  // validations will go here
+  const productItem = new ProductItem({
+    title,
+    price,
+    description,
+    imgUrl
+  });
+
+  const savedProductItem = await productItem.save();
+
+  res.json({
+    success: true,
+    message: 'Product Item created successfully',
+    data: savedProductItem,
+  });
+});
+
+
+/* Product Item APIs Ends Here */
 
 app.listen(PORT, () => {
   console.log(`The server is Running on Port ${PORT} 🚀`);
