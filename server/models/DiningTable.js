@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+import  { Schema,model  } from "mongoose";
 
-const diningTableSchema = new mongoose.Schema({
+const diningTableSchema = new Schema({
     tableNumber: {
         type:Number,
         required: [true, 'tablenumber cannot be empty'],
@@ -25,6 +25,6 @@ const diningTableSchema = new mongoose.Schema({
     timestamps: true
 });
 
-const DiningTable = mongoose.model("DiningTable", diningTableSchema);
+const DiningTable = model("DiningTable", diningTableSchema);
 
 export default DiningTable;
