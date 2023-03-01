@@ -121,6 +121,7 @@ app.post('/login', async (req, res) => {
 
 /* Product Item APIs Starts Here */
 
+// create product item
 app.post('/productItem', async (req, res) => {
   const { title, price, description, imgUrl } = req.body;
   // validations will go here
@@ -137,6 +138,19 @@ app.post('/productItem', async (req, res) => {
     success: true,
     message: 'Product Item created successfully',
     data: savedProductItem,
+  });
+});
+
+// GET productItem/:id => get productItem by id
+
+app.get('/productItem/:id', async (req, res) => {
+  const { id } = req.params;
+  const productItem = await ProductItem.findById(id);
+
+  res.json({
+    success: true,
+    message: 'Product item fetched successfully',
+    data: productItem,
   });
 });
 
