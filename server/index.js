@@ -379,8 +379,8 @@ app.post('/invoice', async (req, res) => {
       invoiceTotal,
       discount,
       tax,
-      user: user,
-      order: order
+      user,
+      order
     })
 
     const savedInvoice = await newInvoice.save();
