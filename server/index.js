@@ -271,7 +271,6 @@ app.get('/order', async (req, res) => {
 });
 
 
-
 /*----- 3-update orders API -----*/
 app.put('/order/:id', async (req, res) => {
   const { id } = req.params;
@@ -296,6 +295,21 @@ app.put('/order/:id', async (req, res) => {
     success: true,
     message: 'Order updated successfully',
     data: updatedOrder,
+  });
+});
+
+
+/*----- 4-delete order API -----*/
+app.delete('/order/:id', async (req, res) => {
+  const { id } = req.params;
+  const order = await Order.deleteOne({
+    _id: id,
+  });
+
+  res.json({
+    success: true,
+    message: 'Order deleted successfully',
+    data: order,
   });
 });
 
