@@ -166,6 +166,16 @@ app.get('/productItem', async (req, res) => {
   });
 });
 
+// GET productItems => get all productItems
+app.get('/productItems', async (req, res) => {
+  const productItems = await ProductItem.find();
+
+  res.json({
+    success: true,
+    message: 'ProductItems fetched successfully',
+    data: productItems,
+  });
+});
 
 /* Product Item APIs Ends Here */
 
