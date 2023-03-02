@@ -270,6 +270,33 @@ app.get('/order', async (req, res) => {
 });
 
 
+/*----- 3-update orders API -----*/
+app.put('/order/:id', async (req, res) => {
+  const { id } = req.params;
+  const {items, orderType, status } = req.body;
+
+  await Order.updateOne(
+    {
+      _id: id,
+    },
+    {
+      $set: {
+        items,
+        orderType,
+        status
+      },
+    }
+  );
+
+  const updatedOrder = await Order.findById(id);
+
+  res.json({
+    success: true,
+    message: 'Order updated successfully',
+    data: updatedOrder,
+  });
+});
+
 /*---------- Order APIs Ends Here ----------*/
 
 
