@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import User from './models/User.js';
 import ProductItem from './models/ProductItem.js';
 import Order from './models/Order.js';
+import DiningTable from './models/DiningTable.js';
 dotenv.config();
 mongoose.set('strictQuery', false);
 
@@ -130,7 +131,7 @@ app.post('/productItem', async (req, res) => {
     title,
     price,
     description,
-    imgUrl
+    imgUrl,
   });
 
   const savedProductItem = await productItem.save();
@@ -155,26 +156,33 @@ app.get('/productItem/:id', async (req, res) => {
   });
 });
 
+// GET productItem?title= => get productItem by title
+app.get('/productItem', async (req, res) => {
+  const { title } = req.query;
+  const productItem = await ProductItem.findOne({ title });
+
+  res.json({
+    success: true,
+    message: 'ProductItem fetched successfully',
+    data: productItem,
+  });
+});
 
 /* Product Item APIs Ends Here */
 
-
 /*---------- Order APIs Starts Here ----------*/
-
 
 /*----- 1-create order API -----*/
 
-app.post('/order', async(req, res)=>{
-
-  const { userId, tableNumber, orderType, items, orderComments} = req.body;
+app.post('/order', async (req, res) => {
+  const { userId, tableNumber, orderType, items, orderComments } = req.body;
 
   const totalOrders = await Order.countDocuments();
-  const orderId = totalOrders+1;
+  const orderId = totalOrders + 1;
 
-
-// validations to check if all the required fields are filled or not
-  const requiredFields = ["tableNumber", "items", "orderType"];
-  const emptyFields = requiredFields.filter(field=>!req.body[field])
+  // validations to check if all the required fields are filled or not
+  const requiredFields = ['tableNumber', 'items', 'orderType'];
+  const emptyFields = requiredFields.filter((field) => !req.body[field]);
 
   if (emptyFields.length > 0) {
     return res.json({
@@ -183,39 +191,36 @@ app.post('/order', async(req, res)=>{
     });
   }
 
-  try{
+  try {
     const order = new Order({
       orderId,
       userId,
       tableNumber,
       orderType,
       items,
-      orderComments
-    })
-  
+      orderComments,
+    });
+
     const savedOrder = await order.save();
-    
+
     res.json({
       success: true,
       message: 'Order placed successfully',
       data: savedOrder,
     });
-
-  }catch(err){
+  } catch (err) {
     res.json({
       success: false,
-      message: err.message
+      message: err.message,
     });
   }
-
-})
+});
 
 /*----- 2-Get orders API -----*/
 
 // 2.1-Get all orders
-app.get('/orders', async(req, res)=>{
-
-  try{
+app.get('/orders', async (req, res) => {
+  try {
     const orders = await Order.find();
 
     res.json({
@@ -223,22 +228,20 @@ app.get('/orders', async(req, res)=>{
       message: 'Orders fetched successfully',
       results: orders.length,
       data: orders,
-    })
-
-  }catch(err){
+    });
+  } catch (err) {
     res.json({
       success: false,
-      message: err.message
-    })
+      message: err.message,
+    });
   }
-})
+});
 
 // 2.2-GET order/:id => get order by id
-app.get('/order/:id', async(req, res)=>{
+app.get('/order/:id', async (req, res) => {
+  const { id } = req.params;
 
-  const {id} = req.params;
-
-  try{
+  try {
     const order = await Order.findById(id);
 
     res.json({
@@ -246,28 +249,27 @@ app.get('/order/:id', async(req, res)=>{
       message: 'Order fetched successfully',
       data: order,
     });
-
-  }catch(err){
+  } catch (err) {
     res.json({
       success: false,
-      message: err.message
+      message: err.message,
     });
   }
-})
+});
 
 // 2.2-GET order => get order by tableNumber
 app.get('/order', async (req, res) => {
-  const {  tableNumber } = req.query;
+  const { tableNumber } = req.query;
 
-  const order = await Order.findOne({tableNumber});
+  const order = await Order.findOne({ tableNumber });
 
-    res.json({
+  res.json({
     success: true,
     message: 'Order fetched successfully',
     data: order,
   });
- 
 });
+
 
 
 /*----- 3-update orders API -----*/
@@ -300,7 +302,43 @@ app.put('/order/:id', async (req, res) => {
 /*---------- Order APIs Ends Here ----------*/
 
 
+/* Dining Table APIs Starts Here */
 
+// POST creatediningtable => 
+app.post('/createDiningtable', async (req, res) => {
+  const { tableNumber,capacity,numberoftable,tablelocation,tableservice } = req.body;
+  // validations 
+  const diningTable = new DiningTable({
+    tableNumber,
+    capacity,
+    numberoftable,
+    tablelocation,
+    tableservice
+  });
+
+  const savedDiningTable = await diningTable.save();
+
+  res.json({
+    success: true,
+    message: 'DiningTable created successfully',
+    data: savedDiningTable,
+  });
+});
+
+
+// GET diningtables => get all diningtables
+app.get('/diningtables', async (req, res) => {
+  const diningtables = await DiningTable.find();
+
+  res.json({
+    success: true,
+    message: 'DiningTable fetched successfully...',
+    data: diningtables,
+  });
+});
+
+
+/* Dining Table APIs End Here */
 
 app.listen(PORT, () => {
   console.log(`The server is Running on Port ${PORT} 🚀`);
