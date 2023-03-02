@@ -130,7 +130,7 @@ app.post('/productItem', async (req, res) => {
     title,
     price,
     description,
-    imgUrl
+    imgUrl,
   });
 
   const savedProductItem = await productItem.save();
@@ -167,26 +167,21 @@ app.get('/productItem', async (req, res) => {
   });
 });
 
-
 /* Product Item APIs Ends Here */
-
 
 /*---------- Order APIs Starts Here ----------*/
 
-
 /*----- 1-create order API -----*/
 
-app.post('/order', async(req, res)=>{
-
-  const { userId, tableNumber, orderType, items, orderComments} = req.body;
+app.post('/order', async (req, res) => {
+  const { userId, tableNumber, orderType, items, orderComments } = req.body;
 
   const totalOrders = await Order.countDocuments();
-  const orderId = totalOrders+1;
+  const orderId = totalOrders + 1;
 
-
-// validations to check if all the required fields are filled or not
-  const requiredFields = ["tableNumber", "items", "orderType"];
-  const emptyFields = requiredFields.filter(field=>!req.body[field])
+  // validations to check if all the required fields are filled or not
+  const requiredFields = ['tableNumber', 'items', 'orderType'];
+  const emptyFields = requiredFields.filter((field) => !req.body[field]);
 
   if (emptyFields.length > 0) {
     return res.json({
@@ -195,39 +190,36 @@ app.post('/order', async(req, res)=>{
     });
   }
 
-  try{
+  try {
     const order = new Order({
       orderId,
       userId,
       tableNumber,
       orderType,
       items,
-      orderComments
-    })
-  
+      orderComments,
+    });
+
     const savedOrder = await order.save();
-    
+
     res.json({
       success: true,
       message: 'Order placed successfully',
       data: savedOrder,
     });
-
-  }catch(err){
+  } catch (err) {
     res.json({
       success: false,
-      message: err.message
+      message: err.message,
     });
   }
-
-})
+});
 
 /*----- 2-Get orders API -----*/
 
 // 2.1-Get all orders
-app.get('/orders', async(req, res)=>{
-
-  try{
+app.get('/orders', async (req, res) => {
+  try {
     const orders = await Order.find();
 
     res.json({
@@ -235,22 +227,20 @@ app.get('/orders', async(req, res)=>{
       message: 'Orders fetched successfully',
       results: orders.length,
       data: orders,
-    })
-
-  }catch(err){
+    });
+  } catch (err) {
     res.json({
       success: false,
-      message: err.message
-    })
+      message: err.message,
+    });
   }
-})
+});
 
 // 2.2-GET order/:id => get order by id
-app.get('/order/:id', async(req, res)=>{
+app.get('/order/:id', async (req, res) => {
+  const { id } = req.params;
 
-  const {id} = req.params;
-
-  try{
+  try {
     const order = await Order.findById(id);
 
     res.json({
@@ -258,34 +248,28 @@ app.get('/order/:id', async(req, res)=>{
       message: 'Order fetched successfully',
       data: order,
     });
-
-  }catch(err){
+  } catch (err) {
     res.json({
       success: false,
-      message: err.message
+      message: err.message,
     });
   }
-})
+});
 
 // 2.2-GET order => get order by tableNumber
 app.get('/order', async (req, res) => {
-  const {  tableNumber } = req.query;
+  const { tableNumber } = req.query;
 
-  const order = await Order.findOne({tableNumber});
+  const order = await Order.findOne({ tableNumber });
 
-    res.json({
+  res.json({
     success: true,
     message: 'Order fetched successfully',
     data: order,
   });
- 
 });
 
-
 /*---------- Order APIs Ends Here ----------*/
-
-
-
 
 app.listen(PORT, () => {
   console.log(`The server is Running on Port ${PORT} 🚀`);
