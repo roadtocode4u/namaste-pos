@@ -168,6 +168,59 @@ app.get('/productItem', async (req, res) => {
     data: productItem,
   });
 });
+ 
+// GET productItems => get all productItems
+app.get('/productItems', async (req, res) => {
+  const productItems = await ProductItem.find();
+
+  res.json({
+    success: true,
+    message: 'ProductItems fetched successfully',
+    data: productItems,
+  });
+});
+
+// PUT ProductItem/:id => update productItem by id
+app.put('/productItem/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, price, imgUrl,description } = req.body;
+
+  await ProductItem.updateOne(
+    {
+      _id: id,
+    },
+    {
+      $set: {
+        title,
+        price,
+        imgUrl,
+        description,
+      },
+    }
+  );
+
+  const updatedProductItem = await ProductItem.findById(id);
+
+  res.json({
+    success: true,
+    message: 'ProductItem updated successfully',
+    data: updatedProductItem,
+  });
+});
+
+// DELETE productItem/:id => delete productItem by id
+app.delete('/productItem/:id', async (req, res) => {
+  const { id } = req.params;
+  const productItem = await ProductItem.deleteOne({
+    _id: id,
+  });
+
+  res.json({
+    success: true,
+    message: 'ProductItem deleted successfully',
+    data: productItem,
+  });
+});
 
 /* Product Item APIs Ends Here */
 
