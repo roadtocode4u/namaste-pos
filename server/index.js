@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import User from './models/User.js';
 import ProductItem from './models/ProductItem.js';
 import Order from './models/Order.js';
+import DiningTable from './models/DiningTable.js';
 dotenv.config();
 mongoose.set('strictQuery', false);
 
@@ -270,6 +271,32 @@ app.get('/order', async (req, res) => {
 });
 
 /*---------- Order APIs Ends Here ----------*/
+
+
+/* Dining Table APIs Starts Here */
+
+app.post('/creatediningtable', async (req, res) => {
+  const { tableNumber,capacity,numberoftable,tablelocation,tableservice } = req.body;
+  // validations 
+  const diningTable = new DiningTable({
+    tableNumber,
+    capacity,
+    numberoftable,
+    occupied: false,
+    tablelocation,
+    tableservice
+  });
+
+  const savedDiningTable = await diningTable.save();
+
+  res.json({
+    success: true,
+    message: 'DiningTable created successfully',
+    data: savedDiningTable,
+  });
+});
+
+/* Dining Table APIs End Here */
 
 app.listen(PORT, () => {
   console.log(`The server is Running on Port ${PORT} 🚀`);
