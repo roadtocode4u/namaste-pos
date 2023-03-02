@@ -23,11 +23,11 @@ const invoiceSchema = new Schema(
       requied: [true, 'tax cannot be empty'],
     },
     user: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'User',
     },
     order: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Order',
     },
   },
