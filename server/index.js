@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import User from './models/User.js';
 import ProductItem from './models/ProductItem.js';
+import Order from './models/Order.js';
 dotenv.config();
 mongoose.set('strictQuery', false);
 
@@ -129,7 +130,7 @@ app.post('/productItem', async (req, res) => {
     title,
     price,
     description,
-    imgUrl
+    imgUrl,
   });
 
   const savedProductItem = await productItem.save();
@@ -165,7 +166,7 @@ app.get('/productItem', async (req, res) => {
     data: productItem,
   });
 });
-
+ 
 // GET productItems => get all productItems
 app.get('/productItems', async (req, res) => {
   const productItems = await ProductItem.find();
@@ -177,7 +178,7 @@ app.get('/productItems', async (req, res) => {
   });
 });
 
-// PUT book/:id => update book by id
+// PUT ProductItem/:id => update productItem by id
 app.put('/productItem/:id', async (req, res) => {
   const { id } = req.params;
   const { title, price, imgUrl,description } = req.body;
@@ -205,7 +206,7 @@ app.put('/productItem/:id', async (req, res) => {
   });
 });
 
-// DELETE book/:id => delete productItem by id
+// DELETE productItem/:id => delete productItem by id
 app.delete('/productItem/:id', async (req, res) => {
   const { id } = req.params;
   const productItem = await ProductItem.deleteOne({
@@ -220,6 +221,108 @@ app.delete('/productItem/:id', async (req, res) => {
 });
 
 /* Product Item APIs Ends Here */
+
+/*---------- Order APIs Starts Here ----------*/
+
+/*----- 1-create order API -----*/
+
+app.post('/order', async (req, res) => {
+  const { userId, tableNumber, orderType, items, orderComments } = req.body;
+
+  const totalOrders = await Order.countDocuments();
+  const orderId = totalOrders + 1;
+
+  // validations to check if all the required fields are filled or not
+  const requiredFields = ['tableNumber', 'items', 'orderType'];
+  const emptyFields = requiredFields.filter((field) => !req.body[field]);
+
+  if (emptyFields.length > 0) {
+    return res.json({
+      success: false,
+      message: `${emptyFields.join(', ')} cannot be empty`,
+    });
+  }
+
+  try {
+    const order = new Order({
+      orderId,
+      userId,
+      tableNumber,
+      orderType,
+      items,
+      orderComments,
+    });
+
+    const savedOrder = await order.save();
+
+    res.json({
+      success: true,
+      message: 'Order placed successfully',
+      data: savedOrder,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
+
+/*----- 2-Get orders API -----*/
+
+// 2.1-Get all orders
+app.get('/orders', async (req, res) => {
+  try {
+    const orders = await Order.find();
+
+    res.json({
+      success: true,
+      message: 'Orders fetched successfully',
+      results: orders.length,
+      data: orders,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
+
+// 2.2-GET order/:id => get order by id
+app.get('/order/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const order = await Order.findById(id);
+
+    res.json({
+      success: true,
+      message: 'Order fetched successfully',
+      data: order,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
+
+// 2.2-GET order => get order by tableNumber
+app.get('/order', async (req, res) => {
+  const { tableNumber } = req.query;
+
+  const order = await Order.findOne({ tableNumber });
+
+  res.json({
+    success: true,
+    message: 'Order fetched successfully',
+    data: order,
+  });
+});
+
+/*---------- Order APIs Ends Here ----------*/
 
 app.listen(PORT, () => {
   console.log(`The server is Running on Port ${PORT} 🚀`);

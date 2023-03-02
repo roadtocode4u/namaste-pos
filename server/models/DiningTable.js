@@ -1,30 +1,33 @@
-import mongoose, { Schema } from "mongoose";
+import { Schema, model } from 'mongoose';
 
-const diningTableSchema = new mongoose.Schema({
+const diningTableSchema = new Schema(
+  {
     tableNumber: {
-        type:Number,
-        required: [true, 'tablenumber cannot be empty'],
-        unique:true
+      type: Number,
+      required: [true, 'tablenumber cannot be empty'],
+      unique: true,
     },
-    capacity:{
-        type:Number,
-        required:[true, 'capacity cannot be empty']
+    capacity: {
+      type: Number,
+      required: [true, 'capacity cannot be empty'],
     },
-    numberoftable:Number,
+    numberoftable: Number,
     occupied: Boolean,
-    occupiedBy:{
-        type: Schema.Types.ObjectId,
-        ref: "User"
-    } ,
-    tablelocation:String,
-    tableservice:{
-        type:String,
-        required:[true, 'tableservice cannot be empty']
-    }
-},{
-    timestamps: true
-});
+    occupiedBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+    tablelocation: String,
+    tableservice: {
+      type: String,
+      required: [true, 'tableservice cannot be empty'],
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const DiningTable = mongoose.model("DiningTable", diningTableSchema);
+const DiningTable = model('DiningTable', diningTableSchema);
 
 export default DiningTable;
