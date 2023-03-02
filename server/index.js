@@ -275,7 +275,7 @@ app.get('/order', async (req, res) => {
 /*----- 3-update orders API -----*/
 app.put('/order/:id', async (req, res) => {
   const { id } = req.params;
-  const {items, orderType, status } = req.body;
+  const { items, orderType, status } = req.body;
 
   await Order.updateOne(
     {
@@ -321,7 +321,7 @@ app.delete('/order/:id', async (req, res) => {
 
 // POST creatediningtable => 
 app.post('/createDiningTable', async (req, res) => {
-  const { tableNumber,capacity,numberoftable,tablelocation,tableservice } = req.body;
+  const { tableNumber, capacity, numberoftable, tablelocation, tableservice } = req.body;
   // validations 
   const diningTable = new DiningTable({
     tableNumber,
@@ -348,7 +348,7 @@ app.get('/diningTables', async (req, res) => {
   res.json({
     success: true,
     message: 'DiningTable fetched successfully...',
-    results:diningtables.length,
+    results: diningtables.length,
     data: diningtables,
   });
 });
@@ -442,6 +442,28 @@ app.get('/invoice', async (req, res) => {
 
 });
 
+// GET invoice/:id => get invoice by id
+
+app.get('/invoice/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const invoices = await Invoice.findById(id);
+
+    res.json({
+      success: true,
+      message: "Invoice featch successfully",
+      data: invoices
+    })
+  }
+  catch (err) {
+    res.json({
+      success: false,
+      message: err.message
+    })
+  }
+
+});
 
 /* Invoice APIs End Here */
 
