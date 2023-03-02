@@ -168,7 +168,7 @@ app.get('/productItem', async (req, res) => {
     data: productItem,
   });
 });
- 
+
 // GET productItems => get all productItems
 app.get('/productItems', async (req, res) => {
   const productItems = await ProductItem.find();
@@ -183,7 +183,7 @@ app.get('/productItems', async (req, res) => {
 // PUT ProductItem/:id => update productItem by id
 app.put('/productItem/:id', async (req, res) => {
   const { id } = req.params;
-  const { title, price, imgUrl,description } = req.body;
+  const { title, price, imgUrl, description } = req.body;
 
   await ProductItem.updateOne(
     {
@@ -521,36 +521,60 @@ app.get('/invoice/:id', async (req, res) => {
 // PUT invoice/:id => update invoice by id
 
 app.put('/invoice/:id', async (req, res) => {
-  try{
+  try {
     const { id } = req.params;
-  const { invoiceNumber, invoiceDate, invoiceTotal, discount, tax, user, order } = req.body;
+    const { invoiceNumber, invoiceDate, invoiceTotal, discount, tax, user, order } = req.body;
 
-  await Invoice.updateOne(
-    {
-      _id: id,
-    },
-    {
-      $set: {
-        invoiceNumber,
-        invoiceDate,
-        invoiceTotal,
-        discount,
-        tax,
-        user,
-        order
+    await Invoice.updateOne(
+      {
+        _id: id,
+      },
+      {
+        $set: {
+          invoiceNumber,
+          invoiceDate,
+          invoiceTotal,
+          discount,
+          tax,
+          user,
+          order
+        }
       }
-    }
-  )
+    )
 
-  const updateInvoice = await Invoice.findById(id);
+    const updateInvoice = await Invoice.findById(id);
 
-  res.json({
-    success: true,
-    message: 'Invoice updated successfully',
-    data: updateInvoice
-  });
+    res.json({
+      success: true,
+      message: 'Invoice updated successfully',
+      data: updateInvoice
+    });
   }
-  catch(err){
+  catch (err) {
+    res.json({
+      success: false,
+      message: err.message
+    })
+  }
+});
+
+
+// DELETE invoice/:id => delete invoice by id
+
+app.delete('/invoice/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const invoice = await Invoice.deleteOne({
+      _id: id,
+    });
+    res.json({
+      success: true,
+      message: 'Invoice deleted Successfully',
+      data: invoice
+    });
+  }
+  catch (err) {
     res.json({
       success: false,
       message: err.message
