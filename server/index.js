@@ -399,6 +399,27 @@ app.post('/invoice', async (req, res) => {
   }
 })
 
+/*----- get all invoices API -----*/
+
+app.get('/invoice', async (req, res) => {
+
+  try {
+    const invoices = await Invoice.find();
+
+    res.json({
+      success: true,
+      message: 'Invoices fetched Successfullty',
+      data: invoices
+    })
+  }
+  catch (err) {
+    res.json({
+      success: false,
+      message: err.message
+    })
+  }
+})
+
 /* Invoice APIs End Here */
 
 app.listen(PORT, () => {
