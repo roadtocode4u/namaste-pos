@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "npx prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx --ignore-pattern node_modules"
   },
   "repository": {
     "type": "git",
