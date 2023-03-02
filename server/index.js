@@ -275,14 +275,14 @@ app.get('/order', async (req, res) => {
 
 /* Dining Table APIs Starts Here */
 
-app.post('/creatediningtable', async (req, res) => {
+// POST creatediningtable => 
+app.post('/createDiningtable', async (req, res) => {
   const { tableNumber,capacity,numberoftable,tablelocation,tableservice } = req.body;
   // validations 
   const diningTable = new DiningTable({
     tableNumber,
     capacity,
     numberoftable,
-    occupied: false,
     tablelocation,
     tableservice
   });
@@ -295,6 +295,19 @@ app.post('/creatediningtable', async (req, res) => {
     data: savedDiningTable,
   });
 });
+
+
+// GET diningtables => get all diningtables
+app.get('/diningtables', async (req, res) => {
+  const diningtables = await DiningTable.find();
+
+  res.json({
+    success: true,
+    message: 'DiningTable fetched successfully...',
+    data: diningtables,
+  });
+});
+
 
 /* Dining Table APIs End Here */
 

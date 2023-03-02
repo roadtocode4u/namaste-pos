@@ -12,7 +12,10 @@ const diningTableSchema = new Schema(
       required: [true, 'capacity cannot be empty'],
     },
     numberoftable: Number,
-    occupied: Boolean,
+    occupied:{
+      type:Boolean,
+      default: false
+    },
     occupiedBy: {
       type: Schema.Types.ObjectId,
       ref: 'User',
