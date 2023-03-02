@@ -420,6 +420,29 @@ app.get('/invoice', async (req, res) => {
   }
 })
 
+/*----- GET invoice?invoiceNumber= => get invoice by invoiceNumber -----*/
+
+app.get('/invoice', async (req, res) => {
+  try {
+    const { invoiceNumber } = req.query;
+    const invoice = await Invoice.findOne({ invoiceNumber });
+
+    res.json({
+      success: true,
+      message: 'Book fetched successfully',
+      data: invoice,
+    })
+  }
+  catch (err) {
+    res.json({
+      success: false,
+      message: err.message
+    })
+  }
+
+});
+
+
 /* Invoice APIs End Here */
 
 app.listen(PORT, () => {
