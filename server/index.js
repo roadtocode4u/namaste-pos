@@ -518,6 +518,46 @@ app.get('/invoice/:id', async (req, res) => {
 
 });
 
+// PUT invoice/:id => update invoice by id
+
+app.put('/invoice/:id', async (req, res) => {
+  try{
+    const { id } = req.params;
+  const { invoiceNumber, invoiceDate, invoiceTotal, discount, tax, user, order } = req.body;
+
+  await Invoice.updateOne(
+    {
+      _id: id,
+    },
+    {
+      $set: {
+        invoiceNumber,
+        invoiceDate,
+        invoiceTotal,
+        discount,
+        tax,
+        user,
+        order
+      }
+    }
+  )
+
+  const updateInvoice = await Invoice.findById(id);
+
+  res.json({
+    success: true,
+    message: 'Invoice updated successfully',
+    data: updateInvoice
+  });
+  }
+  catch(err){
+    res.json({
+      success: false,
+      message: err.message
+    })
+  }
+});
+
 /* Invoice APIs End Here */
 
 app.listen(PORT, () => {
