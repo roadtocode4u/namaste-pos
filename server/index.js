@@ -245,6 +245,41 @@ app.get('/orders', async(req, res)=>{
   }
 })
 
+// 2.2-GET order/:id => get order by id
+app.get('/order/:id', async(req, res)=>{
+
+  const {id} = req.params;
+
+  try{
+    const order = await Order.findById(id);
+
+    res.json({
+      success: true,
+      message: 'Order fetched successfully',
+      data: order,
+    });
+
+  }catch(err){
+    res.json({
+      success: false,
+      message: err.message
+    });
+  }
+})
+
+// 2.2-GET order => get order by tableNumber
+app.get('/order', async (req, res) => {
+  const {  tableNumber } = req.query;
+
+  const order = await Order.findOne({tableNumber});
+
+    res.json({
+    success: true,
+    message: 'Order fetched successfully',
+    data: order,
+  });
+ 
+});
 
 
 /*---------- Order APIs Ends Here ----------*/
