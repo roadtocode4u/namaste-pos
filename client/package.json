@@ -21,7 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx --ignore-pattern node_modules"
+    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx --ignore-pattern node_modules --fix"
   },
   "eslintConfig": {
     "extends": [

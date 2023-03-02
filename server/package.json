@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx --ignore-pattern node_modules"
+    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx --ignore-pattern node_modules --fix"
   },
   "repository": {
     "type": "git",
