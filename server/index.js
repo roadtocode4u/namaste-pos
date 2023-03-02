@@ -177,6 +177,34 @@ app.get('/productItems', async (req, res) => {
   });
 });
 
+// PUT book/:id => update book by id
+app.put('/productItem/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, price, imgUrl,description } = req.body;
+
+  await ProductItem.updateOne(
+    {
+      _id: id,
+    },
+    {
+      $set: {
+        title,
+        price,
+        imgUrl,
+        description,
+      },
+    }
+  );
+
+  const updatedProductItem = await ProductItem.findById(id);
+
+  res.json({
+    success: true,
+    message: 'ProductItem updated successfully',
+    data: updatedProductItem,
+  });
+});
+
 /* Product Item APIs Ends Here */
 
 app.listen(PORT, () => {
