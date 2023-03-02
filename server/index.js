@@ -205,6 +205,20 @@ app.put('/productItem/:id', async (req, res) => {
   });
 });
 
+// DELETE book/:id => delete productItem by id
+app.delete('/productItem/:id', async (req, res) => {
+  const { id } = req.params;
+  const productItem = await ProductItem.deleteOne({
+    _id: id,
+  });
+
+  res.json({
+    success: true,
+    message: 'ProductItem deleted successfully',
+    data: productItem,
+  });
+});
+
 /* Product Item APIs Ends Here */
 
 app.listen(PORT, () => {
