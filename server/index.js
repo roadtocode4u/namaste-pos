@@ -373,9 +373,18 @@ app.delete('/order/:id', async (req, res) => {
 
 // POST creatediningtable =>
 app.post('/createDiningTable', async (req, res) => {
+  try{
   const { tableNumber, capacity, numberOfTable, tableLocation, tableService } =
     req.body;
   // validations
+  const existingTable = await DiningTable.findOne({tableNumber});
+
+    if (existingTable){
+      return res.json({
+        success: false,
+        message: "Table already exists"
+      })
+    }
   const diningTable = new DiningTable({
     tableNumber,
     capacity,
@@ -391,6 +400,12 @@ app.post('/createDiningTable', async (req, res) => {
     message: 'DiningTable created successfully',
     data: savedDiningTable,
   });
+} catch (err) {
+  res.json({
+    success: false,
+    message: "err in the catch block",
+  });
+}
 });
 
 
@@ -410,6 +425,7 @@ app.get('/diningTable/:id', async (req, res) => {
 
 // GET diningtables => get all diningtables
 app.get('/diningTables', async (req, res) => {
+  try {
   const diningtables = await DiningTable.find();
 
   res.json({
@@ -418,6 +434,12 @@ app.get('/diningTables', async (req, res) => {
     results: diningtables.length,
     data: diningtables,
   });
+} catch (err) {
+  res.json({
+    success: false,
+    message: err.message,
+  });
+}
 });
 
 
