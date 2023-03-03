@@ -1,6 +1,6 @@
-import mongoose, { Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
-const orderSchema = new mongoose.Schema({
+const orderSchema = new Schema({
   orderId: {
     type: String,
     required: [true, 'orderId cannot be empty'],
@@ -52,6 +52,6 @@ const orderSchema = new mongoose.Schema({
   feedback: String,
 });
 
-const Order = mongoose.model('Order', orderSchema);
+const Order = model('Order', orderSchema);
 
 export default Order;

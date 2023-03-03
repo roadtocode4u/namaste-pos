@@ -20,7 +20,7 @@ const invoiceSchema = new Schema(
     },
     tax: {
       type: Number,
-      requied: [true, 'tax cannot be empty'],
+      required: [true, 'tax cannot be empty'],
     },
     user: {
       type: Schema.Types.ObjectId,
