@@ -373,15 +373,15 @@ app.delete('/order/:id', async (req, res) => {
 
 // POST creatediningtable =>
 app.post('/createDiningTable', async (req, res) => {
-  const { tableNumber, capacity, numberoftable, tablelocation, tableservice } =
+  const { tableNumber, capacity, numberOfTable, tableLocation, tableService } =
     req.body;
   // validations
   const diningTable = new DiningTable({
     tableNumber,
     capacity,
-    numberoftable,
-    tablelocation,
-    tableservice,
+    numberOfTable,
+    tableLocation,
+    tableService,
   });
 
   const savedDiningTable = await diningTable.save();
@@ -425,7 +425,7 @@ app.get('/diningTables', async (req, res) => {
 app.put('/diningTable/:id', async (req, res) => {
   try {
   const { id } = req.params;
-  const { tableNumber, capacity, numberoftable, tablelocation, tableservice } = req.body;
+  const { tableNumber, capacity, numberOfTable, tableLocation, tableService } = req.body;
 
   await DiningTable.updateOne(
     {
@@ -435,9 +435,9 @@ app.put('/diningTable/:id', async (req, res) => {
       $set: {
         tableNumber, 
         capacity, 
-        numberoftable, 
-        tablelocation,
-        tableservice
+        numberOfTable, 
+        tableLocation,
+        tableService
       },
     }
   );
