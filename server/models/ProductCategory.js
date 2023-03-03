@@ -17,14 +17,14 @@ const productCategorySchema = Schema(
       default: true,
     },
 
-    catUpdateTime: {
+    categoryUpdateTime: {
       type: Date,
       default: Date.now,
     },
 
-    itemImgUrl: {
+    itemImgURL: {
       type: String,
-      required: [true, 'item Image url cannot be empty'],
+      required: [true, 'item Image URL cannot be empty'],
     },
   },
   {
