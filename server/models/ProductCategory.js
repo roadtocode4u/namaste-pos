@@ -17,12 +17,7 @@ const productCategorySchema = Schema(
       default: true,
     },
 
-    catUpdateTime: {
-      type: Date,
-      default: Date.now,
-    },
-
-    itemImgUrl: {
+    itemImgURL: {
       type: String,
       required: [true, 'item Image url cannot be empty'],
     },

@@ -664,48 +664,57 @@ app.delete('/invoice/:id', async (req, res) => {
 
 /* Invoice APIs End Here */
 
-// Product Category APIs Started here
+// Product Category APIs Started here 
 
-// POST productCategory = create productCategory
+// POST productCategory = create productCategory 
 app.post('/productCategory', async (req, res) => {
-  const {
+  const { categoryType, categoryTitle, itemImgURL } = req.body;
+  
+  // validations for productCategory
+  const emptyCategory =[]
+
+  if(!categoryType) emptyCategory.push('Category Type')
+  if(!categoryTitle) emptyCategory.push('Category Title')
+  if(!itemImgURL) emptyCategory.push('ImgURL')
+
+  if(emptyCategory.length > 0){
+    return res.json({
+      success: false,
+      message:`${emptyCategory.join(' , ')} Required !`
+    })
+  }
+
+  const productCategory = new ProductCategory({
     categoryType,
     categoryTitle,
-    isCategoryAvailable,
-    catUpdateTime,
-    itemImgUrl,
-  } = req.body;
-  // validations will go here
-  const productcategory = new ProductCategory({
-    categoryType,
-    categoryTitle,
-    isCategoryAvailable,
-    catUpdateTime,
-    itemImgUrl,
+    itemImgURL
   });
-  const savedProductCategory = await productcategory.save();
+
+  const savedProductCategory = await productCategory.save();
 
   res.json({
     success: true,
-    message: 'Product category fetched successfully',
+    message: "Product Category Created Successfully",
     data: savedProductCategory,
-  });
-});
+  })
 
-// GET producctCategory?title => get productCategory by title
+})
+
+// GET producctCategory?title => get productCategory by title 
 app.get('/productCategory', async (req, res) => {
   const { title } = req.query;
 
   const productCategory = await ProductCategory.find({
-    title: { $regex: title, $options: 'i' },
-  });
+    title: { $regex: title, $options: 'i' }
+  })
 
   res.json({
     success: true,
-    description: 'Product category  fetched successfully',
+    description: "Product category  fetched successfully",
     data: productCategory,
-  });
-});
+  })
+
+})
 
 // GET productCategoriess => get all productCategories
 app.get('/productCategories', async (req, res) => {
@@ -713,21 +722,16 @@ app.get('/productCategories', async (req, res) => {
 
   res.json({
     success: true,
-    description: 'Product category  fetched successfully',
+    description: "Product category  fetched successfully",
+    results : productCategories.length,
     data: productCategories,
-  });
-});
+  })
+})
 
 // PUT productCategoy/:id => update productCategoy by id
 app.put('/productCategory/:id', async (req, res) => {
   const { id } = req.params;
-  const {
-    categoryType,
-    categoryTitle,
-    isCategoryAvailable,
-    catUpdateTime,
-    itemImgUrl,
-  } = req.body;
+  const { categoryType, categoryTitle, isCategoryAvailable,  itemImgURL } = req.body;
 
   await ProductCategory.updateOne(
     {
@@ -738,8 +742,7 @@ app.put('/productCategory/:id', async (req, res) => {
         categoryType,
         categoryTitle,
         isCategoryAvailable,
-        catUpdateTime,
-        itemImgUrl,
+        itemImgURL
       },
     }
   );
@@ -767,7 +770,7 @@ app.delete('/productCategory/:id', async (req, res) => {
   });
 });
 
-// Product Category APIs Ends Here
+// Product Category APIs Ends Here 
 
 app.listen(PORT, () => {
   console.log(`The server is Running on Port ${PORT} 🚀`);
