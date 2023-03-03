@@ -7,7 +7,7 @@ import ProductItem from './models/ProductItem.js';
 import Order from './models/Order.js';
 import DiningTable from './models/DiningTable.js';
 import Invoice from './models/Invoice.js';
-import ProductCategory from './models/ProductCategory.js'
+import ProductCategory from './models/ProductCategory.js';
 
 dotenv.config();
 mongoose.set('strictQuery', false);
@@ -326,7 +326,6 @@ app.get('/order', async (req, res) => {
   });
 });
 
-
 /*----- 3-update orders API -----*/
 app.put('/order/:id', async (req, res) => {
   const { id } = req.params;
@@ -340,7 +339,7 @@ app.put('/order/:id', async (req, res) => {
       $set: {
         items,
         orderType,
-        status
+        status,
       },
     }
   );
@@ -353,7 +352,6 @@ app.put('/order/:id', async (req, res) => {
     data: updatedOrder,
   });
 });
-
 
 /*----- 4-delete order API -----*/
 app.delete('/order/:id', async (req, res) => {
@@ -371,19 +369,19 @@ app.delete('/order/:id', async (req, res) => {
 
 /*---------- Order APIs Ends Here ----------*/
 
-
 /* Dining Table APIs Starts Here */
 
-// POST creatediningtable => 
+// POST creatediningtable =>
 app.post('/createDiningTable', async (req, res) => {
-  const { tableNumber, capacity, numberoftable, tablelocation, tableservice } = req.body;
-  // validations 
+  const { tableNumber, capacity, numberoftable, tablelocation, tableservice } =
+    req.body;
+  // validations
   const diningTable = new DiningTable({
     tableNumber,
     capacity,
     numberoftable,
     tablelocation,
-    tableservice
+    tableservice,
   });
 
   const savedDiningTable = await diningTable.save();
@@ -394,6 +392,7 @@ app.post('/createDiningTable', async (req, res) => {
     data: savedDiningTable,
   });
 });
+
 
 // GET diningTable?id => get diningTable by id
 app.get('/diningTable/:id', async (req, res) => {
@@ -408,6 +407,7 @@ app.get('/diningTable/:id', async (req, res) => {
 });
 
 
+
 // GET diningtables => get all diningtables
 app.get('/diningTables', async (req, res) => {
   const diningtables = await DiningTable.find();
@@ -419,6 +419,7 @@ app.get('/diningTables', async (req, res) => {
     data: diningtables,
   });
 });
+
 
 // PUT diningTable/:id => update diningTable by id
 app.put('/diningTable/:id', async (req, res) => {
@@ -480,6 +481,7 @@ app.delete('/diningTable/:id', async (req, res) => {
   }
 });
 
+
 /* Dining Table APIs End Here */
 
 /* Invoice APIs Starts Here */
@@ -487,9 +489,19 @@ app.delete('/diningTable/:id', async (req, res) => {
 /*----- invoice create API -----*/
 
 app.post('/invoice', async (req, res) => {
-  const { invoiceNumber, invoiceDate, invoiceTotal, discount, tax, user, order } = req.body;
+  const {
+    invoiceNumber,
+    invoiceDate,
+    invoiceTotal,
+    discount,
+    tax,
+    user,
+    order,
+  } = req.body;
 
-  const existingInvoice = await Invoice.findOne({ invoiceNumber: invoiceNumber });
+  const existingInvoice = await Invoice.findOne({
+    invoiceNumber: invoiceNumber,
+  });
 
   if (existingInvoice) {
     return res.json({
@@ -506,89 +518,79 @@ app.post('/invoice', async (req, res) => {
       discount,
       tax,
       user,
-      order
-    })
+      order,
+    });
 
     const savedInvoice = await newInvoice.save();
 
     res.json({
       status: true,
-      message: "Invoice Created Successfully",
-      data: savedInvoice
-    })
-  }
-  catch (err) {
+      message: 'Invoice Created Successfully',
+      data: savedInvoice,
+    });
+  } catch (err) {
     res.json({
       success: false,
-      message: err.message
+      message: err.message,
     });
   }
-})
+});
 
 /*----- get all invoices API -----*/
 
 app.get('/invoice', async (req, res) => {
+  const invoices = await Invoice.find();
 
   try {
-    const invoices = await Invoice.find();
-
     res.json({
       success: true,
       message: 'Invoices fetched Successfullty',
-      data: invoices
-    })
-  }
-  catch (err) {
+      data: invoices,
+    });
+  } catch (err) {
     res.json({
       success: false,
-      message: err.message
-    })
+      message: err.message,
+    });
   }
-})
+});
 
 /*----- GET invoice?invoiceNumber= => get invoice by invoiceNumber -----*/
 
 app.get('/invoice', async (req, res) => {
-  try {
-    const { invoiceNumber } = req.query;
-    const invoice = await Invoice.findOne({ invoiceNumber });
+  const { invoiceNumber } = req.query;
+  const invoice = await Invoice.findOne({ invoiceNumber });
 
-    res.json({
-      success: true,
-      message: 'Book fetched successfully',
-      data: invoice,
-    })
-  }
-  catch (err) {
-    res.json({
+  if (!invoice) {
+    return res.send({
       success: false,
-      message: err.message
-    })
+      message: 'Invoice not Found',
+    });
   }
-
+  res.json({
+    success: true,
+    message: 'invoice fetched successfully',
+    data: invoice,
+  });
 });
 
 // GET invoice/:id => get invoice by id
 
 app.get('/invoice/:id', async (req, res) => {
   const { id } = req.params;
+  const invoice = await Invoice.findById(id);
 
-  try {
-    const invoices = await Invoice.findById(id);
-
-    res.json({
-      success: true,
-      message: "Invoice featch successfully",
-      data: invoices
-    })
-  }
-  catch (err) {
-    res.json({
+  if (!invoice) {
+    return res.send({
       success: false,
-      message: err.message
-    })
+      message: 'Invoice not Found',
+    });
   }
-
+  res.json({
+    success: true,
+    message: 'invoice fetched successfully',
+    data: invoice,
+  });
 });
 
 // PUT invoice/:id => update invoice by id
@@ -596,7 +598,15 @@ app.get('/invoice/:id', async (req, res) => {
 app.put('/invoice/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { invoiceNumber, invoiceDate, invoiceTotal, discount, tax, user, order } = req.body;
+    const {
+      invoiceNumber,
+      invoiceDate,
+      invoiceTotal,
+      discount,
+      tax,
+      user,
+      order,
+    } = req.body;
 
     await Invoice.updateOne(
       {
@@ -610,27 +620,25 @@ app.put('/invoice/:id', async (req, res) => {
           discount,
           tax,
           user,
-          order
-        }
+          order,
+        },
       }
-    )
+    );
 
     const updateInvoice = await Invoice.findById(id);
 
     res.json({
       success: true,
       message: 'Invoice updated successfully',
-      data: updateInvoice
+      data: updateInvoice,
     });
-  }
-  catch (err) {
+  } catch (err) {
     res.json({
       success: false,
-      message: err.message
-    })
+      message: err.message,
+    });
   }
 });
-
 
 // DELETE invoice/:id => delete invoice by id
 
@@ -644,56 +652,60 @@ app.delete('/invoice/:id', async (req, res) => {
     res.json({
       success: true,
       message: 'Invoice deleted Successfully',
-      data: invoice
+      data: invoice,
     });
-  }
-  catch (err) {
+  } catch (err) {
     res.json({
       success: false,
-      message: err.message
-    })
+      message: err.message,
+    });
   }
 });
 
 /* Invoice APIs End Here */
 
-// Product Category APIs Started here 
+// Product Category APIs Started here
 
-// POST productCategory = create productCategory 
+// POST productCategory = create productCategory
 app.post('/productCategory', async (req, res) => {
-  const { categoryType, categoryTitle, isCategoryAvailable, catUpdateTime, itemImgUrl } = req.body;
+  const {
+    categoryType,
+    categoryTitle,
+    isCategoryAvailable,
+    catUpdateTime,
+    itemImgUrl,
+  } = req.body;
   // validations will go here
   const productcategory = new ProductCategory({
     categoryType,
     categoryTitle,
     isCategoryAvailable,
     catUpdateTime,
-    itemImgUrl
+    itemImgUrl,
   });
   const savedProductCategory = await productcategory.save();
 
   res.json({
     success: true,
-    message: "Product category fetched successfully",
+    message: 'Product category fetched successfully',
     data: savedProductCategory,
-  })
-})
+  });
+});
 
-// GET producctCategory?title => get productCategory by title 
+// GET producctCategory?title => get productCategory by title
 app.get('/productCategory', async (req, res) => {
   const { title } = req.query;
 
   const productCategory = await ProductCategory.find({
-    title: { $regex: title, $options: 'i' }
-  })
+    title: { $regex: title, $options: 'i' },
+  });
 
   res.json({
     success: true,
-    description: "Product category  fetched successfully",
+    description: 'Product category  fetched successfully',
     data: productCategory,
-  })
-
-})
+  });
+});
 
 // GET productCategoriess => get all productCategories
 app.get('/productCategories', async (req, res) => {
@@ -701,15 +713,21 @@ app.get('/productCategories', async (req, res) => {
 
   res.json({
     success: true,
-    description: "Product category  fetched successfully",
+    description: 'Product category  fetched successfully',
     data: productCategories,
-  })
-})
+  });
+});
 
 // PUT productCategoy/:id => update productCategoy by id
 app.put('/productCategory/:id', async (req, res) => {
   const { id } = req.params;
-  const { categoryType, categoryTitle, isCategoryAvailable, catUpdateTime, itemImgUrl } = req.body;
+  const {
+    categoryType,
+    categoryTitle,
+    isCategoryAvailable,
+    catUpdateTime,
+    itemImgUrl,
+  } = req.body;
 
   await ProductCategory.updateOne(
     {
@@ -721,7 +739,7 @@ app.put('/productCategory/:id', async (req, res) => {
         categoryTitle,
         isCategoryAvailable,
         catUpdateTime,
-        itemImgUrl
+        itemImgUrl,
       },
     }
   );
@@ -749,7 +767,7 @@ app.delete('/productCategory/:id', async (req, res) => {
   });
 });
 
-// Product Category APIs Ends Here 
+// Product Category APIs Ends Here
 
 app.listen(PORT, () => {
   console.log(`The server is Running on Port ${PORT} 🚀`);
