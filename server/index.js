@@ -395,6 +395,18 @@ app.post('/createDiningTable', async (req, res) => {
   });
 });
 
+// GET diningTable?id => get diningTable by id
+app.get('/diningTable/:id', async (req, res) => {
+  const { id} = req.params;
+  const diningTable = await DiningTable.findById(id);
+
+  res.json({
+    success: true,
+    message: 'DiningTable fetched successfully',
+    data: diningTable,
+  });
+});
+
 
 // GET diningtables => get all diningtables
 app.get('/diningTables', async (req, res) => {
@@ -408,6 +420,65 @@ app.get('/diningTables', async (req, res) => {
   });
 });
 
+// PUT diningTable/:id => update diningTable by id
+app.put('/diningTable/:id', async (req, res) => {
+  try {
+  const { id } = req.params;
+  const { tableNumber, capacity, numberoftable, tablelocation, tableservice } = req.body;
+
+  await DiningTable.updateOne(
+    {
+      _id: id,
+    },
+    {
+      $set: {
+        tableNumber, 
+        capacity, 
+        numberoftable, 
+        tablelocation,
+        tableservice
+      },
+    }
+  );
+
+  const updatedDiningTable = await DiningTable.findById(id);
+
+  res.json({
+    success: true,
+    message: 'DiningTable updated Successfully',
+    data: updatedDiningTable,
+  });
+}
+catch (err) {
+  res.json({
+    success: false,
+    message: err.message
+  })
+}
+});
+
+// DELETE DiningTable/:id => delete DiningTable by id
+
+app.delete('/diningTable/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const diningTable = await DiningTable.deleteOne({
+      _id: id,
+    });
+    res.json({
+      success: true,
+      message: 'DiningTable deleted Successfully',
+      data: diningTable
+    });
+  }
+  catch (err) {
+    res.json({
+      success: false,
+      message: err.message
+    })
+  }
+});
 
 /* Dining Table APIs End Here */
 
