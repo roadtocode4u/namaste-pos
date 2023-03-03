@@ -11,7 +11,7 @@ const diningTableSchema = new Schema(
       type: Number,
       required: [true, 'capacity cannot be empty'],
     },
-    numberoftable: Number,
+    numberOfTable: Number,
     occupied:{
       type:Boolean,
       default: false
@@ -20,8 +20,8 @@ const diningTableSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'User',
     },
-    tablelocation: String,
-    tableservice: {
+    tableLocation: String,
+    tableService: {
       type: String,
       required: [true, 'tableservice cannot be empty'],
     },
