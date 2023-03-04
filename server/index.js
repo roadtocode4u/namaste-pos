@@ -7,7 +7,7 @@ import ProductItem from './models/ProductItem.js';
 import Order from './models/Order.js';
 import DiningTable from './models/DiningTable.js';
 import Invoice from './models/Invoice.js';
-import ProductCategory from './models/ProductCategory.js';
+import {postProductCategory} from './Controller/productCategory.js'
 
 dotenv.config();
 mongoose.set('strictQuery', false);
@@ -687,47 +687,7 @@ app.delete('/invoice/:id', async (req, res) => {
 /* Invoice APIs End Here */
 
 // Product Category APIs Started here 
-
-// POST productCategory = create productCategory 
-app.post('/productCategory', async (req, res) => {
-  const { categoryType, categoryTitle, itemImgURL } = req.body;
-  
-  // validations for productCategory
-  const emptyCategory =[]
-
-  if(!categoryType) emptyCategory.push('Category Type')
-  if(!categoryTitle) emptyCategory.push('Category Title')
-  if(!itemImgURL) emptyCategory.push('ImgURL')
-
-  if(emptyCategory.length > 0){
-    return res.json({
-      success: false,
-      message:`${emptyCategory.join(' , ')} Required !`
-    });
-  }
-
-  try{
-    const productCategory = new ProductCategory({
-      categoryType,
-      categoryTitle,
-      itemImgURL
-    });
-  
-    const savedProductCategory = await productCategory.save();
-  
-    res.json({
-      success: true,
-      message: "Product Category Created Successfully",
-      data: savedProductCategory,
-    });
-  }catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-
-});
+app.post('/productCategory', postProductCategory );
 
 // GET producctCategory?title => get productCategory by title 
 app.get('/productCategory', async (req, res) => {
