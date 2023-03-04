@@ -18,7 +18,7 @@ import {
   putInvoice,
   deleteInvoice,
 } from './controllers/invoice.js';
-import { postOrder } from './controllers/order.js';
+import { getOrders, postOrder } from './controllers/order.js';
 
 const app = express();
 app.use(express.json());
@@ -242,23 +242,7 @@ app.post('/order', postOrder);
 /*----- 2-Get orders API -----*/
 
 // 2.1-Get all orders
-app.get('/orders', async (req, res) => {
-  try {
-    const orders = await Order.find();
-
-    res.json({
-      success: true,
-      message: 'Orders fetched successfully',
-      results: orders.length,
-      data: orders,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+app.get('/orders', getOrders);
 
 // 2.2-GET order/:id => get order by id
 app.get('/order/:id', async (req, res) => {

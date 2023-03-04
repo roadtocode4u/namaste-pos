@@ -42,3 +42,24 @@ export const postOrder =  async (req, res) => {
       });
     }
   }
+
+  /*----- 2-Get orders API -----*/
+
+  // 2.1-Get all orders
+  export const getOrders = async (req, res) => {
+    try {
+      const orders = await Order.find();
+  
+      res.json({
+        success: true,
+        message: 'Orders fetched successfully',
+        results: orders.length,
+        data: orders,
+      });
+    } catch (err) {
+      res.json({
+        success: false,
+        message: err.message,
+      });
+    }
+  }
