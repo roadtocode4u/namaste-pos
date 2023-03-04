@@ -64,3 +64,23 @@ export const getProductCategoryTitle = async (req, res) => {
     }
 
 }
+
+// GET productCategories => get productCategories
+export const getProductCategories = async (req, res) => {
+    try {
+        const productCategories = await ProductCategory.find();
+
+        res.json({
+            success: true,
+            description: "Product category  fetched successfully",
+            results: productCategories.length,
+            data: productCategories,
+        });
+    } catch (err) {
+        res.json({
+            success: false,
+            message: err.message,
+        });
+    }
+
+}

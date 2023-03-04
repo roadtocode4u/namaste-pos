@@ -6,7 +6,7 @@ import User from './models/User.js';
 import Order from './models/Order.js';
 import ProductItem from './models/ProductItem.js';
 import DiningTable from './models/DiningTable.js';
-import { postProductCategory ,getProductCategoryTitle } from './controllers/productCategory.js'
+import { postProductCategory ,getProductCategoryTitle,getProductCategories } from './controllers/productCategory.js'
 
 
 
@@ -533,6 +533,7 @@ app.delete('/invoice/:id', deleteInvoice);
 // Product Category APIs Started here
 app.post('/productCategory', postProductCategory);
 app.get('/productCategory', getProductCategoryTitle);
+app.get('/productCategories', getProductCategories);
 
 // Product Category APIs Ends Here
 
