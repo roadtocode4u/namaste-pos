@@ -18,7 +18,7 @@ import {
   putInvoice,
   deleteInvoice,
 } from './controllers/invoice.js';
-import { getOrderId, getOrders, getOrderTableNumber, postOrder, putOrder } from './controllers/order.js';
+import { deleteOrder, getOrderId, getOrders, getOrderTableNumber, postOrder, putOrder } from './controllers/order.js';
 
 const app = express();
 app.use(express.json());
@@ -233,41 +233,16 @@ app.delete('/productItem/:id', async (req, res) => {
 
 /* Product Item APIs Ends Here */
 
-/*---------- Order APIs Starts Here ----------*/
-
-/*----- 1-create order API -----*/
+/*---------- Order API Routes Starts Here ----------*/
 
 app.post('/order', postOrder);
-
-/*----- 2-Get orders API -----*/
-
-// 2.1-Get all orders
 app.get('/orders', getOrders);
-
-// 2.2-GET order/:id => get order by id
 app.get('/order/:id', getOrderId);
-
-// 2.2-GET order => get order by tableNumber
 app.get('/order', getOrderTableNumber);
-
-/*----- 3-update orders API -----*/
 app.put('/order/:id', putOrder);
+app.delete('/order/:id',deleteOrder);
 
-/*----- 4-delete order API -----*/
-app.delete('/order/:id', async (req, res) => {
-  const { id } = req.params;
-  const order = await Order.deleteOne({
-    _id: id,
-  });
-
-  res.json({
-    success: true,
-    message: 'Order deleted successfully',
-    data: order,
-  });
-});
-
-/*---------- Order APIs Ends Here ----------*/
+/*---------- Order API Routes Ends Here ----------*/
 
 /* Dining Table APIs Starts Here */
 

@@ -84,7 +84,7 @@ export const postOrder =  async (req, res) => {
     }
   }
 
-// 2.3-GET order => get order by tableNumber
+// 2.3-GET order/:tableNumber => get order by tableNumber
   export const getOrderTableNumber =  async (req, res) => {
     const { tableNumber } = req.query;
 
@@ -114,6 +114,7 @@ export const postOrder =  async (req, res) => {
   }
 
 /*----- 3-update orders API -----*/
+// UPDATE order/:id => update order by id
 export const putOrder = async (req, res) => {
     const { id } = req.params;
     const { items, orderType, status } = req.body;
@@ -146,5 +147,28 @@ export const putOrder = async (req, res) => {
         });
     }
   
+  }
+
+/*----- 4-delete order API -----*/
+// DELETE order/:id => delete order by id
+export const deleteOrder =  async (req, res) => {
+    const { id } = req.params;
+
+    try{
+        const order = await Order.deleteOne({
+            _id: id,
+          });
+        
+          res.json({
+            success: true,
+            message: 'Order deleted successfully',
+            data: order,
+          });
+    }catch(err){
+        res.json({
+            success: false,
+            message: err.message,
+        });
+    }
     
   }
