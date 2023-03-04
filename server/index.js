@@ -690,8 +690,6 @@ app.delete('/invoice/:id', async (req, res) => {
 // Product Category APIs Started here 
 app.post('/productCategory', postProductCategory);
 app.get('/productCategory', getProductCategory);
-
-// GET productCategoriess => get all productCategories
 app.get('/productCategories', getProductCategories);
 
 app.put('/productCategory/:id', async (req, res) => {
