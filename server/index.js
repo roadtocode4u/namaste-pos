@@ -16,6 +16,7 @@ import {
   getInvoice,
   getInvoiceByInvoiceNumber,
   getInvoiceId,
+  putInvoice,
 } from './controllers/invoice.js';
 
 const app = express();
@@ -521,53 +522,7 @@ app.post('/invoice', postInvoice);
 app.get('/invoice', getInvoice);
 app.get('/invoice', getInvoiceByInvoiceNumber);
 app.get('/invoice/:id', getInvoiceId);
-
-// PUT invoice/:id => update invoice by id
-
-app.put('/invoice/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const {
-      invoiceNumber,
-      invoiceDate,
-      invoiceTotal,
-      discount,
-      tax,
-      user,
-      order,
-    } = req.body;
-
-    await Invoice.updateOne(
-      {
-        _id: id,
-      },
-      {
-        $set: {
-          invoiceNumber,
-          invoiceDate,
-          invoiceTotal,
-          discount,
-          tax,
-          user,
-          order,
-        },
-      }
-    );
-
-    const updateInvoice = await Invoice.findById(id);
-
-    res.json({
-      success: true,
-      message: 'Invoice updated successfully',
-      data: updateInvoice,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+app.put('/invoice/:id', putInvoice);
 
 // DELETE invoice/:id => delete invoice by id
 
