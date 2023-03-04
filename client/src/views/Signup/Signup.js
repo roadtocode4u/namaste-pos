@@ -120,7 +120,7 @@ function Signup(props) {
 
           <button type="button" className="signup-page-btn" onClick={addUser}>
             <b>
-              <i class="fa-solid fa-user-plus"></i> Sign Up
+              <i className="fa-solid fa-user-plus"></i> Sign Up
             </b>
           </button>
         </form>

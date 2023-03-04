@@ -703,55 +703,78 @@ app.post('/productCategory', async (req, res) => {
     return res.json({
       success: false,
       message:`${emptyCategory.join(' , ')} Required !`
-    })
+    });
   }
 
-  const productCategory = new ProductCategory({
-    categoryType,
-    categoryTitle,
-    itemImgURL
-  });
+  try{
+    const productCategory = new ProductCategory({
+      categoryType,
+      categoryTitle,
+      itemImgURL
+    });
+  
+    const savedProductCategory = await productCategory.save();
+  
+    res.json({
+      success: true,
+      message: "Product Category Created Successfully",
+      data: savedProductCategory,
+    });
+  }catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
 
-  const savedProductCategory = await productCategory.save();
-
-  res.json({
-    success: true,
-    message: "Product Category Created Successfully",
-    data: savedProductCategory,
-  })
-
-})
+});
 
 // GET producctCategory?title => get productCategory by title 
 app.get('/productCategory', async (req, res) => {
-  const { title } = req.query;
+  try{
+    const { title } = req.query;
 
   const productCategory = await ProductCategory.find({
     title: { $regex: title, $options: 'i' }
-  })
+  });
 
   res.json({
     success: true,
     description: "Product category  fetched successfully",
     data: productCategory,
-  })
+  });
+  }catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
 
-})
+});
 
 // GET productCategoriess => get all productCategories
 app.get('/productCategories', async (req, res) => {
-  const productCategories = await ProductCategory.find();
+  try{
+    const productCategories = await ProductCategory.find();
 
   res.json({
     success: true,
     description: "Product category  fetched successfully",
     results : productCategories.length,
     data: productCategories,
-  })
-})
+  });
+  }catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+
+});
 
 // PUT productCategoy/:id => update productCategoy by id
 app.put('/productCategory/:id', async (req, res) => {
+try{
   const { id } = req.params;
   const { categoryType, categoryTitle, isCategoryAvailable,  itemImgURL } = req.body;
 
@@ -776,11 +799,19 @@ app.put('/productCategory/:id', async (req, res) => {
     message: 'Product category updated successfully',
     data: updatedProductCategory,
   });
+}catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+
 });
 
 // DELETE productCategory/:id => delete productCategory by id
 app.delete('/productCategory/:id', async (req, res) => {
-  const { id } = req.params;
+  try{
+    const { id } = req.params;
   const productCategory = await ProductCategory.deleteOne({
     _id: id,
   });
@@ -790,6 +821,13 @@ app.delete('/productCategory/:id', async (req, res) => {
     message: 'Product category deleted successfully',
     data: productCategory,
   });
+  }catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+
 });
 
 // Product Category APIs Ends Here 

@@ -23,8 +23,8 @@ export default function Navbar() {
         isSignupOpen={isSignupOpen}
       />
       <Login toggleModalLogin={toggleModalLogin} isLoginOpen={isLoginOpen} />
-      <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-light bg-light">
-        <a class="navbar-brand" href="/">
+      <nav className="navbar navbar-expand-lg fixed-top navbar-light navbar-light bg-light">
+        <a className="navbar-brand" href="/">
           <b>NamastePos 🙏</b>
         </a>
         <button
@@ -51,7 +51,7 @@ export default function Navbar() {
                 className="nav_register nav-color signup-btn"
                 onClick={toggleModalSignup}>
                 {' '}
-                <i class="fa-solid fa-user-plus"></i> <b>Signup</b>
+                <i className="fa-solid fa-user-plus"></i> <b>Signup</b>
               </span>
             </li>
           </ul>
@@ -60,7 +60,7 @@ export default function Navbar() {
               <span
                 className="nav_register nav-color login-btn"
                 onClick={toggleModalLogin}>
-                <i class="fa-solid fa-right-to-bracket"></i> <b>Login</b>
+                <i className="fa-solid fa-right-to-bracket"></i> <b>Login</b>
               </span>
             </li>
           </ul>

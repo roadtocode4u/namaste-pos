@@ -85,7 +85,7 @@ function Login(props) {
 
           <button type="button" className="login-page-btn" onClick={addUser}>
             <b>
-              <i class="fa-solid fa-right-to-bracket"></i> Login
+              <i className="fa-solid fa-right-to-bracket"></i> Login
             </b>
           </button>
         </form>
