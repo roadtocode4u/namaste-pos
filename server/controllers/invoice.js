@@ -143,3 +143,23 @@ export const putInvoice = async (req, res) => {
     });
   }
 };
+
+export const deleteInvoice = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const invoice = await Invoice.deleteOne({
+      _id: id,
+    });
+    res.json({
+      success: true,
+      message: 'Invoice deleted Successfully',
+      data: invoice,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+};

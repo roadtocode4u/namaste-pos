@@ -6,7 +6,6 @@ import User from './models/User.js';
 import Order from './models/Order.js';
 import ProductItem from './models/ProductItem.js';
 import DiningTable from './models/DiningTable.js';
-import Invoice from './models/Invoice.js';
 import ProductCategory from './models/ProductCategory.js';
 dotenv.config();
 mongoose.set('strictQuery', false);
@@ -17,6 +16,7 @@ import {
   getInvoiceByInvoiceNumber,
   getInvoiceId,
   putInvoice,
+  deleteInvoice,
 } from './controllers/invoice.js';
 
 const app = express();
@@ -523,28 +523,7 @@ app.get('/invoice', getInvoice);
 app.get('/invoice', getInvoiceByInvoiceNumber);
 app.get('/invoice/:id', getInvoiceId);
 app.put('/invoice/:id', putInvoice);
-
-// DELETE invoice/:id => delete invoice by id
-
-app.delete('/invoice/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const invoice = await Invoice.deleteOne({
-      _id: id,
-    });
-    res.json({
-      success: true,
-      message: 'Invoice deleted Successfully',
-      data: invoice,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+app.delete('/invoice/:id', deleteInvoice);
 
 /* Invoice APIs End Here */
 
