@@ -64,3 +64,20 @@ export const getInvoice = async (req, res) => {
     });
   }
 };
+
+export const getInvoiceByInvoiceNumber = async (req, res) => {
+  const { invoiceNumber } = req.query;
+  const invoice = await Invoice.findOne({ invoiceNumber });
+
+  if (!invoice) {
+    return res.send({
+      success: false,
+      message: 'Invoice not Found',
+    });
+  }
+  res.json({
+    success: true,
+    message: 'invoice fetched successfully',
+    data: invoice,
+  });
+};

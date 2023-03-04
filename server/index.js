@@ -11,7 +11,11 @@ import ProductCategory from './models/ProductCategory.js';
 dotenv.config();
 mongoose.set('strictQuery', false);
 
-import { postInvoice, getInvoice } from './controllers/invoice.js';
+import {
+  postInvoice,
+  getInvoice,
+  getInvoiceByInvoiceNumber,
+} from './controllers/invoice.js';
 
 const app = express();
 app.use(express.json());
@@ -514,25 +518,7 @@ app.delete('/diningTable/:id', async (req, res) => {
 
 app.post('/invoice', postInvoice);
 app.get('/invoice', getInvoice);
-
-/*----- GET invoice?invoiceNumber= => get invoice by invoiceNumber -----*/
-
-app.get('/invoice', async (req, res) => {
-  const { invoiceNumber } = req.query;
-  const invoice = await Invoice.findOne({ invoiceNumber });
-
-  if (!invoice) {
-    return res.send({
-      success: false,
-      message: 'Invoice not Found',
-    });
-  }
-  res.json({
-    success: true,
-    message: 'invoice fetched successfully',
-    data: invoice,
-  });
-});
+app.get('/invoice', getInvoiceByInvoiceNumber);
 
 // GET invoice/:id => get invoice by id
 
