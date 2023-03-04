@@ -83,3 +83,32 @@ export const postOrder =  async (req, res) => {
       });
     }
   }
+
+
+  export const getOrderTableNumber =  async (req, res) => {
+    const { tableNumber } = req.query;
+
+    try {
+        const order = await Order.find({ tableNumber });
+
+        if(order.length<=0){
+            return res.json({
+                success: false,
+                message: 'No orders found',
+              });
+        }
+  
+        res.json({
+          success: true,
+          message: 'Order fetched successfully',
+          data: order,
+        });
+
+    } catch(err){
+        res.json({
+            success: false,
+            message: err.message,
+        });
+    }
+  
+  }

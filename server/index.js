@@ -18,7 +18,7 @@ import {
   putInvoice,
   deleteInvoice,
 } from './controllers/invoice.js';
-import { getOrderId, getOrders, postOrder } from './controllers/order.js';
+import { getOrderId, getOrders, getOrderTableNumber, postOrder } from './controllers/order.js';
 
 const app = express();
 app.use(express.json());
@@ -248,17 +248,7 @@ app.get('/orders', getOrders);
 app.get('/order/:id', getOrderId);
 
 // 2.2-GET order => get order by tableNumber
-app.get('/order', async (req, res) => {
-  const { tableNumber } = req.query;
-
-  const order = await Order.findOne({ tableNumber });
-
-  res.json({
-    success: true,
-    message: 'Order fetched successfully',
-    data: order,
-  });
-});
+app.get('/order', getOrderTableNumber);
 
 /*----- 3-update orders API -----*/
 app.put('/order/:id', async (req, res) => {
