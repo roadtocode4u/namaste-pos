@@ -81,3 +81,20 @@ export const getInvoiceByInvoiceNumber = async (req, res) => {
     data: invoice,
   });
 };
+
+export const getInvoiceId = async (req, res) => {
+  const { id } = req.params;
+  const invoice = await Invoice.findById(id);
+
+  if (!invoice) {
+    return res.send({
+      success: false,
+      message: 'Invoice not Found',
+    });
+  }
+  res.json({
+    success: true,
+    message: 'invoice fetched successfully',
+    data: invoice,
+  });
+};
