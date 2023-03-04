@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 import User from './models/User.js';
 import Order from './models/Order.js';
 import ProductItem from './models/ProductItem.js';
-import DiningTable from './models/DiningTable.js';
 import ProductCategory from './models/ProductCategory.js';
 dotenv.config();
 mongoose.set('strictQuery', false);
@@ -24,6 +23,7 @@ import {
   getDiningTableByID,
   getallDiningTables,
   putDiningTable,
+  deleteDiningTable,
 } from './controllers/diningtable.js';
 
 const app = express();
@@ -383,32 +383,16 @@ app.delete('/order/:id', async (req, res) => {
 /*---------- Order APIs Ends Here ----------*/
 
 /* Dining Table APIs Starts Here */
+
 app.post('/createDiningTable', postDiningTable);
+
 app.get('/diningTable/:id', getDiningTableByID);
+
 app.get('/diningTables', getallDiningTables);
+
 app.put('/diningTable/:id', putDiningTable);
 
-// DELETE DiningTable/:id => delete DiningTable by id
-
-app.delete('/diningTable/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const diningTable = await DiningTable.deleteOne({
-      _id: id,
-    });
-    res.json({
-      success: true,
-      message: 'DiningTable deleted Successfully',
-      data: diningTable,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+app.delete('/diningTable/:id', deleteDiningTable);
 
 /* Dining Table APIs End Here */
 
