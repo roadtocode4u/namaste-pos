@@ -6,7 +6,8 @@ import User from './models/User.js';
 import Order from './models/Order.js';
 import ProductItem from './models/ProductItem.js';
 import DiningTable from './models/DiningTable.js';
-import { postProductCategory ,getProductCategoryTitle,getProductCategories,putProductCategoryId } from './controllers/productCategory.js'
+import { postProductCategory ,getProductCategoryTitle,getProductCategories,putProductCategoryId ,deleteProductCategoryId}
+ from './controllers/productCategory.js'
 
 
 
@@ -535,6 +536,7 @@ app.post('/productCategory', postProductCategory);
 app.get('/productCategory', getProductCategoryTitle);
 app.get('/productCategories', getProductCategories);
 app.put('/productCategory/:id', putProductCategoryId);
+app.delete('/productCategory/:id', deleteProductCategoryId);
 
 // Product Category APIs Ends Here
 

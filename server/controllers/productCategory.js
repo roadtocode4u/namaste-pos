@@ -120,3 +120,25 @@ export const putProductCategoryId = async (req, res) => {
     }
 
 }
+
+// DELETE productCategory/:id => delete productCategory by id
+export const deleteProductCategoryId = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const productCategory = await ProductCategory.deleteOne({
+        _id: id,
+      });
+  
+      res.json({
+        success: true,
+        message: 'Product category deleted successfully',
+        data: productCategory,
+      });
+    } catch (err) {
+      res.json({
+        success: false,
+        message: err.message,
+      });
+    }
+  
+  }
