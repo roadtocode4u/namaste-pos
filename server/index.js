@@ -18,7 +18,7 @@ import {
   putInvoice,
   deleteInvoice,
 } from './controllers/invoice.js';
-import { getOrderId, getOrders, getOrderTableNumber, postOrder } from './controllers/order.js';
+import { getOrderId, getOrders, getOrderTableNumber, postOrder, putOrder } from './controllers/order.js';
 
 const app = express();
 app.use(express.json());
@@ -251,31 +251,7 @@ app.get('/order/:id', getOrderId);
 app.get('/order', getOrderTableNumber);
 
 /*----- 3-update orders API -----*/
-app.put('/order/:id', async (req, res) => {
-  const { id } = req.params;
-  const { items, orderType, status } = req.body;
-
-  await Order.updateOne(
-    {
-      _id: id,
-    },
-    {
-      $set: {
-        items,
-        orderType,
-        status,
-      },
-    }
-  );
-
-  const updatedOrder = await Order.findById(id);
-
-  res.json({
-    success: true,
-    message: 'Order updated successfully',
-    data: updatedOrder,
-  });
-});
+app.put('/order/:id', putOrder);
 
 /*----- 4-delete order API -----*/
 app.delete('/order/:id', async (req, res) => {

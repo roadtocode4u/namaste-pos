@@ -84,7 +84,7 @@ export const postOrder =  async (req, res) => {
     }
   }
 
-
+// 2.3-GET order => get order by tableNumber
   export const getOrderTableNumber =  async (req, res) => {
     const { tableNumber } = req.query;
 
@@ -111,4 +111,40 @@ export const postOrder =  async (req, res) => {
         });
     }
   
+  }
+
+/*----- 3-update orders API -----*/
+export const putOrder = async (req, res) => {
+    const { id } = req.params;
+    const { items, orderType, status } = req.body;
+
+    try{
+        await Order.updateOne(
+            {
+              _id: id,
+            },
+            {
+              $set: {
+                items,
+                orderType,
+                status,
+              },
+            }
+          );
+        
+          const updatedOrder = await Order.findById(id);
+        
+          res.json({
+            success: true,
+            message: 'Order updated successfully',
+            data: updatedOrder,
+          });
+    }catch(err){
+        res.json({
+            success: false,
+            message: err.message,
+        });
+    }
+  
+    
   }
