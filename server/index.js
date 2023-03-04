@@ -18,10 +18,12 @@ import {
   putInvoice,
   deleteInvoice,
 } from './controllers/invoice.js';
+
 import {
   postDiningTable,
   getDiningTableByID,
   getallDiningTables,
+  putDiningTable,
 } from './controllers/diningtable.js';
 
 const app = express();
@@ -384,48 +386,7 @@ app.delete('/order/:id', async (req, res) => {
 app.post('/createDiningTable', postDiningTable);
 app.get('/diningTable/:id', getDiningTableByID);
 app.get('/diningTables', getallDiningTables);
-
-// PUT diningTable/:id => update diningTable by id
-app.put('/diningTable/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const {
-      tableNumber,
-      capacity,
-      numberOfTable,
-      tableLocation,
-      tableService,
-    } = req.body;
-
-    await DiningTable.updateOne(
-      {
-        _id: id,
-      },
-      {
-        $set: {
-          tableNumber,
-          capacity,
-          numberOfTable,
-          tableLocation,
-          tableService,
-        },
-      }
-    );
-
-    const updatedDiningTable = await DiningTable.findById(id);
-
-    res.json({
-      success: true,
-      message: 'DiningTable updated Successfully',
-      data: updatedDiningTable,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+app.put('/diningTable/:id', putDiningTable);
 
 // DELETE DiningTable/:id => delete DiningTable by id
 
