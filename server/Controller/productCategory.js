@@ -43,7 +43,7 @@ export const postProductCategory = async (req, res) => {
 };
 
 // GET producctCategory?title => get productCategory by title 
-export const getProductCategory = async (req, res) => {
+export const getProductCategoryTitle = async (req, res) => {
     try {
         const { title } = req.query;
 
@@ -64,8 +64,7 @@ export const getProductCategory = async (req, res) => {
     }
 
 }
-
-// PUT productCategoy/:id => update productCategoy by id
+// GET productCategories => get productCategories
 export const getProductCategories = async (req, res) => {
     try {
         const productCategories = await ProductCategory.find();
@@ -84,3 +83,38 @@ export const getProductCategories = async (req, res) => {
     }
 
 }
+// PUT productCategoy/:id => update productCategoy by id
+export const putProductCategoryId = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { categoryType, categoryTitle, isCategoryAvailable, itemImgURL } = req.body;
+  
+      await ProductCategory.updateOne(
+        {
+          _id: id,
+        },
+        {
+          $set: {
+            categoryType,
+            categoryTitle,
+            isCategoryAvailable,
+            itemImgURL
+          },
+        }
+      );
+  
+      const updatedProductCategory = await ProductCategory.findById(id);
+  
+      res.json({
+        success: true,
+        message: 'Product category updated successfully',
+        data: updatedProductCategory,
+      });
+    } catch (err) {
+      res.json({
+        success: false,
+        message: err.message,
+      });
+    }
+  
+  }

@@ -7,7 +7,8 @@ import ProductItem from './models/ProductItem.js';
 import Order from './models/Order.js';
 import DiningTable from './models/DiningTable.js';
 import Invoice from './models/Invoice.js';
-import { postProductCategory, getProductCategory, getProductCategories } from './Controller/productCategory.js'
+import ProductCategory from './models/ProductCategory.js';
+import { postProductCategory, getProductCategoryTitle, getProductCategories,putProductCategoryId } from './Controller/productCategory.js'
 
 
 dotenv.config();
@@ -689,45 +690,10 @@ app.delete('/invoice/:id', async (req, res) => {
 
 // Product Category APIs Started here 
 app.post('/productCategory', postProductCategory);
-app.get('/productCategory', getProductCategory);
+app.get('/productCategory', getProductCategoryTitle);
 app.get('/productCategories', getProductCategories);
+app.put('/productCategory/:id', putProductCategoryId);
 
-app.put('/productCategory/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { categoryType, categoryTitle, isCategoryAvailable, itemImgURL } = req.body;
-
-    await ProductCategory.updateOne(
-      {
-        _id: id,
-      },
-      {
-        $set: {
-          categoryType,
-          categoryTitle,
-          isCategoryAvailable,
-          itemImgURL
-        },
-      }
-    );
-
-    const updatedProductCategory = await ProductCategory.findById(id);
-
-    res.json({
-      success: true,
-      message: 'Product category updated successfully',
-      data: updatedProductCategory,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-
-});
-
-// DELETE productCategory/:id => delete productCategory by id
 app.delete('/productCategory/:id', async (req, res) => {
   try {
     const { id } = req.params;
