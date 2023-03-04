@@ -1,4 +1,4 @@
-import ProductItem from './../models/ProductItem.js';
+import ProductItem from '../models/ProductItem.js';
 
 // create product item
   export const postProductItem = async (req, res) => {
