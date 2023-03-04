@@ -18,6 +18,11 @@ import {
   putInvoice,
   deleteInvoice,
 } from './controllers/invoice.js';
+import {
+  postDiningTable,
+  getDiningTableByID,
+  getallDiningTables,
+} from './controllers/diningtable.js';
 
 const app = express();
 app.use(express.json());
@@ -376,79 +381,9 @@ app.delete('/order/:id', async (req, res) => {
 /*---------- Order APIs Ends Here ----------*/
 
 /* Dining Table APIs Starts Here */
-
-// POST creatediningtable =>
-app.post('/createDiningTable', async (req, res) => {
-  try {
-    const {
-      tableNumber,
-      capacity,
-      numberOfTable,
-      tableLocation,
-      tableService,
-    } = req.body;
-    // validations
-    const existingTable = await DiningTable.findOne({ tableNumber });
-
-    if (existingTable) {
-      return res.json({
-        success: false,
-        message: 'Table already exists',
-      });
-    }
-    const diningTable = new DiningTable({
-      tableNumber,
-      capacity,
-      numberOfTable,
-      tableLocation,
-      tableService,
-    });
-
-    const savedDiningTable = await diningTable.save();
-
-    res.json({
-      success: true,
-      message: 'DiningTable created successfully',
-      data: savedDiningTable,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: 'err in the catch block',
-    });
-  }
-});
-
-// GET diningTable?id => get diningTable by id
-app.get('/diningTable/:id', async (req, res) => {
-  const { id } = req.params;
-  const diningTable = await DiningTable.findById(id);
-
-  res.json({
-    success: true,
-    message: 'DiningTable fetched successfully',
-    data: diningTable,
-  });
-});
-
-// GET diningtables => get all diningtables
-app.get('/diningTables', async (req, res) => {
-  try {
-    const diningtables = await DiningTable.find();
-
-    res.json({
-      success: true,
-      message: 'DiningTable fetched successfully...',
-      results: diningtables.length,
-      data: diningtables,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+app.post('/createDiningTable', postDiningTable);
+app.get('/diningTable/:id', getDiningTableByID);
+app.get('/diningTables', getallDiningTables);
 
 // PUT diningTable/:id => update diningTable by id
 app.put('/diningTable/:id', async (req, res) => {
