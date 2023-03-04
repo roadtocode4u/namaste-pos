@@ -47,3 +47,20 @@ export const postInvoice = async (req, res) => {
     });
   }
 };
+
+export const getInvoice = async (req, res) => {
+  const invoices = await Invoice.find();
+
+  try {
+    res.json({
+      success: true,
+      message: 'Invoices fetched Successfullty',
+      data: invoices,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
