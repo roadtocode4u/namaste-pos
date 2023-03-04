@@ -63,3 +63,23 @@ export const postOrder =  async (req, res) => {
       });
     }
   }
+
+  // 2.2-GET order/:id => get order by id
+  export const getOrderId = async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const order = await Order.findById(id);
+  
+      res.json({
+        success: true,
+        message: 'Order fetched successfully',
+        data: order,
+      });
+    } catch (err) {
+      res.json({
+        success: false,
+        message: err.message,
+      });
+    }
+  }

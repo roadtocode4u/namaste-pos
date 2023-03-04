@@ -18,7 +18,7 @@ import {
   putInvoice,
   deleteInvoice,
 } from './controllers/invoice.js';
-import { getOrders, postOrder } from './controllers/order.js';
+import { getOrderId, getOrders, postOrder } from './controllers/order.js';
 
 const app = express();
 app.use(express.json());
@@ -245,24 +245,7 @@ app.post('/order', postOrder);
 app.get('/orders', getOrders);
 
 // 2.2-GET order/:id => get order by id
-app.get('/order/:id', async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    const order = await Order.findById(id);
-
-    res.json({
-      success: true,
-      message: 'Order fetched successfully',
-      data: order,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+app.get('/order/:id', getOrderId);
 
 // 2.2-GET order => get order by tableNumber
 app.get('/order', async (req, res) => {
