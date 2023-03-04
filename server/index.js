@@ -6,10 +6,18 @@ import User from './models/User.js';
 import Order from './models/Order.js';
 import ProductItem from './models/ProductItem.js';
 import DiningTable from './models/DiningTable.js';
-import Invoice from './models/Invoice.js';
 import ProductCategory from './models/ProductCategory.js';
 dotenv.config();
 mongoose.set('strictQuery', false);
+
+import {
+  postInvoice,
+  getInvoice,
+  getInvoiceByInvoiceNumber,
+  getInvoiceId,
+  putInvoice,
+  deleteInvoice,
+} from './controllers/invoice.js';
 
 const app = express();
 app.use(express.json());
@@ -510,181 +518,12 @@ app.delete('/diningTable/:id', async (req, res) => {
 
 /* Invoice APIs Starts Here */
 
-/*----- invoice create API -----*/
-
-app.post('/invoice', async (req, res) => {
-  const {
-    invoiceNumber,
-    invoiceDate,
-    invoiceTotal,
-    discount,
-    tax,
-    user,
-    order,
-  } = req.body;
-
-  const existingInvoice = await Invoice.findOne({
-    invoiceNumber: invoiceNumber,
-  });
-
-  if (existingInvoice) {
-    return res.json({
-      success: false,
-      message: `${invoiceNumber} invoice number already exists`,
-    });
-  }
-
-  try {
-    const newInvoice = new Invoice({
-      invoiceNumber,
-      invoiceDate,
-      invoiceTotal,
-      discount,
-      tax,
-      user,
-      order,
-    });
-
-    const savedInvoice = await newInvoice.save();
-
-    res.json({
-      status: true,
-      message: 'Invoice Created Successfully',
-      data: savedInvoice,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
-
-/*----- get all invoices API -----*/
-
-app.get('/invoice', async (req, res) => {
-  const invoices = await Invoice.find();
-
-  try {
-    res.json({
-      success: true,
-      message: 'Invoices fetched Successfullty',
-      data: invoices,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
-
-/*----- GET invoice?invoiceNumber= => get invoice by invoiceNumber -----*/
-
-app.get('/invoice', async (req, res) => {
-  const { invoiceNumber } = req.query;
-  const invoice = await Invoice.findOne({ invoiceNumber });
-
-  if (!invoice) {
-    return res.send({
-      success: false,
-      message: 'Invoice not Found',
-    });
-  }
-  res.json({
-    success: true,
-    message: 'invoice fetched successfully',
-    data: invoice,
-  });
-});
-
-// GET invoice/:id => get invoice by id
-
-app.get('/invoice/:id', async (req, res) => {
-  const { id } = req.params;
-  const invoice = await Invoice.findById(id);
-
-  if (!invoice) {
-    return res.send({
-      success: false,
-      message: 'Invoice not Found',
-    });
-  }
-  res.json({
-    success: true,
-    message: 'invoice fetched successfully',
-    data: invoice,
-  });
-});
-
-// PUT invoice/:id => update invoice by id
-
-app.put('/invoice/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const {
-      invoiceNumber,
-      invoiceDate,
-      invoiceTotal,
-      discount,
-      tax,
-      user,
-      order,
-    } = req.body;
-
-    await Invoice.updateOne(
-      {
-        _id: id,
-      },
-      {
-        $set: {
-          invoiceNumber,
-          invoiceDate,
-          invoiceTotal,
-          discount,
-          tax,
-          user,
-          order,
-        },
-      }
-    );
-
-    const updateInvoice = await Invoice.findById(id);
-
-    res.json({
-      success: true,
-      message: 'Invoice updated successfully',
-      data: updateInvoice,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
-
-// DELETE invoice/:id => delete invoice by id
-
-app.delete('/invoice/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const invoice = await Invoice.deleteOne({
-      _id: id,
-    });
-    res.json({
-      success: true,
-      message: 'Invoice deleted Successfully',
-      data: invoice,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+app.post('/invoice', postInvoice);
+app.get('/invoice', getInvoice);
+app.get('/invoice', getInvoiceByInvoiceNumber);
+app.get('/invoice/:id', getInvoiceId);
+app.put('/invoice/:id', putInvoice);
+app.delete('/invoice/:id', deleteInvoice);
 
 /* Invoice APIs End Here */
 
