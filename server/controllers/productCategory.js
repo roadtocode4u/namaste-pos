@@ -41,3 +41,26 @@ export const postProductCategory = async (req, res) => {
     }
 
 };
+
+// GET producctCategory?title => get productCategory by title 
+export const getProductCategoryTitle = async (req, res) => {
+    try {
+        const { title } = req.query;
+
+        const productCategory = await ProductCategory.find({
+            title: { $regex: title, $options: 'i' }
+        });
+
+        res.json({
+            success: true,
+            description: "Product category  fetched successfully",
+            data: productCategory,
+        });
+    } catch (err) {
+        res.json({
+            success: false,
+            message: err.message,
+        });
+    }
+
+}
