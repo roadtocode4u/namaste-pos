@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import User from './models/User.js';
-import Order from './models/Order.js';
 import ProductItem from './models/ProductItem.js';
 import DiningTable from './models/DiningTable.js';
 import ProductCategory from './models/ProductCategory.js';
