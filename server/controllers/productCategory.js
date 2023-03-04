@@ -84,3 +84,39 @@ export const getProductCategories = async (req, res) => {
     }
 
 }
+
+// PUT productCategoy/:id => update productCategoy by id
+export const putProductCategoryId = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { categoryType, categoryTitle, isCategoryAvailable, itemImgURL } = req.body;
+
+        await ProductCategory.updateOne(
+            {
+                _id: id,
+            },
+            {
+                $set: {
+                    categoryType,
+                    categoryTitle,
+                    isCategoryAvailable,
+                    itemImgURL
+                },
+            }
+        );
+
+        const updatedProductCategory = await ProductCategory.findById(id);
+
+        res.json({
+            success: true,
+            message: 'Product category updated successfully',
+            data: updatedProductCategory,
+        });
+    } catch (err) {
+        res.json({
+            success: false,
+            message: err.message,
+        });
+    }
+
+}
