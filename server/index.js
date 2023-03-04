@@ -4,13 +4,12 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import User from './models/User.js';
 import Order from './models/Order.js';
+import ProductItem from './models/ProductItem.js';
 import DiningTable from './models/DiningTable.js';
 import Invoice from './models/Invoice.js';
 import ProductCategory from './models/ProductCategory.js';
 dotenv.config();
 mongoose.set('strictQuery', false);
-
-import { postProductItem, } from './Controllers/productItem.js'
 
 const app = express();
 app.use(express.json());
@@ -126,12 +125,37 @@ app.post('/login', async (req, res) => {
 
 /* Product Item APIs Starts Here */
 
+app.post('/productItem', async (req, res) => {
+  const { title, price, description, imgUrl } = req.body;
+  // validations will go here
+  const productItem = new ProductItem({
+    title,
+    price,
+    description,
+    imgUrl,
+  });
 
-app.post('/productItem', postProductItem )
+  const savedProductItem = await productItem.save();
+
+  res.json({
+    success: true,
+    message: 'Product Item created successfully',
+    data: savedProductItem,
+  });
+});
 
 // GET productItem/:id => get productItem by id
 
-app.get('/productItem/:id',)
+app.get('/productItem/:id', async (req, res) => {
+  const { id } = req.params;
+  const productItem = await ProductItem.findById(id);
+
+  res.json({
+    success: true,
+    message: 'Product item fetched successfully',
+    data: productItem,
+  });
+});
 
 // GET productItem?title= => get productItem by title
 app.get('/productItem', async (req, res) => {
@@ -347,45 +371,49 @@ app.delete('/order/:id', async (req, res) => {
 
 // POST creatediningtable =>
 app.post('/createDiningTable', async (req, res) => {
-  try{
-  const { tableNumber, capacity, numberOfTable, tableLocation, tableService } =
-    req.body;
-  // validations
-  const existingTable = await DiningTable.findOne({tableNumber});
+  try {
+    const {
+      tableNumber,
+      capacity,
+      numberOfTable,
+      tableLocation,
+      tableService,
+    } = req.body;
+    // validations
+    const existingTable = await DiningTable.findOne({ tableNumber });
 
-    if (existingTable){
+    if (existingTable) {
       return res.json({
         success: false,
-        message: "Table already exists"
-      })
+        message: 'Table already exists',
+      });
     }
-  const diningTable = new DiningTable({
-    tableNumber,
-    capacity,
-    numberOfTable,
-    tableLocation,
-    tableService,
-  });
+    const diningTable = new DiningTable({
+      tableNumber,
+      capacity,
+      numberOfTable,
+      tableLocation,
+      tableService,
+    });
 
-  const savedDiningTable = await diningTable.save();
+    const savedDiningTable = await diningTable.save();
 
-  res.json({
-    success: true,
-    message: 'DiningTable created successfully',
-    data: savedDiningTable,
-  });
-} catch (err) {
-  res.json({
-    success: false,
-    message: "err in the catch block",
-  });
-}
+    res.json({
+      success: true,
+      message: 'DiningTable created successfully',
+      data: savedDiningTable,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: 'err in the catch block',
+    });
+  }
 });
-
 
 // GET diningTable?id => get diningTable by id
 app.get('/diningTable/:id', async (req, res) => {
-  const { id} = req.params;
+  const { id } = req.params;
   const diningTable = await DiningTable.findById(id);
 
   res.json({
@@ -395,63 +423,65 @@ app.get('/diningTable/:id', async (req, res) => {
   });
 });
 
-
-
 // GET diningtables => get all diningtables
 app.get('/diningTables', async (req, res) => {
   try {
-  const diningtables = await DiningTable.find();
+    const diningtables = await DiningTable.find();
 
-  res.json({
-    success: true,
-    message: 'DiningTable fetched successfully...',
-    results: diningtables.length,
-    data: diningtables,
-  });
-} catch (err) {
-  res.json({
-    success: false,
-    message: err.message,
-  });
-}
+    res.json({
+      success: true,
+      message: 'DiningTable fetched successfully...',
+      results: diningtables.length,
+      data: diningtables,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
 });
-
 
 // PUT diningTable/:id => update diningTable by id
 app.put('/diningTable/:id', async (req, res) => {
   try {
-  const { id } = req.params;
-  const { tableNumber, capacity, numberOfTable, tableLocation, tableService } = req.body;
+    const { id } = req.params;
+    const {
+      tableNumber,
+      capacity,
+      numberOfTable,
+      tableLocation,
+      tableService,
+    } = req.body;
 
-  await DiningTable.updateOne(
-    {
-      _id: id,
-    },
-    {
-      $set: {
-        tableNumber, 
-        capacity, 
-        numberOfTable, 
-        tableLocation,
-        tableService
+    await DiningTable.updateOne(
+      {
+        _id: id,
       },
-    }
-  );
+      {
+        $set: {
+          tableNumber,
+          capacity,
+          numberOfTable,
+          tableLocation,
+          tableService,
+        },
+      }
+    );
 
-  const updatedDiningTable = await DiningTable.findById(id);
+    const updatedDiningTable = await DiningTable.findById(id);
 
-  res.json({
-    success: true,
-    message: 'DiningTable updated Successfully',
-    data: updatedDiningTable,
-  });
-}
-catch (err) {
-  res.json({
-    success: false,
-    message: err.message
-  })
-}
+    res.json({
+      success: true,
+      message: 'DiningTable updated Successfully',
+      data: updatedDiningTable,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
 });
 
 // DELETE DiningTable/:id => delete DiningTable by id
@@ -466,17 +496,15 @@ app.delete('/diningTable/:id', async (req, res) => {
     res.json({
       success: true,
       message: 'DiningTable deleted Successfully',
-      data: diningTable
+      data: diningTable,
     });
-  }
-  catch (err) {
+  } catch (err) {
     res.json({
       success: false,
-      message: err.message
-    })
+      message: err.message,
+    });
   }
 });
-
 
 /* Dining Table APIs End Here */
 
@@ -660,57 +688,55 @@ app.delete('/invoice/:id', async (req, res) => {
 
 /* Invoice APIs End Here */
 
-// Product Category APIs Started here 
+// Product Category APIs Started here
 
-// POST productCategory = create productCategory 
+// POST productCategory = create productCategory
 app.post('/productCategory', async (req, res) => {
   const { categoryType, categoryTitle, itemImgURL } = req.body;
-  
+
   // validations for productCategory
-  const emptyCategory =[]
+  const emptyCategory = [];
 
-  if(!categoryType) emptyCategory.push('Category Type')
-  if(!categoryTitle) emptyCategory.push('Category Title')
-  if(!itemImgURL) emptyCategory.push('ImgURL')
+  if (!categoryType) emptyCategory.push('Category Type');
+  if (!categoryTitle) emptyCategory.push('Category Title');
+  if (!itemImgURL) emptyCategory.push('ImgURL');
 
-  if(emptyCategory.length > 0){
+  if (emptyCategory.length > 0) {
     return res.json({
       success: false,
-      message:`${emptyCategory.join(' , ')} Required !`
-    })
+      message: `${emptyCategory.join(' , ')} Required !`,
+    });
   }
 
   const productCategory = new ProductCategory({
     categoryType,
     categoryTitle,
-    itemImgURL
+    itemImgURL,
   });
 
   const savedProductCategory = await productCategory.save();
 
   res.json({
     success: true,
-    message: "Product Category Created Successfully",
+    message: 'Product Category Created Successfully',
     data: savedProductCategory,
-  })
+  });
+});
 
-})
-
-// GET producctCategory?title => get productCategory by title 
+// GET producctCategory?title => get productCategory by title
 app.get('/productCategory', async (req, res) => {
   const { title } = req.query;
 
   const productCategory = await ProductCategory.find({
-    title: { $regex: title, $options: 'i' }
-  })
+    title: { $regex: title, $options: 'i' },
+  });
 
   res.json({
     success: true,
-    description: "Product category  fetched successfully",
+    description: 'Product category  fetched successfully',
     data: productCategory,
-  })
-
-})
+  });
+});
 
 // GET productCategoriess => get all productCategories
 app.get('/productCategories', async (req, res) => {
@@ -718,16 +744,17 @@ app.get('/productCategories', async (req, res) => {
 
   res.json({
     success: true,
-    description: "Product category  fetched successfully",
-    results : productCategories.length,
+    description: 'Product category  fetched successfully',
+    results: productCategories.length,
     data: productCategories,
-  })
-})
+  });
+});
 
 // PUT productCategoy/:id => update productCategoy by id
 app.put('/productCategory/:id', async (req, res) => {
   const { id } = req.params;
-  const { categoryType, categoryTitle, isCategoryAvailable,  itemImgURL } = req.body;
+  const { categoryType, categoryTitle, isCategoryAvailable, itemImgURL } =
+    req.body;
 
   await ProductCategory.updateOne(
     {
@@ -738,7 +765,7 @@ app.put('/productCategory/:id', async (req, res) => {
         categoryType,
         categoryTitle,
         isCategoryAvailable,
-        itemImgURL
+        itemImgURL,
       },
     }
   );
@@ -766,7 +793,7 @@ app.delete('/productCategory/:id', async (req, res) => {
   });
 });
 
-// Product Category APIs Ends Here 
+// Product Category APIs Ends Here
 
 app.listen(PORT, () => {
   console.log(`The server is Running on Port ${PORT} 🚀`);
