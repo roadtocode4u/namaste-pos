@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 5000;
 
 try {
   mongoose.connect(
-    process.env.MONGODB_URL,
+    'mongodb://localhost:27017/namaste-pos',
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => {
       console.log('Connected to DB 📦');
