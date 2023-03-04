@@ -86,29 +86,50 @@ export const getProductCategories = async (req, res) => {
 // PUT productCategoy/:id => update productCategoy by id
 export const putProductCategoryId = async (req, res) => {
     try {
+        const { id } = req.params;
+        const { categoryType, categoryTitle, isCategoryAvailable, itemImgURL } = req.body;
+
+        await ProductCategory.updateOne(
+            {
+                _id: id,
+            },
+            {
+                $set: {
+                    categoryType,
+                    categoryTitle,
+                    isCategoryAvailable,
+                    itemImgURL
+                },
+            }
+        );
+
+        const updatedProductCategory = await ProductCategory.findById(id);
+
+        res.json({
+            success: true,
+            message: 'Product category updated successfully',
+            data: updatedProductCategory,
+        });
+    } catch (err) {
+        res.json({
+            success: false,
+            message: err.message,
+        });
+    }
+
+}
+// DELETE productCategory/:id => delete productCategory by id
+export const deleteProductCategoryId = async (req, res) => {
+    try {
       const { id } = req.params;
-      const { categoryType, categoryTitle, isCategoryAvailable, itemImgURL } = req.body;
-  
-      await ProductCategory.updateOne(
-        {
-          _id: id,
-        },
-        {
-          $set: {
-            categoryType,
-            categoryTitle,
-            isCategoryAvailable,
-            itemImgURL
-          },
-        }
-      );
-  
-      const updatedProductCategory = await ProductCategory.findById(id);
+      const productCategory = await ProductCategory.deleteOne({
+        _id: id,
+      });
   
       res.json({
         success: true,
-        message: 'Product category updated successfully',
-        data: updatedProductCategory,
+        message: 'Product category deleted successfully',
+        data: productCategory,
       });
     } catch (err) {
       res.json({

@@ -7,8 +7,7 @@ import ProductItem from './models/ProductItem.js';
 import Order from './models/Order.js';
 import DiningTable from './models/DiningTable.js';
 import Invoice from './models/Invoice.js';
-import ProductCategory from './models/ProductCategory.js';
-import { postProductCategory, getProductCategoryTitle, getProductCategories,putProductCategoryId } from './Controller/productCategory.js'
+import { postProductCategory, getProductCategoryTitle, getProductCategories,putProductCategoryId, deleteProductCategoryId } from './Controller/productCategory.js'
 
 
 dotenv.config();
@@ -689,31 +688,12 @@ app.delete('/invoice/:id', async (req, res) => {
 /* Invoice APIs End Here */
 
 // Product Category APIs Started here 
+
 app.post('/productCategory', postProductCategory);
 app.get('/productCategory', getProductCategoryTitle);
 app.get('/productCategories', getProductCategories);
 app.put('/productCategory/:id', putProductCategoryId);
-
-app.delete('/productCategory/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const productCategory = await ProductCategory.deleteOne({
-      _id: id,
-    });
-
-    res.json({
-      success: true,
-      message: 'Product category deleted successfully',
-      data: productCategory,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-
-});
+app.delete('/productCategory/:id', deleteProductCategoryId);
 
 // Product Category APIs Ends Here 
 
