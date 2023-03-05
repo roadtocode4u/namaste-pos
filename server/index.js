@@ -5,7 +5,11 @@ import dotenv from 'dotenv';
 import User from './models/User.js';
 import ProductItem from './models/ProductItem.js';
 import DiningTable from './models/DiningTable.js';
-import ProductCategory from './models/ProductCategory.js';
+import { postProductCategory ,getProductCategoryTitle,getProductCategories,putProductCategoryId ,deleteProductCategoryId}
+ from './controllers/productCategory.js'
+
+
+
 dotenv.config();
 mongoose.set('strictQuery', false);
 
@@ -396,109 +400,11 @@ app.delete('/invoice/:id', deleteInvoice);
 /* Invoice APIs End Here */
 
 // Product Category APIs Started here
-
-// POST productCategory = create productCategory
-app.post('/productCategory', async (req, res) => {
-  const { categoryType, categoryTitle, itemImgURL } = req.body;
-
-  // validations for productCategory
-  const emptyCategory = [];
-
-  if (!categoryType) emptyCategory.push('Category Type');
-  if (!categoryTitle) emptyCategory.push('Category Title');
-  if (!itemImgURL) emptyCategory.push('ImgURL');
-
-  if (emptyCategory.length > 0) {
-    return res.json({
-      success: false,
-      message: `${emptyCategory.join(' , ')} Required !`,
-    });
-  }
-
-  const productCategory = new ProductCategory({
-    categoryType,
-    categoryTitle,
-    itemImgURL,
-  });
-
-  const savedProductCategory = await productCategory.save();
-
-  res.json({
-    success: true,
-    message: 'Product Category Created Successfully',
-    data: savedProductCategory,
-  });
-});
-
-// GET producctCategory?title => get productCategory by title
-app.get('/productCategory', async (req, res) => {
-  const { title } = req.query;
-
-  const productCategory = await ProductCategory.find({
-    title: { $regex: title, $options: 'i' },
-  });
-
-  res.json({
-    success: true,
-    description: 'Product category  fetched successfully',
-    data: productCategory,
-  });
-});
-
-// GET productCategoriess => get all productCategories
-app.get('/productCategories', async (req, res) => {
-  const productCategories = await ProductCategory.find();
-
-  res.json({
-    success: true,
-    description: 'Product category  fetched successfully',
-    results: productCategories.length,
-    data: productCategories,
-  });
-});
-
-// PUT productCategoy/:id => update productCategoy by id
-app.put('/productCategory/:id', async (req, res) => {
-  const { id } = req.params;
-  const { categoryType, categoryTitle, isCategoryAvailable, itemImgURL } =
-    req.body;
-
-  await ProductCategory.updateOne(
-    {
-      _id: id,
-    },
-    {
-      $set: {
-        categoryType,
-        categoryTitle,
-        isCategoryAvailable,
-        itemImgURL,
-      },
-    }
-  );
-
-  const updatedProductCategory = await ProductCategory.findById(id);
-
-  res.json({
-    success: true,
-    message: 'Product category updated successfully',
-    data: updatedProductCategory,
-  });
-});
-
-// DELETE productCategory/:id => delete productCategory by id
-app.delete('/productCategory/:id', async (req, res) => {
-  const { id } = req.params;
-  const productCategory = await ProductCategory.deleteOne({
-    _id: id,
-  });
-
-  res.json({
-    success: true,
-    message: 'Product category deleted successfully',
-    data: productCategory,
-  });
-});
+app.post('/productCategory', postProductCategory);
+app.get('/productCategory', getProductCategoryTitle);
+app.get('/productCategories', getProductCategories);
+app.put('/productCategory/:id', putProductCategoryId);
+app.delete('/productCategory/:id', deleteProductCategoryId);
 
 // Product Category APIs Ends Here
 
