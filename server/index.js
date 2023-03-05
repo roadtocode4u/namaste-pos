@@ -3,12 +3,12 @@ import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import User from './models/User.js';
-import ProductItem from './models/ProductItem.js';
 import ProductCategory from './models/ProductCategory.js';
-
 import DiningTable from './models/DiningTable.js';
 import { postProductCategory ,getProductCategoryTitle,getProductCategories,putProductCategoryId ,deleteProductCategoryId}
  from './controllers/productCategory.js'
+
+ import{postProductItem,} from './controllers/productItem.js'
 
 
 
@@ -147,25 +147,7 @@ app.post('/login', async (req, res) => {
 });
 
 /* Product Item APIs Starts Here */
-
-app.post('/productItem', async (req, res) => {
-  const { title, price, description, imgUrl } = req.body;
-  // validations will go here
-  const productItem = new ProductItem({
-    title,
-    price,
-    description,
-    imgUrl,
-  });
-
-  const savedProductItem = await productItem.save();
-
-  res.json({
-    success: true,
-    message: 'Product Item created successfully',
-    data: savedProductItem,
-  });
-});
+app.post('/productItem', postProductItem)
 
 // GET productItem/:id => get productItem by id
 
