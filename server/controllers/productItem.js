@@ -53,4 +53,32 @@ export const productItem = async (req, res) => {
       data: productItems,
     });
   }
+
+// PUT ProductItem/:id => update productItem by id
+  export const putProductItem = async (req, res) => {
+    const { id } = req.params;
+    const { title, price, imgUrl, description } = req.body;
+  
+    await ProductItem.updateOne(
+      {
+        _id: id,
+      },
+      {
+        $set: {
+          title,
+          price,
+          imgUrl,
+          description,
+        },
+      }
+    );
+  
+    const updatedProductItem = await ProductItem.findById(id);
+  
+    res.json({
+      success: true,
+      message: 'ProductItem updated successfully',
+      data: updatedProductItem,
+    });
+  }
   

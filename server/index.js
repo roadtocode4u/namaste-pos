@@ -8,7 +8,7 @@ import DiningTable from './models/DiningTable.js';
 import { postProductCategory ,getProductCategoryTitle,getProductCategories,putProductCategoryId ,deleteProductCategoryId}
  from './controllers/productCategory.js'
 
- import{postProductItem, getProductItemById, getProductItemTitle, getProductItems} from './controllers/productItem.js'
+ import{postProductItem, getProductItemById, getProductItemTitle, getProductItems, putProductItem} from './controllers/productItem.js'
 
 
 
@@ -151,33 +151,7 @@ app.post('/productItem', postProductItem)
 app.get('/productItem/:id', getProductItemById)
 app.get('/productItem', getProductItemTitle)
 app.get('/productItems', getProductItems)
-// PUT ProductItem/:id => update productItem by id
-app.put('/productItem/:id', async (req, res) => {
-  const { id } = req.params;
-  const { title, price, imgUrl, description } = req.body;
-
-  await ProductItem.updateOne(
-    {
-      _id: id,
-    },
-    {
-      $set: {
-        title,
-        price,
-        imgUrl,
-        description,
-      },
-    }
-  );
-
-  const updatedProductItem = await ProductItem.findById(id);
-
-  res.json({
-    success: true,
-    message: 'ProductItem updated successfully',
-    data: updatedProductItem,
-  });
-});
+app.put('/productItem/:id', putProductItem)
 
 // DELETE productItem/:id => delete productItem by id
 app.delete('/productItem/:id', async (req, res) => {
