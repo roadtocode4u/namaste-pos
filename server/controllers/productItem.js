@@ -19,3 +19,14 @@ export const productItem = async (req, res) => {
     });
   }
   
+// GET productItem/:id => get productItem by id
+  export const getProductItemById = async (req, res) => {
+    const { id } = req.params;
+    const productItem = await ProductItem.findById(id);
+  
+    res.json({
+      success: true,
+      message: 'Product item fetched successfully',
+      data: productItem,
+    });
+  }
