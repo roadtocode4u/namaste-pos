@@ -42,3 +42,15 @@ export const productItem = async (req, res) => {
       data: productItem,
     });
   }
+
+  // GET productItems => get all productItems
+  export const getProductItems = async (req, res) => {
+    const productItems = await ProductItem.find();
+  
+    res.json({
+      success: true,
+      message: 'ProductItems fetched successfully',
+      data: productItems,
+    });
+  }
+  

@@ -8,7 +8,7 @@ import DiningTable from './models/DiningTable.js';
 import { postProductCategory ,getProductCategoryTitle,getProductCategories,putProductCategoryId ,deleteProductCategoryId}
  from './controllers/productCategory.js'
 
- import{postProductItem, getProductItemById, getProductItemTitle} from './controllers/productItem.js'
+ import{postProductItem, getProductItemById, getProductItemTitle, getProductItems} from './controllers/productItem.js'
 
 
 
@@ -150,18 +150,7 @@ app.post('/login', async (req, res) => {
 app.post('/productItem', postProductItem)
 app.get('/productItem/:id', getProductItemById)
 app.get('/productItem', getProductItemTitle)
-
-// GET productItems => get all productItems
-app.get('/productItems', async (req, res) => {
-  const productItems = await ProductItem.find();
-
-  res.json({
-    success: true,
-    message: 'ProductItems fetched successfully',
-    data: productItems,
-  });
-});
-
+app.get('/productItems', getProductItems)
 // PUT ProductItem/:id => update productItem by id
 app.put('/productItem/:id', async (req, res) => {
   const { id } = req.params;
