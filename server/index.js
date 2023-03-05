@@ -3,18 +3,26 @@ import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import User from './models/User.js';
-import ProductCategory from './models/ProductCategory.js';
-import DiningTable from './models/DiningTable.js';
-import { postProductCategory ,getProductCategoryTitle,getProductCategories,putProductCategoryId ,deleteProductCategoryId}
- from './controllers/productCategory.js'
-
- import{postProductItem, getProductItemById, getProductItemTitle, getProductItems, putProductItem, deleteProductItem} from './controllers/productItem.js'
-
-
-
 
 dotenv.config();
 mongoose.set('strictQuery', false);
+
+import {
+  postProductCategory,
+  getProductCategoryTitle,
+  getProductCategories,
+  putProductCategoryId,
+  deleteProductCategoryId,
+} from './controllers/productCategory.js';
+
+import {
+  postProductItem,
+  getProductItemById,
+  getProductItemTitle,
+  getProductItems,
+  putProductItem,
+  deleteProductItem,
+} from './controllers/productItem.js';
 
 import {
   postInvoice,
@@ -24,7 +32,14 @@ import {
   putInvoice,
   deleteInvoice,
 } from './controllers/invoice.js';
-import { deleteOrder, getOrderId, getOrders, getOrderTableNumber, postOrder, putOrder } from './controllers/order.js';
+import {
+  deleteOrder,
+  getOrderId,
+  getOrders,
+  getOrderTableNumber,
+  postOrder,
+  putOrder,
+} from './controllers/order.js';
 
 import {
   postDiningTable,
@@ -32,7 +47,7 @@ import {
   getallDiningTables,
   putDiningTable,
   deleteDiningTable,
-} from './controllers/diningtable.js';
+} from './controllers/diningTable.js';
 
 const app = express();
 app.use(express.json());
@@ -146,42 +161,31 @@ app.post('/login', async (req, res) => {
   }
 });
 
-/* Product Item APIs Starts Here */
-app.post('/productItem', postProductItem)
-app.get('/productItem/:id', getProductItemById)
-app.get('/productItem', getProductItemTitle)
-app.get('/productItems', getProductItems)
-app.put('/productItem/:id', putProductItem)
-app.delete('/productItem/:id',deleteProductItem)
+app.post('/createDiningTable', postDiningTable);
+app.get('/diningTable/:id', getDiningTableByID);
+app.get('/diningTables', getallDiningTables);
+app.put('/diningTable/:id', putDiningTable);
+app.delete('/diningTable/:id', deleteDiningTable);
 
-/* Product Item APIs Ends Here */
+app.post('/productCategory', postProductCategory);
+app.get('/productCategory', getProductCategoryTitle);
+app.get('/productCategories', getProductCategories);
+app.put('/productCategory/:id', putProductCategoryId);
+app.delete('/productCategory/:id', deleteProductCategoryId);
 
-/*---------- Order API Routes Starts Here ----------*/
+app.post('/productItem', postProductItem);
+app.get('/productItem/:id', getProductItemById);
+app.get('/productItem', getProductItemTitle);
+app.get('/productItems', getProductItems);
+app.put('/productItem/:id', putProductItem);
+app.delete('/productItem/:id', deleteProductItem);
 
 app.post('/order', postOrder);
 app.get('/orders', getOrders);
 app.get('/order/:id', getOrderId);
 app.get('/order', getOrderTableNumber);
 app.put('/order/:id', putOrder);
-app.delete('/order/:id',deleteOrder);
-
-/*---------- Order API Routes Ends Here ----------*/
-
-/* Dining Table APIs Starts Here */
-
-app.post('/createDiningTable', postDiningTable);
-
-app.get('/diningTable/:id', getDiningTableByID);
-
-app.get('/diningTables', getallDiningTables);
-
-app.put('/diningTable/:id', putDiningTable);
-
-app.delete('/diningTable/:id', deleteDiningTable);
-
-/* Dining Table APIs End Here */
-
-/* Invoice APIs Starts Here */
+app.delete('/order/:id', deleteOrder);
 
 app.post('/invoice', postInvoice);
 app.get('/invoice', getInvoice);
@@ -189,17 +193,6 @@ app.get('/invoice', getInvoiceByInvoiceNumber);
 app.get('/invoice/:id', getInvoiceId);
 app.put('/invoice/:id', putInvoice);
 app.delete('/invoice/:id', deleteInvoice);
-
-/* Invoice APIs End Here */
-
-// Product Category APIs Started here
-app.post('/productCategory', postProductCategory);
-app.get('/productCategory', getProductCategoryTitle);
-app.get('/productCategories', getProductCategories);
-app.put('/productCategory/:id', putProductCategoryId);
-app.delete('/productCategory/:id', deleteProductCategoryId);
-
-// Product Category APIs Ends Here
 
 app.listen(PORT, () => {
   console.log(`The server is Running on Port ${PORT} 🚀`);
