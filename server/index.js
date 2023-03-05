@@ -8,7 +8,7 @@ import DiningTable from './models/DiningTable.js';
 import { postProductCategory ,getProductCategoryTitle,getProductCategories,putProductCategoryId ,deleteProductCategoryId}
  from './controllers/productCategory.js'
 
- import {postProductItem, getProductItemId, getProductItemTitle} from './controllers/productItem.js'
+ import {postProductItem, getProductItemId, getProductItemTitle,  getProductItems, putProductItems} from './controllers/productItem.js'
 
 dotenv.config();
 mongoose.set('strictQuery', false);
@@ -148,45 +148,8 @@ app.post('/login', async (req, res) => {
 app.post('/productItem', postProductItem )
 app.get('/productItem/:id',getProductItemId)
 app.get('/productItem',getProductItemTitle )
-
-// GET productItems => get all productItems
-app.get('/productItems', async (req, res) => {
-  const productItems = await ProductItem.find();
-
-  res.json({
-    success: true,
-    message: 'ProductItems fetched successfully',
-    data: productItems,
-  });
-});
-
-// PUT ProductItem/:id => update productItem by id
-app.put('/productItem/:id', async (req, res) => {
-  const { id } = req.params;
-  const { title, price, imgUrl, description } = req.body;
-
-  await ProductItem.updateOne(
-    {
-      _id: id,
-    },
-    {
-      $set: {
-        title,
-        price,
-        imgUrl,
-        description,
-      },
-    }
-  );
-
-  const updatedProductItem = await ProductItem.findById(id);
-
-  res.json({
-    success: true,
-    message: 'ProductItem updated successfully',
-    data: updatedProductItem,
-  });
-});
+app.get('/productItems', getProductItems )
+app.put('/productItem/:id',putProductItems )
 
 // DELETE productItem/:id => delete productItem by id
 app.delete('/productItem/:id', async (req, res) => {
