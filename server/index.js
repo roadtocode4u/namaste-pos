@@ -4,9 +4,12 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import User from './models/User.js';
 import ProductItem from './models/ProductItem.js';
+import ProductCategory from './models/ProductCategory.js';
+
 import DiningTable from './models/DiningTable.js';
 import { postProductCategory ,getProductCategoryTitle,getProductCategories,putProductCategoryId ,deleteProductCategoryId}
  from './controllers/productCategory.js'
+
 
 
 
@@ -22,6 +25,14 @@ import {
   deleteInvoice,
 } from './controllers/invoice.js';
 import { deleteOrder, getOrderId, getOrders, getOrderTableNumber, postOrder, putOrder } from './controllers/order.js';
+
+import {
+  postDiningTable,
+  getDiningTableByID,
+  getallDiningTables,
+  putDiningTable,
+  deleteDiningTable,
+} from './controllers/diningtable.js';
 
 const app = express();
 app.use(express.json());
@@ -249,142 +260,15 @@ app.delete('/order/:id',deleteOrder);
 
 /* Dining Table APIs Starts Here */
 
-// POST creatediningtable =>
-app.post('/createDiningTable', async (req, res) => {
-  try {
-    const {
-      tableNumber,
-      capacity,
-      numberOfTable,
-      tableLocation,
-      tableService,
-    } = req.body;
-    // validations
-    const existingTable = await DiningTable.findOne({ tableNumber });
+app.post('/createDiningTable', postDiningTable);
 
-    if (existingTable) {
-      return res.json({
-        success: false,
-        message: 'Table already exists',
-      });
-    }
-    const diningTable = new DiningTable({
-      tableNumber,
-      capacity,
-      numberOfTable,
-      tableLocation,
-      tableService,
-    });
+app.get('/diningTable/:id', getDiningTableByID);
 
-    const savedDiningTable = await diningTable.save();
+app.get('/diningTables', getallDiningTables);
 
-    res.json({
-      success: true,
-      message: 'DiningTable created successfully',
-      data: savedDiningTable,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: 'err in the catch block',
-    });
-  }
-});
+app.put('/diningTable/:id', putDiningTable);
 
-// GET diningTable?id => get diningTable by id
-app.get('/diningTable/:id', async (req, res) => {
-  const { id } = req.params;
-  const diningTable = await DiningTable.findById(id);
-
-  res.json({
-    success: true,
-    message: 'DiningTable fetched successfully',
-    data: diningTable,
-  });
-});
-
-// GET diningtables => get all diningtables
-app.get('/diningTables', async (req, res) => {
-  try {
-    const diningtables = await DiningTable.find();
-
-    res.json({
-      success: true,
-      message: 'DiningTable fetched successfully...',
-      results: diningtables.length,
-      data: diningtables,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
-
-// PUT diningTable/:id => update diningTable by id
-app.put('/diningTable/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const {
-      tableNumber,
-      capacity,
-      numberOfTable,
-      tableLocation,
-      tableService,
-    } = req.body;
-
-    await DiningTable.updateOne(
-      {
-        _id: id,
-      },
-      {
-        $set: {
-          tableNumber,
-          capacity,
-          numberOfTable,
-          tableLocation,
-          tableService,
-        },
-      }
-    );
-
-    const updatedDiningTable = await DiningTable.findById(id);
-
-    res.json({
-      success: true,
-      message: 'DiningTable updated Successfully',
-      data: updatedDiningTable,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
-
-// DELETE DiningTable/:id => delete DiningTable by id
-
-app.delete('/diningTable/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const diningTable = await DiningTable.deleteOne({
-      _id: id,
-    });
-    res.json({
-      success: true,
-      message: 'DiningTable deleted Successfully',
-      data: diningTable,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+app.delete('/diningTable/:id', deleteDiningTable);
 
 /* Dining Table APIs End Here */
 
