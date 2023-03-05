@@ -31,5 +31,17 @@ import ProductItem from './models/ProductItem.js';
       data: productItem,
     });
   }
+
+// GET productItem?title= => get productItem by title
+  export const getProductItemTitle = async (req, res) => {
+    const { title } = req.query;
+    const productItem = await ProductItem.findOne({ title });
+  
+    res.json({
+      success: true,
+      message: 'ProductItem fetched successfully',
+      data: productItem,
+    });
+  }
   
   

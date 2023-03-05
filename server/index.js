@@ -8,7 +8,7 @@ import DiningTable from './models/DiningTable.js';
 import { postProductCategory ,getProductCategoryTitle,getProductCategories,putProductCategoryId ,deleteProductCategoryId}
  from './controllers/productCategory.js'
 
- import {postProductItem, getProductItemId} from './controllers/productItem.js'
+ import {postProductItem, getProductItemId, getProductItemTitle} from './controllers/productItem.js'
 
 dotenv.config();
 mongoose.set('strictQuery', false);
@@ -147,18 +147,7 @@ app.post('/login', async (req, res) => {
 
 app.post('/productItem', postProductItem )
 app.get('/productItem/:id',getProductItemId)
-
-// GET productItem?title= => get productItem by title
-app.get('/productItem', async (req, res) => {
-  const { title } = req.query;
-  const productItem = await ProductItem.findOne({ title });
-
-  res.json({
-    success: true,
-    message: 'ProductItem fetched successfully',
-    data: productItem,
-  });
-});
+app.get('/productItem',getProductItemTitle )
 
 // GET productItems => get all productItems
 app.get('/productItems', async (req, res) => {
