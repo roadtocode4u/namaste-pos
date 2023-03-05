@@ -19,4 +19,17 @@ import ProductItem from './models/ProductItem.js';
       data: savedProductItem,
     });
   }
+
+  // GET productItem/:id => get productItem by id
+  export const getProductItemId =  async (req, res) => {
+    const { id } = req.params;
+    const productItem = await ProductItem.findById(id);
+  
+    res.json({
+      success: true,
+      message: 'Product item fetched successfully',
+      data: productItem,
+    });
+  }
+  
   
