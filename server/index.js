@@ -3,12 +3,12 @@ import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import User from './models/User.js';
-import ProductItem from './models/ProductItem.js';
 import ProductCategory from './models/ProductCategory.js';
-
 import DiningTable from './models/DiningTable.js';
 import { postProductCategory ,getProductCategoryTitle,getProductCategories,putProductCategoryId ,deleteProductCategoryId}
  from './controllers/productCategory.js'
+
+ import{postProductItem, getProductItemById, getProductItemTitle, getProductItems, putProductItem, deleteProductItem} from './controllers/productItem.js'
 
 
 
@@ -147,103 +147,12 @@ app.post('/login', async (req, res) => {
 });
 
 /* Product Item APIs Starts Here */
-
-app.post('/productItem', async (req, res) => {
-  const { title, price, description, imgUrl } = req.body;
-  // validations will go here
-  const productItem = new ProductItem({
-    title,
-    price,
-    description,
-    imgUrl,
-  });
-
-  const savedProductItem = await productItem.save();
-
-  res.json({
-    success: true,
-    message: 'Product Item created successfully',
-    data: savedProductItem,
-  });
-});
-
-// GET productItem/:id => get productItem by id
-
-app.get('/productItem/:id', async (req, res) => {
-  const { id } = req.params;
-  const productItem = await ProductItem.findById(id);
-
-  res.json({
-    success: true,
-    message: 'Product item fetched successfully',
-    data: productItem,
-  });
-});
-
-// GET productItem?title= => get productItem by title
-app.get('/productItem', async (req, res) => {
-  const { title } = req.query;
-  const productItem = await ProductItem.findOne({ title });
-
-  res.json({
-    success: true,
-    message: 'ProductItem fetched successfully',
-    data: productItem,
-  });
-});
-
-// GET productItems => get all productItems
-app.get('/productItems', async (req, res) => {
-  const productItems = await ProductItem.find();
-
-  res.json({
-    success: true,
-    message: 'ProductItems fetched successfully',
-    data: productItems,
-  });
-});
-
-// PUT ProductItem/:id => update productItem by id
-app.put('/productItem/:id', async (req, res) => {
-  const { id } = req.params;
-  const { title, price, imgUrl, description } = req.body;
-
-  await ProductItem.updateOne(
-    {
-      _id: id,
-    },
-    {
-      $set: {
-        title,
-        price,
-        imgUrl,
-        description,
-      },
-    }
-  );
-
-  const updatedProductItem = await ProductItem.findById(id);
-
-  res.json({
-    success: true,
-    message: 'ProductItem updated successfully',
-    data: updatedProductItem,
-  });
-});
-
-// DELETE productItem/:id => delete productItem by id
-app.delete('/productItem/:id', async (req, res) => {
-  const { id } = req.params;
-  const productItem = await ProductItem.deleteOne({
-    _id: id,
-  });
-
-  res.json({
-    success: true,
-    message: 'ProductItem deleted successfully',
-    data: productItem,
-  });
-});
+app.post('/productItem', postProductItem)
+app.get('/productItem/:id', getProductItemById)
+app.get('/productItem', getProductItemTitle)
+app.get('/productItems', getProductItems)
+app.put('/productItem/:id', putProductItem)
+app.delete('/productItem/:id',deleteProductItem)
 
 /* Product Item APIs Ends Here */
 
