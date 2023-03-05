@@ -81,4 +81,18 @@ export const productItem = async (req, res) => {
       data: updatedProductItem,
     });
   }
+
+  // DELETE productItem/:id => delete productItem by id
+  export const deleteProductItem =  async (req, res) => {
+    const { id } = req.params;
+    const productItem = await ProductItem.deleteOne({
+      _id: id,
+    });
+  
+    res.json({
+      success: true,
+      message: 'ProductItem deleted successfully',
+      data: productItem,
+    });
+  }
   

@@ -8,7 +8,7 @@ import DiningTable from './models/DiningTable.js';
 import { postProductCategory ,getProductCategoryTitle,getProductCategories,putProductCategoryId ,deleteProductCategoryId}
  from './controllers/productCategory.js'
 
- import{postProductItem, getProductItemById, getProductItemTitle, getProductItems, putProductItem} from './controllers/productItem.js'
+ import{postProductItem, getProductItemById, getProductItemTitle, getProductItems, putProductItem, deleteProductItem} from './controllers/productItem.js'
 
 
 
@@ -152,20 +152,7 @@ app.get('/productItem/:id', getProductItemById)
 app.get('/productItem', getProductItemTitle)
 app.get('/productItems', getProductItems)
 app.put('/productItem/:id', putProductItem)
-
-// DELETE productItem/:id => delete productItem by id
-app.delete('/productItem/:id', async (req, res) => {
-  const { id } = req.params;
-  const productItem = await ProductItem.deleteOne({
-    _id: id,
-  });
-
-  res.json({
-    success: true,
-    message: 'ProductItem deleted successfully',
-    data: productItem,
-  });
-});
+app.delete('/productItem/:id',deleteProductItem)
 
 /* Product Item APIs Ends Here */
 
