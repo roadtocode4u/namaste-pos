@@ -1,9 +1,8 @@
 import ProductItem from './models/ProductItem.js';
 
-// POST productItem => create productItem
- export const  postProductItem = async (req, res) => {
+export const productItem = async (req, res) => {
     const { title, price, description, imgUrl } = req.body;
-
+    // validations will go here
     const productItem = new ProductItem({
       title,
       price,
@@ -19,9 +18,9 @@ import ProductItem from './models/ProductItem.js';
       data: savedProductItem,
     });
   }
-
-  // GET productItem/:id => get productItem by id
-  export const getProductItemId =  async (req, res) => {
+  
+// GET productItem/:id => get productItem by id
+  export const getProductItemById = async (req, res) => {
     const { id } = req.params;
     const productItem = await ProductItem.findById(id);
   
@@ -32,7 +31,7 @@ import ProductItem from './models/ProductItem.js';
     });
   }
 
-// GET productItem?title= => get productItem by title
+  // GET productItem?title= => get productItem by title
   export const getProductItemTitle = async (req, res) => {
     const { title } = req.query;
     const productItem = await ProductItem.findOne({ title });
@@ -44,9 +43,8 @@ import ProductItem from './models/ProductItem.js';
     });
   }
 
-
-  // // PUT ProductItem/:id => update productItem by id
-  export const putProductItems = async (req, res) => {
+  // GET productItems => get all productItems
+  export const getProductItems = async (req, res) => {
     const productItems = await ProductItem.find();
   
     res.json({
@@ -56,6 +54,7 @@ import ProductItem from './models/ProductItem.js';
     });
   }
 
+// PUT ProductItem/:id => update productItem by id
   export const putProductItem = async (req, res) => {
     const { id } = req.params;
     const { title, price, imgUrl, description } = req.body;
@@ -82,6 +81,18 @@ import ProductItem from './models/ProductItem.js';
       data: updatedProductItem,
     });
   }
+
+  // DELETE productItem/:id => delete productItem by id
+  export const deleteProductItem =  async (req, res) => {
+    const { id } = req.params;
+    const productItem = await ProductItem.deleteOne({
+      _id: id,
+    });
   
-  
+    res.json({
+      success: true,
+      message: 'ProductItem deleted successfully',
+      data: productItem,
+    });
+  }
   

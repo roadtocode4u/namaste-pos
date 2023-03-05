@@ -8,7 +8,10 @@ import DiningTable from './models/DiningTable.js';
 import { postProductCategory ,getProductCategoryTitle,getProductCategories,putProductCategoryId ,deleteProductCategoryId}
  from './controllers/productCategory.js'
 
- import {postProductItem, getProductItemId, getProductItemTitle,  getProductItems, putProductItems} from './controllers/productItem.js'
+ import{postProductItem, getProductItemById, getProductItemTitle, getProductItems, putProductItem, deleteProductItem} from './controllers/productItem.js'
+
+
+
 
 dotenv.config();
 mongoose.set('strictQuery', false);
@@ -144,26 +147,12 @@ app.post('/login', async (req, res) => {
 });
 
 /* Product Item APIs Starts Here */
-
-app.post('/productItem', postProductItem )
-app.get('/productItem/:id',getProductItemId)
-app.get('/productItem',getProductItemTitle )
-app.get('/productItems', getProductItems )
-app.put('/productItem/:id',putProductItems )
-
-// DELETE productItem/:id => delete productItem by id
-app.delete('/productItem/:id', async (req, res) => {
-  const { id } = req.params;
-  const productItem = await ProductItem.deleteOne({
-    _id: id,
-  });
-
-  res.json({
-    success: true,
-    message: 'ProductItem deleted successfully',
-    data: productItem,
-  });
-});
+app.post('/productItem', postProductItem)
+app.get('/productItem/:id', getProductItemById)
+app.get('/productItem', getProductItemTitle)
+app.get('/productItems', getProductItems)
+app.put('/productItem/:id', putProductItem)
+app.delete('/productItem/:id',deleteProductItem)
 
 /* Product Item APIs Ends Here */
 
