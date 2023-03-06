@@ -61,3 +61,30 @@ export const postSignup = async (req, res) => {
     });
   }
 };
+
+export const postLogin = async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.json({
+      success: false,
+      message: 'Email and password are required',
+    });
+  }
+
+  const user = await User.findOne({ email });
+  const validPassword = await bcrypt.compare(password, user.password);
+
+  if (validPassword) {
+    return res.json({
+      success: true,
+      message: 'User logged in successfully',
+      user: user,
+    });
+  } else {
+    return res.json({
+      success: false,
+      message: 'Username or Password is incorrect',
+    });
+  }
+};

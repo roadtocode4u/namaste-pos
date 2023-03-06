@@ -1,15 +1,13 @@
 import express from 'express';
-import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import User from './models/User.js';
 
 dotenv.config();
 mongoose.set('strictQuery', false);
 
 import { getHealth } from './controllers/health.js';
 
-import { postSignup } from './controllers/auth.js';
+import { postSignup, postLogin } from './controllers/auth.js';
 
 import {
   postProductCategory,
@@ -73,33 +71,7 @@ try {
 app.get('/health', getHealth);
 
 app.post('/signup', postSignup);
-
-app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-
-  if (!email || !password) {
-    return res.json({
-      success: false,
-      message: 'Email and password are required',
-    });
-  }
-
-  const user = await User.findOne({ email });
-  const validPassword = await bcrypt.compare(password, user.password);
-
-  if (validPassword) {
-    return res.json({
-      success: true,
-      message: 'User logged in successfully',
-      user: user,
-    });
-  } else {
-    return res.json({
-      success: false,
-      message: 'Username or Password is incorrect',
-    });
-  }
-});
+app.post('/login', postLogin);
 
 app.post('/createDiningTable', postDiningTable);
 app.get('/diningTable/:id', getDiningTableByID);
