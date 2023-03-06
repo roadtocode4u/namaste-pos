@@ -3,7 +3,7 @@ import './Signup.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 
-function Signup({ isOpen, closePopup }) {
+function Signup({ isOpen, closePopupSignup }) {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -48,7 +48,7 @@ function Signup({ isOpen, closePopup }) {
         className="signup-page"
         style={{ display: isOpen ? 'block' : 'none' }}>
         <div className="page-content">
-          <span className="close" onClick={closePopup}>
+          <span className="close" onClick={closePopupSignup}>
             &times;
           </span>
           <h2 className="text-center mb-3">Sign Up</h2>
