@@ -30,3 +30,27 @@ export const postbookTable = async (req, res) => {
     });
   }
 };
+
+export const postunbookTable = async (req, res) => {
+  try {
+    const { tableNumber } = req.body;
+    const existingTable = await DiningTable.findOne({ tableNumber });
+
+    if (existingTable) {
+      existingTable.occupied = false;
+      existingTable.occupiedBy = null;
+      await existingTable.save();
+    }
+
+    res.json({
+      success: true,
+      message: 'Table unbooked uccessfully...',
+      data: existingTable,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
