@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Navbar.css';
+import Signup from './../../views/Signup/Signup';
 
 export default function Navbar() {
+  const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
+
+  function closePopup() {
+    setIsSignupPopupOpen(false);
+  }
   return (
     <>
       <nav className="navbar navbar-expand-lg fixed-top navbar-light navbar-light bg-light">
@@ -34,8 +40,12 @@ export default function Navbar() {
               </span>
 
               <span className="nav_register nav-color signup-btn">
-                <i className="fa-solid fa-user-plus"></i>
-                <b> Signup</b>
+                <i
+                  className="fa-solid fa-user-plus"
+                  onClick={() => {
+                    setIsSignupPopupOpen(true);
+                  }}></i>
+                <b>Signup</b>
               </span>
             </li>
           </ul>
@@ -44,6 +54,7 @@ export default function Navbar() {
           </ul>
         </div>
       </nav>
+      <Signup isOpen={isSignupPopupOpen} closePopup={closePopup} />
     </>
   );
 }
