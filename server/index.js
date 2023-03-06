@@ -7,6 +7,8 @@ import User from './models/User.js';
 dotenv.config();
 mongoose.set('strictQuery', false);
 
+import { getHealth } from './controllers/health.js';
+
 import {
   postProductCategory,
   getProductCategoryTitle,
@@ -66,12 +68,7 @@ try {
   console.log(`❌ Error:  ${err?.message}`);
 }
 
-app.get('/health', (req, res) => {
-  res.json({
-    status: 'ok',
-    message: 'Server is running',
-  });
-});
+app.get('/health', getHealth);
 
 app.post('/signup', async (req, res) => {
   const { fullName, phone, email, password } = req.body;
