@@ -50,6 +50,7 @@ import {
   putDiningTable,
   deleteDiningTable,
 } from './controllers/diningTable.js';
+import { postbookTable } from './controllers/bookStatus.js';
 
 const app = express();
 app.use(express.json());
@@ -78,6 +79,8 @@ app.get('/diningTable/:id', getDiningTableByID);
 app.get('/diningTables', getallDiningTables);
 app.put('/diningTable/:id', putDiningTable);
 app.delete('/diningTable/:id', deleteDiningTable);
+
+app.post('/bookTable', postbookTable);
 
 app.post('/productCategory', postProductCategory);
 app.get('/productCategory', getProductCategoryTitle);
