@@ -30,10 +30,9 @@ function Login({ isOpen, closePopupLogin }) {
         button: '😥',
       });
     }
-   
+
     setEmail('');
     setPassword('');
-   
   }
 
   return (
@@ -49,7 +48,6 @@ function Login({ isOpen, closePopupLogin }) {
           <h2 className="text-center mb-3">Login</h2>
           <div className="text-center">
             <form>
-
               <div className="mb-3">
                 <input
                   required
@@ -92,7 +90,6 @@ function Login({ isOpen, closePopupLogin }) {
       </div>
     </>
   );
-
 }
 
 export default Login;

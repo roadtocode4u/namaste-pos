@@ -16,4 +16,9 @@
 
 .signup-btn {
   margin: 10px;
+  cursor: pointer;
+}
+
+.login-btn {
+  cursor: pointer;
 }
