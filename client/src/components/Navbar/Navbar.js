@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 import Signup from './../../views/Signup/Signup';
+import Login from '../../views/Login/Login';
 
 export default function Navbar() {
   const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
@@ -8,6 +9,13 @@ export default function Navbar() {
   function closePopup() {
     setIsSignupPopupOpen(false);
   }
+
+  const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
+
+  function closePopupLogin() {
+    setIsLoginPopupOpen(false);
+  }
+
   return (
     <>
       <nav className="navbar navbar-expand-lg fixed-top navbar-light navbar-light bg-light">
@@ -35,7 +43,10 @@ export default function Navbar() {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <span className="nav_register nav-color login-btn">
-                <i className="fa-solid fa-right-to-bracket"></i>
+                <i className="fa-solid fa-right-to-bracket"
+                onClick={() => {
+                  setIsLoginPopupOpen(true);
+                  }}></i>
                 <b> Login</b>
               </span>
 
@@ -55,6 +66,7 @@ export default function Navbar() {
         </div>
       </nav>
       <Signup isOpen={isSignupPopupOpen} closePopup={closePopup} />
+      <Login isOpen={isLoginPopupOpen} closePopup={closePopupLogin}/>
     </>
   );
 }
