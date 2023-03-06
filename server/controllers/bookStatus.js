@@ -54,3 +54,21 @@ export const postunbookTable = async (req, res) => {
     });
   }
 };
+
+export const getavailableTables = async (req, res) => {
+  try {
+    const availableTables = await DiningTable.find({ occupied: false });
+
+    res.json({
+      success: true,
+      message: 'Available tables fetched successfully...',
+      results: availableTables.length,
+      data: availableTables,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
