@@ -1,7 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Signup.css';
+import axios from 'axios';
+import swal from 'sweetalert';
 
 function Signup({ isOpen, closePopup }) {
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+
+  async function addUser() {
+    const response = await axios.post('/signup', {
+      fullName,
+      email,
+      password,
+      phone,
+    });
+
+    if (response.data.success) {
+      await swal({
+        title: 'Signup Successfully !!',
+        text: response.data.message,
+        icon: 'success',
+        button: 'Aww yiss!',
+      });
+
+      window.location.href = '/';
+    } else {
+      await swal({
+        title: 'Error',
+        text: response.data.message,
+        icon: 'error',
+        button: '😥',
+      });
+    }
+
+    setFullName('');
+    setEmail('');
+    setPassword('');
+    setPhone('');
+  }
+
   return (
     <>
       <div
@@ -22,6 +61,10 @@ function Signup({ isOpen, closePopup }) {
                   type="text"
                   className="signup-form-input"
                   id="name"
+                  value={fullName}
+                  onChange={(e) => {
+                    setFullName(e.target.value);
+                  }}
                 />
               </div>
 
@@ -32,6 +75,10 @@ function Signup({ isOpen, closePopup }) {
                   type="email"
                   className="signup-form-input"
                   id="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                 />
               </div>
 
@@ -42,6 +89,10 @@ function Signup({ isOpen, closePopup }) {
                   type="text"
                   className="signup-form-input"
                   id="phone"
+                  value={phone}
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                  }}
                 />
               </div>
 
@@ -52,10 +103,17 @@ function Signup({ isOpen, closePopup }) {
                   type="password"
                   className="signup-form-input"
                   id="password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                 />
               </div>
 
-              <button type="button" className="signup-page-btn">
+              <button
+                type="button"
+                className="signup-page-btn"
+                onClick={addUser}>
                 <b>
                   <i className="fa-solid fa-user-plus"></i> Sign Up
                 </b>
