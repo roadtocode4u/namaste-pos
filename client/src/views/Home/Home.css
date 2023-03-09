@@ -2,7 +2,8 @@
   margin-top: 100px;
 }
 .heading-h1 {
-  background-color: rgb(234, 223, 223);
+  background-color: #ef4f5f;
+  color: white;
   padding: 8px;
   border-radius: 12px;
   font-family: 'Poppins', sans-serif;
@@ -12,14 +13,21 @@
   font-family: 'Poppins', sans-serif;
   display: flex;
   justify-content: center;
-  margin-top: 150px;
+  margin-top: 65px;
 }
 .input-search {
-  width: 350px;
-  height: 50px;
-  background-color: white;
-  border: 1 px solid black;
-  padding: 12px;
-  border-radius: 10px;
-  font-size: 20px;
+  width: 600px;
+  height: 52px;
+  background-color: #f0f0f0;
+  border: none;
+  padding: 10px;
+  border-radius: 7px;
+  font-size: 25px;
+  box-shadow: 1px 1px 3px 1px gray;
+}
+.input-search:focus {
+  outline: none;
+}
+.namaste-pos-heading {
+  margin-top: 100px;
 }

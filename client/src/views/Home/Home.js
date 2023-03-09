@@ -22,12 +22,17 @@ function Home() {
         <div className="row">
           <div className="col-md-6 product-item">
             <h1 className="heading-h1 text-center">Namaste Pos...🙏</h1>
-            <h4 className="text-center mt-3">
+          </div>
+          <div className="col-md-6">
+            <h4 className="text-center namaste-pos-heading">
               Say Namaste to a better food business with our user-friendly POS
               software.
             </h4>
           </div>
-          <div className="col-md-6">
+        </div>
+
+        <div className="container">
+          <div className="col-md-12">
             <div className="search-container text-center">
               <input
                 type="text"

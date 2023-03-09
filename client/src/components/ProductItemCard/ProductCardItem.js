@@ -1,35 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ProductCardItem.css';
 
 function ProductCardItem(props) {
+  const [quantity, setQuantity] = useState(1);
+
+  const setCount = () => {
+    if (quantity <= 0) {
+      return;
+    } else {
+      setQuantity(quantity - 1);
+    }
+  };
+
   return (
-    <div className="col-lg-4 col-md-6 col-sm-12 card-container">
-      <div className="product-item-card">
-        <div className="product-food-card-body">
-          <div>
-            <img src={props.imgUrl} alt="" className="food-card-img" />
-          </div>
+    <>
+      <div className="product-item-card mt-5">
+        <div className="row">
+          <div className="col-md-12">
+            <img
+              src={props.imgUrl}
+              className="product-item-card-img mt-2"
+              alt="..."
+            />
+            <div className="p-1">
+              <h3 className="text-center">{props.title}</h3>
+              <p className="text-center">{props.description}</p>
+              <b className="price-rupees">₹{props.price}</b>
 
-          <div className="product-card-sub-container">
-            <h6 className="text-uppercase fw-bold">{props.title}</h6>
-            <p className="description">{props.description}</p>
-            <hr />
-
-            <div className="price-qnt-container">
-              <div className="price text-success">
-                <span> {props.price}</span>
+              <div className="quantity-button">
+                <span className="count-button" onClick={setCount}>
+                  <p className="plus-minus">-</p>
+                </span>
+                <span className="count-text">{quantity}</span>
+                <span
+                  className="count-button"
+                  onClick={() => {
+                    setQuantity(quantity + 1);
+                  }}>
+                  <p className="plus-minus">+</p>
+                </span>
               </div>
-            </div>
 
-            <div>
-              <button type="button" className="btn-add-to-list btn btn-danger">
-                Add To List
-              </button>
+              <div>
+                <button
+                  type="button"
+                  className="btn-add-to-card text-center mb-2">
+                  <b>Add To Card</b>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

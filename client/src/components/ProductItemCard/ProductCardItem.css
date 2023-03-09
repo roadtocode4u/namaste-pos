@@ -1,115 +1,64 @@
-.product-card-item {
-  font-family: 'Poppins', sans-serif;
-  margin-top: 100px;
-  border: 1px solid black;
-  padding: auto;
-  width: 270px;
-  border-radius: 10px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 14px 20px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-.card-container {
-  width: 450px;
-  margin-bottom: 30px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .product-item-card {
-  width: 430px;
-  height: 200px;
-  border-radius: 5px;
-  box-shadow: 0 0 15px #686868;
-  margin-top: 100px;
-}
-
-.product-food-card-body {
-  display: flex;
-  justify-content: space-between;
-  background-color: whitesmoke;
-  border-radius: 5px;
-}
-
-.food-card-img {
-  width: 230px;
-  height: 200px;
-  object-fit: cover;
-  padding: 0;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
-
-.product-card-sub-container {
-  padding: 5px;
-  height: 200px;
-}
-
-.description {
-  font-size: 12px;
-  text-align: justify;
-  height: 60px;
-  overflow: hidden;
-}
-
-.price-qnt-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 5px 0 10px 0;
-}
-
-.price {
-  color: #00cc99;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.quantity-btn-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 90px;
-  font-size: 14px;
-  height: 25px;
-}
-
-.qnt-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 10px 0 10px;
-  font-size: 20px;
-  color: black;
-  cursor: pointer;
-}
-
-.qnt-text {
-  font-size: 20px;
-  margin: 10px;
-}
-
-.left:hover {
-  color: rgb(207, 8, 8);
-  font-weight: bold;
-}
-
-.right:hover {
-  color: #00cc99;
-  font-weight: bold;
-}
-
-.btn-add-to-list {
-  width: 160px;
-  height: 30px;
-  display: block;
+  background-color: #fff;
+  margin-top: 40px;
+  border-radius: 12px;
   margin-left: auto;
   margin-right: auto;
+  width: 340px;
+  display: block;
+  box-shadow: 1px 1px 3px gray;
+}
+
+.product-item-card-img {
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  display: block;
+}
+
+.btn-add-to-card {
+  border-radius: 10px;
+  background-color: #ef4f5f;
+  padding: 8px;
+  width: 100%;
+  color: white;
+  margin-top: 20px;
   border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 14px;
-  text-align: center;
+}
+
+.btn-add-to-card:hover {
+  box-shadow: 2px 3px 2px -2px rgb(0, 0, 0);
+}
+
+.count-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  background-color: #ef4f5f;
+  color: white;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.count-text {
+  font-size: 35px;
+}
+
+.quantity-button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.price-rupees {
+  font-size: 22px;
+  margin-left: 25px;
+}
+.plus-minus {
+  font-size: 40px;
+  margin-top: 5px;
 }
