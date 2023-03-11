@@ -2,14 +2,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-import User from './models/User.js';
-import ProductCategory from './models/ProductCategory.js';
-import DiningTable from './models/DiningTable.js';
-import { postProductCategory ,getProductCategoryTitle,getProductCategories,putProductCategoryId ,deleteProductCategoryId}
- from './controllers/productCategory.js'
-import{postProductItem, getProductItemById, getProductItemTitle, getProductItems, putProductItem, deleteProductItem} from './controllers/productItem.js'
-
-
 dotenv.config();
 mongoose.set('strictQuery', false);
 

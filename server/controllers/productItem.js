@@ -1,4 +1,6 @@
 import ProductItem from './../models/ProductItem.js';
+import responder from '../util/responder.js';
+
 
 
 export const postProductItem = async (req, res) => {
@@ -66,10 +68,4 @@ export const deleteProductItem = async (req, res) => {
     _id: id,
   });
   responder(res, productItem, 'ProductItem deleted successfully')
-
-  res.json({
-    success: true,
-    message: 'ProductItem deleted successfully',
-    data: productItem,
-  });
 };
