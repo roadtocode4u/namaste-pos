@@ -12,12 +12,7 @@ export const postProductItem = async (req, res) => {
   });
 
   const savedProductItem = await productItem.save();
-
-  res.json({
-    success: true,
-    message: 'Product Item created successfully',
-    data: savedProductItem,
-  });
+  responder(res, savedProductItem, 'Product Item created successfully')
 };
 
 
@@ -25,35 +20,20 @@ export const postProductItem = async (req, res) => {
 export const getProductItemById = async (req, res) => {
   const { id } = req.params;
   const productItem = await ProductItem.findById(id);
-
-  res.json({
-    success: true,
-    message: 'Product item fetched successfully',
-    data: productItem,
-  });
+  responder(res, productItem, 'Product item fetched successfully')
 };
 
 // GET productItem?title= => get productItem by title
 export const getProductItemTitle = async (req, res) => {
   const { title } = req.query;
   const productItem = await ProductItem.findOne({ title });
-
-  res.json({
-    success: true,
-    message: 'ProductItem fetched successfully',
-    data: productItem,
-  });
+  responder(res, productItem, 'Product item fetched successfully')
 };
 
 // GET productItems => get all productItems
 export const getProductItems = async (req, res) => {
   const productItems = await ProductItem.find();
-
-  res.json({
-    success: true,
-    message: 'ProductItems fetched successfully',
-    data: productItems,
-  });
+  responder(res, productItems, 'ProductItems fetched successfully')
 };
 
 // PUT ProductItem/:id => update productItem by id
@@ -76,12 +56,7 @@ export const putProductItem = async (req, res) => {
   );
 
   const updatedProductItem = await ProductItem.findById(id);
-
-  res.json({
-    success: true,
-    message: 'ProductItem updated successfully',
-    data: updatedProductItem,
-  });
+  responder(res, updatedProductItem, 'ProductItem updated successfully')
 };
 
 // DELETE productItem/:id => delete productItem by id
@@ -90,6 +65,7 @@ export const deleteProductItem = async (req, res) => {
   const productItem = await ProductItem.deleteOne({
     _id: id,
   });
+  responder(res, productItem, 'ProductItem deleted successfully')
 
   res.json({
     success: true,
