@@ -1,4 +1,5 @@
 import DiningTable from '../models/DiningTable.js';
+import responder from '../util/responder.js';
 
 export const postbookTable = async (req, res) => {
   try {
@@ -6,10 +7,7 @@ export const postbookTable = async (req, res) => {
 
     const existingTable = await DiningTable.findOne({ tableNumber });
     if (existingTable && existingTable.occupied) {
-      return res.json({
-        success: false,
-        message: 'Table already booked...',
-      });
+      responder(res, existingTable, 'Table already booked...');
     }
 
     if (existingTable) {
@@ -18,16 +16,9 @@ export const postbookTable = async (req, res) => {
       await existingTable.save();
     }
 
-    return res.json({
-      success: true,
-      message: 'Table booked Successfully...',
-      data: existingTable,
-    });
+    return responder(res, existingTable, 'Table booked successfully...');
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
 
@@ -42,16 +33,9 @@ export const postunbookTable = async (req, res) => {
       await existingTable.save();
     }
 
-    res.json({
-      success: true,
-      message: 'Table unbooked uccessfully...',
-      data: existingTable,
-    });
+    responder(res, existingTable, 'Table unbooked successfully...');
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
 
@@ -59,16 +43,8 @@ export const getavailableTables = async (req, res) => {
   try {
     const availableTables = await DiningTable.find({ occupied: false });
 
-    res.json({
-      success: true,
-      message: 'Available tables fetched successfully...',
-      results: availableTables.length,
-      data: availableTables,
-    });
+    responder(res, availableTables, 'Available tables fetched successfully...');
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
