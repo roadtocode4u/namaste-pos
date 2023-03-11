@@ -1,7 +1,8 @@
 import ProductCategory from './../models/ProductCategory.js';
+import responder from './../util/responder.js'
+
 
 // POST productCategory = create productCategory
-
 export const postProductCategory = async (req, res) => {
   const { categoryType, categoryTitle, itemImgURL } = req.body;
 
@@ -13,10 +14,7 @@ export const postProductCategory = async (req, res) => {
   if (!itemImgURL) emptyCategory.push('ImgURL');
 
   if (emptyCategory.length > 0) {
-    return res.json({
-      success: false,
-      message: `${emptyCategory.join(' , ')} Required !`,
-    });
+    responder(res, null, `${emptyCategory.join(' , ')} Required !`, false)
   }
 
   try {
@@ -27,17 +25,10 @@ export const postProductCategory = async (req, res) => {
     });
 
     const savedProductCategory = await productCategory.save();
+    responder(res, savedProductCategory,  'Product Category Created Successfully')
 
-    res.json({
-      success: true,
-      message: 'Product Category Created Successfully',
-      data: savedProductCategory,
-    });
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false)
   }
 };
 
@@ -49,17 +40,10 @@ export const getProductCategoryTitle = async (req, res) => {
     const productCategory = await ProductCategory.find({
       title: { $regex: title, $options: 'i' },
     });
+    responder(res, productCategory,   'Product category  fetched successfully')
 
-    res.json({
-      success: true,
-      description: 'Product category  fetched successfully',
-      data: productCategory,
-    });
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false)
   }
 };
 
@@ -68,17 +52,10 @@ export const getProductCategories = async (req, res) => {
   try {
     const productCategories = await ProductCategory.find();
 
-    res.json({
-      success: true,
-      description: 'Product category  fetched successfully',
-      results: productCategories.length,
-      data: productCategories,
-    });
+    responder(res, productCategories,   'Product category  fetched successfully')
+
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false)
   }
 };
 
@@ -104,17 +81,10 @@ export const putProductCategoryId = async (req, res) => {
     );
 
     const updatedProductCategory = await ProductCategory.findById(id);
+    responder(res, updatedProductCategory,  'Product category updated successfully')
 
-    res.json({
-      success: true,
-      message: 'Product category updated successfully',
-      data: updatedProductCategory,
-    });
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false)
   }
 };
 
@@ -125,16 +95,10 @@ export const deleteProductCategoryId = async (req, res) => {
     const productCategory = await ProductCategory.deleteOne({
       _id: id,
     });
+    responder(res, productCategory, 'Product category deleted successfully')
 
-    res.json({
-      success: true,
-      message: 'Product category deleted successfully',
-      data: productCategory,
-    });
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
+    responder(res, null, err.message, false)
+
+  }
 };
