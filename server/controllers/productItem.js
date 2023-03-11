@@ -1,5 +1,6 @@
 import ProductItem from './../models/ProductItem.js';
 
+
 export const postProductItem = async (req, res) => {
   const { title, price, description, imgUrl } = req.body;
   // validations will go here
@@ -18,6 +19,7 @@ export const postProductItem = async (req, res) => {
     data: savedProductItem,
   });
 };
+
 
 // GET productItem/:id => get productItem by id
 export const getProductItemById = async (req, res) => {
