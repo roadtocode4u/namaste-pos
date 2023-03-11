@@ -1,5 +1,7 @@
 import bcrypt from 'bcrypt';
+
 import User from './../models/User.js';
+import responder from './../util/responder.js';
 
 export const postSignup = async (req, res) => {
   const { fullName, phone, email, password } = req.body;
@@ -12,28 +14,19 @@ export const postSignup = async (req, res) => {
   if (!password) emptyFields.push('password');
 
   if (emptyFields.length > 0) {
-    return res.json({
-      success: false,
-      message: `${emptyFields.join(', ')} is required`,
-    });
+    responder(res, null, `${emptyFields.join(', ')} is required`, false);
   }
 
   // validations to check if email already exist start
   const existingUser = await User.findOne({ email: email });
   if (existingUser) {
-    return res.json({
-      success: false,
-      message: 'Email already exists',
-    });
+    responder(res, null, 'Email already exists', false);
   }
 
   // validations to check if phone already exist start
   const existingUserPhone = await User.findOne({ phone: phone });
   if (existingUserPhone) {
-    return res.json({
-      success: false,
-      message: 'Phone already exists',
-    });
+    responder(res, null, 'Phone already exists', false);
   }
 
   try {
@@ -48,17 +41,9 @@ export const postSignup = async (req, res) => {
     user.password = await bcrypt.hash(user.password, salt);
 
     const savedUser = await user.save();
-
-    res.json({
-      success: true,
-      message: 'Signup successfully...',
-      data: savedUser,
-    });
+    responder(res, savedUser, 'Signup successfully...');
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
 
@@ -66,25 +51,15 @@ export const postLogin = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.json({
-      success: false,
-      message: 'Email and password are required',
-    });
+    responder(res, null, 'Email and password are required', false);
   }
 
   const user = await User.findOne({ email });
   const validPassword = await bcrypt.compare(password, user.password);
 
   if (validPassword) {
-    return res.json({
-      success: true,
-      message: 'User logged in successfully',
-      user: user,
-    });
+    responder(res, user, 'User logged in successfully');
   } else {
-    return res.json({
-      success: false,
-      message: 'Username or Password is incorrect',
-    });
+    responder(res, null, 'Username or Password is incorrect', false);
   }
 };
