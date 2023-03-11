@@ -80,7 +80,7 @@ export const getallDiningTables = async (req, res) => {
 };
 
 // PUT diningTable/:id => update diningTable by id
-export const putDiningTable =  async (req, res) => {
+export const putDiningTable = async (req, res) => {
   try {
     const { id } = req.params;
     const {
@@ -140,4 +140,4 @@ export const deleteDiningTable = async (req, res) => {
       message: err.message,
     });
   }
-}
+};
