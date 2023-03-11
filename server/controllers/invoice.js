@@ -1,4 +1,5 @@
 import Invoice from './../models/Invoice.js';
+import responder from './../util/responder.js';
 
 export const postInvoice = async (req, res) => {
   const {
@@ -16,10 +17,12 @@ export const postInvoice = async (req, res) => {
   });
 
   if (existingInvoice) {
-    return res.json({
-      success: false,
-      message: `${invoiceNumber} invoice number already exists`,
-    });
+    responder(
+      res,
+      null,
+      `${invoiceNumber} invoice number already exists`,
+      false
+    );
   }
 
   try {
@@ -34,17 +37,9 @@ export const postInvoice = async (req, res) => {
     });
 
     const savedInvoice = await newInvoice.save();
-
-    res.json({
-      status: true,
-      message: 'Invoice Created Successfully',
-      data: savedInvoice,
-    });
+    responder(res, savedInvoice, 'Invoice Created Successfully');
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
 
@@ -52,16 +47,9 @@ export const getInvoice = async (req, res) => {
   const invoices = await Invoice.find();
 
   try {
-    res.json({
-      success: true,
-      message: 'Invoices fetched Successfullty',
-      data: invoices,
-    });
+    responder(res, invoices, 'Invoices fetched Successfullty');
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
 
@@ -70,16 +58,9 @@ export const getInvoiceByInvoiceNumber = async (req, res) => {
   const invoice = await Invoice.findOne({ invoiceNumber });
 
   if (!invoice) {
-    return res.send({
-      success: false,
-      message: 'Invoice not Found',
-    });
+    responder(res, null, 'Invoice not Found', false);
   }
-  res.json({
-    success: true,
-    message: 'invoice fetched successfully',
-    data: invoice,
-  });
+  responder(res, invoice, 'invoice fetched successfully');
 };
 
 export const getInvoiceId = async (req, res) => {
@@ -87,16 +68,9 @@ export const getInvoiceId = async (req, res) => {
   const invoice = await Invoice.findById(id);
 
   if (!invoice) {
-    return res.send({
-      success: false,
-      message: 'Invoice not Found',
-    });
+    responder(res, null, 'Invoice not Found', false);
   }
-  res.json({
-    success: true,
-    message: 'invoice fetched successfully',
-    data: invoice,
-  });
+  responder(res, invoice, 'invoice fetched successfully');
 };
 
 export const putInvoice = async (req, res) => {
@@ -130,17 +104,9 @@ export const putInvoice = async (req, res) => {
     );
 
     const updateInvoice = await Invoice.findById(id);
-
-    res.json({
-      success: true,
-      message: 'Invoice updated successfully',
-      data: updateInvoice,
-    });
+    responder(res, updateInvoice, 'Invoice updated successfully');
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
 
@@ -151,15 +117,8 @@ export const deleteInvoice = async (req, res) => {
     const invoice = await Invoice.deleteOne({
       _id: id,
     });
-    res.json({
-      success: true,
-      message: 'Invoice deleted Successfully',
-      data: invoice,
-    });
+    responder(res, invoice, 'Invoice deleted Successfully');
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };

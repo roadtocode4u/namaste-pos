@@ -1,6 +1,5 @@
+import responder from './../util/responder.js';
+
 export const getHealth = (req, res) => {
-  res.json({
-    status: 'ok',
-    message: 'Server is running',
-  });
+  responder(res, null, 'Email already exists', false);
 };
