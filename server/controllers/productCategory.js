@@ -1,6 +1,5 @@
 import ProductCategory from './../models/ProductCategory.js';
-import responder from './../util/responder.js'
-
+import responder from './../util/responder.js';
 
 // POST productCategory = create productCategory
 export const postProductCategory = async (req, res) => {
@@ -14,7 +13,7 @@ export const postProductCategory = async (req, res) => {
   if (!itemImgURL) emptyCategory.push('ImgURL');
 
   if (emptyCategory.length > 0) {
-    responder(res, null, `${emptyCategory.join(' , ')} Required !`, false)
+    responder(res, null, `${emptyCategory.join(' , ')} Required !`, false);
   }
 
   try {
@@ -25,10 +24,13 @@ export const postProductCategory = async (req, res) => {
     });
 
     const savedProductCategory = await productCategory.save();
-    responder(res, savedProductCategory,  'Product Category Created Successfully')
-
+    responder(
+      res,
+      savedProductCategory,
+      'Product Category Created Successfully'
+    );
   } catch (err) {
-    responder(res, null, err.message, false)
+    responder(res, null, err.message, false);
   }
 };
 
@@ -40,10 +42,9 @@ export const getProductCategoryTitle = async (req, res) => {
     const productCategory = await ProductCategory.find({
       title: { $regex: title, $options: 'i' },
     });
-    responder(res, productCategory,   'Product category  fetched successfully')
-
+    responder(res, productCategory, 'Product category  fetched successfully');
   } catch (err) {
-    responder(res, null, err.message, false)
+    responder(res, null, err.message, false);
   }
 };
 
@@ -52,10 +53,9 @@ export const getProductCategories = async (req, res) => {
   try {
     const productCategories = await ProductCategory.find();
 
-    responder(res, productCategories,   'Product category  fetched successfully')
-
+    responder(res, productCategories, 'Product category  fetched successfully');
   } catch (err) {
-    responder(res, null, err.message, false)
+    responder(res, null, err.message, false);
   }
 };
 
@@ -81,10 +81,13 @@ export const putProductCategoryId = async (req, res) => {
     );
 
     const updatedProductCategory = await ProductCategory.findById(id);
-    responder(res, updatedProductCategory,  'Product category updated successfully')
-
+    responder(
+      res,
+      updatedProductCategory,
+      'Product category updated successfully'
+    );
   } catch (err) {
-    responder(res, null, err.message, false)
+    responder(res, null, err.message, false);
   }
 };
 
@@ -95,10 +98,8 @@ export const deleteProductCategoryId = async (req, res) => {
     const productCategory = await ProductCategory.deleteOne({
       _id: id,
     });
-    responder(res, productCategory, 'Product category deleted successfully')
-
+    responder(res, productCategory, 'Product category deleted successfully');
   } catch (err) {
-    responder(res, null, err.message, false)
-
-  }
+    responder(res, null, err.message, false);
+  }
 };
