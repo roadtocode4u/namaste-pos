@@ -1,4 +1,5 @@
 import DiningTable from '../models/DiningTable.js';
+import responder from './../util/responder.js';
 
 // POST creatediningtable =>
 export const postDiningTable = async (req, res) => {
@@ -14,10 +15,7 @@ export const postDiningTable = async (req, res) => {
     const existingTable = await DiningTable.findOne({ tableNumber });
 
     if (existingTable) {
-      return res.json({
-        success: false,
-        message: 'Table already exists',
-      });
+      responder(res, null, 'Table already exists', false);
     }
     const diningTable = new DiningTable({
       tableNumber,
@@ -29,16 +27,9 @@ export const postDiningTable = async (req, res) => {
 
     const savedDiningTable = await diningTable.save();
 
-    res.json({
-      success: true,
-      message: 'DiningTable created successfully',
-      data: savedDiningTable,
-    });
+    responder(res, savedDiningTable, 'DiningTable created successfully');
   } catch (err) {
-    res.json({
-      success: false,
-      message: 'err in the catch block',
-    });
+    responder(res, null, err.message, false);
   }
 };
 
@@ -48,16 +39,9 @@ export const getDiningTableByID = async (req, res) => {
   const diningTable = await DiningTable.findById(id);
 
   if (!diningTable) {
-    return res.send({
-      success: false,
-      message: 'DiningTable not Found',
-    });
+    responder(res, null, 'DiningTable not found', false);
   }
-  res.json({
-    success: true,
-    message: 'DiningTable fetched successfully',
-    data: diningTable,
-  });
+  responder(res, diningTable, 'DiningTable fetched successfully');
 };
 
 // GET diningtables => get all diningtables
@@ -65,17 +49,9 @@ export const getallDiningTables = async (req, res) => {
   try {
     const diningtables = await DiningTable.find();
 
-    res.json({
-      success: true,
-      message: 'DiningTable fetched successfully...',
-      results: diningtables.length,
-      data: diningtables,
-    });
+    responder(res, diningtables, 'DiningTable fetched successfully');
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
 
@@ -108,16 +84,9 @@ export const putDiningTable = async (req, res) => {
 
     const updatedDiningTable = await DiningTable.findById(id);
 
-    res.json({
-      success: true,
-      message: 'DiningTable updated Successfully',
-      data: updatedDiningTable,
-    });
+    responder(res, updatedDiningTable, 'DiningTable updated successfully');
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
 
@@ -129,15 +98,8 @@ export const deleteDiningTable = async (req, res) => {
     const diningTable = await DiningTable.deleteOne({
       _id: id,
     });
-    res.json({
-      success: true,
-      message: 'DiningTable Deleted Successfully',
-      data: diningTable,
-    });
+    responder(res, diningTable, 'DiningTable deleted successfully');
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };

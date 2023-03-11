@@ -24,7 +24,7 @@ export const postSignup = async (req, res) => {
   }
 
   // validations to check if phone already exist start
-  const existingUserPhone = await User.findOne({ phone: phone });
+  const existingUserPhone = await User.findOne({ phone });
   if (existingUserPhone) {
     responder(res, null, 'Phone already exists', false);
   }
