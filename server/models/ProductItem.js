@@ -18,6 +18,11 @@ const productItemSchema = new Schema(
     },
 
     description: String,
+
+    productCategory: {
+      type: Schema.Types.ObjectId,
+      ref: 'ProductCategory',
+    },
   },
   {
     timestamps: true,
