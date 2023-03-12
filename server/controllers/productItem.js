@@ -1,14 +1,26 @@
 import ProductItem from './../models/ProductItem.js';
 import responder from './../util/responder.js';
+import ProductCategory from './../models/ProductCategory.js';
 
 export const postProductItem = async (req, res) => {
-  const { title, price, description, imgUrl } = req.body;
+  const { title, price, description, imgUrl, categoryTitle } = req.body;
+
+  const productCategory = await ProductCategory.findOne({ categoryTitle });
+  if (!productCategory) {
+    return res.json({
+      status: false,
+      data: {},
+      message: 'productCategory not found',
+    });
+  }
+
   // validations will go here
   const productItem = new ProductItem({
     title,
     price,
     description,
     imgUrl,
+    productCategory,
   });
 
   const savedProductItem = await productItem.save();
@@ -22,11 +34,14 @@ export const getProductItemById = async (req, res) => {
   responder(res, productItem, 'Product item fetched successfully');
 };
 
-// GET productItem?title= => get productItem by title
 export const getProductItemTitle = async (req, res) => {
-  const { title } = req.query;
-  const productItem = await ProductItem.findOne({ title });
-  responder(res, productItem, 'Product item fetched successfully');
+  const { categoryTitle } = req.query;
+  const productCategory = await ProductCategory.find({ categoryTitle });
+
+  if (!categoryTitle) {
+    responder(res, null, 'Product Caterogory not Found', false);
+  }
+  responder(res, productCategory, 'productCategory fetched successfully');
 };
 
 // GET productItems => get all productItems
