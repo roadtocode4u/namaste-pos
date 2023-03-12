@@ -1,4 +1,5 @@
 import Order from './../models/Order.js';
+import responder from '../util/responder.js';
 
 /*----- 1-create order API -----*/
 export const postOrder = async (req, res) => {
@@ -12,10 +13,7 @@ export const postOrder = async (req, res) => {
   const emptyFields = requiredFields.filter((field) => !req.body[field]);
 
   if (emptyFields.length > 0) {
-    return res.json({
-      success: false,
-      message: `${emptyFields.join(', ')} cannot be empty`,
-    });
+    responder(res, null, `${emptyFields.join(', ')} cannot be empty`, false);
   }
 
   try {
@@ -30,16 +28,10 @@ export const postOrder = async (req, res) => {
 
     const savedOrder = await order.save();
 
-    res.json({
-      success: true,
-      message: 'Order placed successfully',
-      data: savedOrder,
-    });
+    responder(res, savedOrder,'Order placed successfully');
+
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
 
@@ -50,17 +42,10 @@ export const getOrders = async (req, res) => {
   try {
     const orders = await Order.find();
 
-    res.json({
-      success: true,
-      message: 'Orders fetched successfully',
-      results: orders.length,
-      data: orders,
-    });
+    responder(res, orders, 'Orders fetched successfully')
+
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
 
@@ -71,16 +56,10 @@ export const getOrderId = async (req, res) => {
   try {
     const order = await Order.findById(id);
 
-    res.json({
-      success: true,
-      message: 'Order fetched successfully',
-      data: order,
-    });
+    responder(res, order, 'Order fetched successfully');
+
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
 
@@ -98,16 +77,10 @@ export const getOrderTableNumber = async (req, res) => {
       });
     }
 
-    res.json({
-      success: true,
-      message: 'Order fetched successfully',
-      data: order,
-    });
+    responder(res, order, 'Order fetched successfully' )
+
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
 
@@ -133,16 +106,9 @@ export const putOrder = async (req, res) => {
 
     const updatedOrder = await Order.findById(id);
 
-    res.json({
-      success: true,
-      message: 'Order updated successfully',
-      data: updatedOrder,
-    });
+    responder(res, updatedOrder, 'Order updated successfully');
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
 
@@ -156,15 +122,9 @@ export const deleteOrder = async (req, res) => {
       _id: id,
     });
 
-    res.json({
-      success: true,
-      message: 'Order deleted successfully',
-      data: order,
-    });
+    responder(res, order, 'Order deleted successfully');
+
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    responder(res, null, err.message, false);
   }
 };
