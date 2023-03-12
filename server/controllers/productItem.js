@@ -36,12 +36,17 @@ export const getProductItemById = async (req, res) => {
 
 export const getProductItemTitle = async (req, res) => {
   const { categoryTitle } = req.query;
-  const productCategory = await ProductCategory.find({ categoryTitle });
+  const productCategory = await ProductCategory.findOne({ categoryTitle });
 
   if (!categoryTitle) {
     responder(res, null, 'Product Caterogory not Found', false);
   }
-  responder(res, productCategory, 'productCategory fetched successfully');
+
+  const productItems = await ProductItem.find({
+    productCategory: productCategory?._id,
+   });
+
+  responder(res, productItems, 'productCategory fetched successfully');
 };
 
 // GET productItems => get all productItems
