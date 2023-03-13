@@ -5,17 +5,26 @@ import './Home.css';
 
 function Home() {
   const [currentProductItem, setCurrentProductItem] = useState([]);
+  const [searchText, setSearchText] = useState('');
 
   async function fetchAllItems() {
-    // console.log('fetching all items');
     const response = await axios.get('/productItems');
-    // console.log(response.data.data);
+    setCurrentProductItem(response.data.data);
+  }
+
+  async function fetchSpecificItems() {
+    const response = await axios.get(`productItem?categoryTitle=${searchText}`);
     setCurrentProductItem(response.data.data);
   }
 
   useEffect(() => {
-    fetchAllItems();
-  }, []);
+    if (searchText.length > 0) {
+      fetchSpecificItems();
+    } else {
+      fetchAllItems();
+    }
+  }, [searchText]);
+
   return (
     <>
       <div className="container">
@@ -38,6 +47,10 @@ function Home() {
                 type="text"
                 placeholder="Search food..."
                 className="input-search"
+                value={searchText}
+                onChange={(e) => {
+                  setSearchText(e.target.value);
+                }}
               />
             </div>
           </div>
