@@ -86,10 +86,4 @@ export const deleteProductItem = async (req, res) => {
     _id: id,
   });
   responder(res, productItem, 'ProductItem deleted successfully');
-
-  res.json({
-    success: true,
-    message: 'ProductItem deleted successfully',
-    data: productItem,
-  });
 };
