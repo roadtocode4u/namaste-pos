@@ -7,9 +7,9 @@ function Home() {
   const [currentProductItem, setCurrentProductItem] = useState([]);
 
   async function fetchAllItems() {
-    console.log('fetching all items');
+    // console.log('fetching all items');
     const response = await axios.get('/productItems');
-    console.log(response.data.data);
+    // console.log(response.data.data);
     setCurrentProductItem(response.data.data);
   }
 

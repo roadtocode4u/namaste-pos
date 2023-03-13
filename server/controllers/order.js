@@ -28,8 +28,7 @@ export const postOrder = async (req, res) => {
 
     const savedOrder = await order.save();
 
-    responder(res, savedOrder,'Order placed successfully');
-
+    responder(res, savedOrder, 'Order placed successfully');
   } catch (err) {
     responder(res, null, err.message, false);
   }
@@ -42,8 +41,7 @@ export const getOrders = async (req, res) => {
   try {
     const orders = await Order.find();
 
-    responder(res, orders, 'Orders fetched successfully')
-
+    responder(res, orders, 'Orders fetched successfully');
   } catch (err) {
     responder(res, null, err.message, false);
   }
@@ -57,7 +55,6 @@ export const getOrderId = async (req, res) => {
     const order = await Order.findById(id);
 
     responder(res, order, 'Order fetched successfully');
-
   } catch (err) {
     responder(res, null, err.message, false);
   }
@@ -77,8 +74,7 @@ export const getOrderTableNumber = async (req, res) => {
       });
     }
 
-    responder(res, order, 'Order fetched successfully' )
-
+    responder(res, order, 'Order fetched successfully');
   } catch (err) {
     responder(res, null, err.message, false);
   }
@@ -123,7 +119,6 @@ export const deleteOrder = async (req, res) => {
     });
 
     responder(res, order, 'Order deleted successfully');
-
   } catch (err) {
     responder(res, null, err.message, false);
   }
