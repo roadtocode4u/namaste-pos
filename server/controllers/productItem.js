@@ -10,10 +10,9 @@ export const postProductItem = async (req, res) => {
     return res.json({
       status: false,
       data: {},
-      message: 'productCategory not found',
+      message: 'product Category not found',
     });
   }
-
   // validations will go here
   const productItem = new ProductItem({
     title,
@@ -36,7 +35,9 @@ export const getProductItemById = async (req, res) => {
 
 export const getProductItemTitle = async (req, res) => {
   const { categoryTitle } = req.query;
-  const productCategory = await ProductCategory.findOne({ categoryTitle });
+  const productCategory = await ProductCategory.findOne({
+    categoryTitle: { $regex: categoryTitle, $options: 'i' },
+  });
 
   if (!categoryTitle) {
     responder(res, null, 'Product Caterogory not Found', false);
@@ -44,7 +45,7 @@ export const getProductItemTitle = async (req, res) => {
 
   const productItems = await ProductItem.find({
     productCategory: productCategory?._id,
-   });
+  });
 
   responder(res, productItems, 'productCategory fetched successfully');
 };
