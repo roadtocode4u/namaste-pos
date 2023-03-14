@@ -33,7 +33,7 @@ export const getProductItemById = async (req, res) => {
   responder(res, productItem, 'Product item fetched successfully');
 };
 
-export const getProductItemTitle = async (req, res) => {
+export const getProductItemByCateogoryTitle = async (req, res) => {
   const { categoryTitle } = req.query;
   const productCategory = await ProductCategory.findOne({
     categoryTitle: { $regex: categoryTitle, $options: 'i' },
@@ -48,6 +48,19 @@ export const getProductItemTitle = async (req, res) => {
   });
 
   responder(res, productItems, 'productCategory fetched successfully');
+};
+
+export const getProductItemTitle = async (req, res) => {
+  try {
+    const { title } = req.query;
+
+    const productItem = await ProductItem.find({
+      title: { $regex: title, $options: 'i' },
+    });
+    responder(res, productItem, 'Product category  fetched successfully');
+  } catch (err) {
+    responder(res, null, err.message, false);
+  }
 };
 
 // GET productItems => get all productItems

@@ -20,6 +20,7 @@ import {
 import {
   postProductItem,
   getProductItemById,
+  getProductItemByCateogoryTitle,
   getProductItemTitle,
   getProductItems,
   putProductItem,
@@ -97,7 +98,8 @@ app.delete('/productCategory/:id', deleteProductCategoryId);
 
 app.post('/productItem', postProductItem);
 app.get('/productItem/:id', getProductItemById);
-app.get('/productItem', getProductItemTitle);
+app.get('/productItem', getProductItemByCateogoryTitle);
+app.get('/productItemTitle', getProductItemTitle);
 app.get('/productItems', getProductItems);
 app.put('/productItem/:id', putProductItem);
 app.delete('/productItem/:id', deleteProductItem);
