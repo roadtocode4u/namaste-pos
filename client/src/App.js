@@ -4,6 +4,7 @@ import Home from './views/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import AddProduct from './admin/AddProduct/AddProduct';
 import ProductList from './admin/ProductList/ProductList';
+import ProductItems from './views/ProductItems/ProductItems';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/addProduct" element={<AddProduct />} />
           <Route path="/productList" element={<ProductList />} />
+          <Route path="/product-item" element={<ProductItems />} />
         </Routes>
       </BrowserRouter>
     </>
