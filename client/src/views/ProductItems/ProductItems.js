@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
 import './ProductItems.css';
 import ProductCardItem from '../../components/ProductItemCard/ProductCardItem';
 
@@ -25,19 +26,7 @@ function ProductItems() {
   return (
     <>
       <div className="container">
-        <div className="col-md-12">
-          <div className="search-container text-center">
-            <input
-              type="text"
-              placeholder="Search food..."
-              className="input-search"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="food-items-result">
-        <div className="row food-items-row">
+        <div className="row">
           {productItem?.map((productItem, index) => {
             return (
               <ProductCardItem
