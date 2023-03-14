@@ -23,8 +23,7 @@ function ProductCardItem(props) {
               alt="..."
             />
             <div className="p-1">
-              <h3 className="text-center">{props.title}</h3>
-              <p className="text-center">{props.description}</p>
+              <h4 className="text-center">{props.title}</h4>
               <b className="price-rupees">₹{props.price}</b>
 
               <div className="quantity-button">

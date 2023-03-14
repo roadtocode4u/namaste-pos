@@ -61,7 +61,6 @@ function Home() {
             {currentProductItem?.map((productItem, index) => {
               return (
                 <ProductCardItem
-                  description={productItem.description}
                   imgUrl={productItem.imgUrl}
                   price={productItem.price}
                   title={productItem.title}
