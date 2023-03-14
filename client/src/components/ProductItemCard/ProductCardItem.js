@@ -19,7 +19,7 @@ function ProductCardItem(props) {
           <div className="col-md-12">
             <img
               src={props.imgUrl}
-              className="product-item-card-img mt-2"
+              className="product-item-card-img"
               alt="..."
             />
             <div className="p-1">

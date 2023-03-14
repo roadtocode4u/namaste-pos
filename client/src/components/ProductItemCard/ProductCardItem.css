@@ -4,21 +4,24 @@
   border-radius: 12px;
   margin-left: auto;
   margin-right: auto;
-  width: 340px;
+  width: 330px;
   display: block;
   box-shadow: 1px 1px 3px gray;
 }
 
 .product-item-card-img {
   border-radius: 10px;
+  margin-top: 22px;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: 200px;
+  height: 180px;
   display: block;
+  box-shadow: 1px 1px 3px 1px gray;
 }
 
 .btn-add-to-card {
-  border-radius: 10px;
+  border-radius: 125px;
   background-color: #ef4f5f;
   padding: 8px;
   width: 100%;
