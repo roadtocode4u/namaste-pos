@@ -30,13 +30,19 @@ function Home() {
                 software.
               </h4>
             </div>
+            <div className="text-center">
+              <h1 className="homepage-heading">WORK TOGETHER, EAT TOGETHER</h1>
+              <button className="order-btn">
+                <b>ORDER ONLINE NOW</b>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      <h4 className="text-center mb-5 mt-5">
+      <p className="text-center mb-5 mt-5 category-heading">
         Inspiration for your first order
-      </h4>
+      </p>
       <div className="row">
         {productCategory?.map((catergory, index) => {
           return (
