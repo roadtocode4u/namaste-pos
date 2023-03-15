@@ -33,19 +33,20 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="container">
-        <h4 className="text-center mb-3">Inspiration for your first order</h4>
-        <div className="row">
-          {productCategory?.map((catergory, index) => {
-            return (
-              <CategoryCard
-                categoryTitle={catergory.categoryTitle}
-                itemImgURL={catergory.itemImgURL}
-                key={index}
-              />
-            );
-          })}
-        </div>
+
+      <h4 className="text-center mb-5 mt-5">
+        Inspiration for your first order
+      </h4>
+      <div className="row">
+        {productCategory?.map((catergory, index) => {
+          return (
+            <CategoryCard
+              categoryTitle={catergory.categoryTitle}
+              itemImgURL={catergory.itemImgURL}
+              key={index}
+            />
+          );
+        })}
       </div>
     </>
   );
