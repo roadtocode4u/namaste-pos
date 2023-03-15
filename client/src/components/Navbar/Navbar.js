@@ -20,7 +20,9 @@ export default function Navbar() {
     <>
       <nav className="navbar navbar-expand-lg fixed-top navbar-light navbar-light bg-light">
         <a className="navbar-brand" href="/">
-          <b>NamastePos 🙏</b>
+          <h4 className="namaste-pas-heading-h1">
+            <b>NamastePos🙏</b>
+          </h4>
         </a>
         <button
           className="navbar-toggler nav-color"
