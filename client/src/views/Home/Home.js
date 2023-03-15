@@ -18,34 +18,33 @@ function Home() {
 
   return (
     <>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6 product-item">
-            <h1 className="heading-h1 text-center">Namaste Pos...🙏</h1>
-          </div>
-          <div className="col-md-6">
-            <h4 className="text-center namaste-pos-heading">
-              Say Namaste to a better food business with our user-friendly POS
-              software.
-            </h4>
+      <div className="main-div">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6 product-item">
+              <h1 className="heading-h1 text-center">Namaste Pos...🙏</h1>
+            </div>
+            <div className="col-md-6">
+              <h4 className="text-center namaste-pos-heading ">
+                Say Namaste to a better food business with our user-friendly POS
+                software.
+              </h4>
+            </div>
           </div>
         </div>
-
-        <div className="container">
-          <h4 className="text-center mt-5 mb-5">
-            Inspiration for your first order
-          </h4>
-          <div className="row">
-            {productCategory?.map((catergory, index) => {
-              return (
-                <CategoryCard
-                  categoryTitle={catergory.categoryTitle}
-                  itemImgURL={catergory.itemImgURL}
-                  key={index}
-                />
-              );
-            })}
-          </div>
+      </div>
+      <div className="container">
+        <h4 className="text-center mb-3">Inspiration for your first order</h4>
+        <div className="row">
+          {productCategory?.map((catergory, index) => {
+            return (
+              <CategoryCard
+                categoryTitle={catergory.categoryTitle}
+                itemImgURL={catergory.itemImgURL}
+                key={index}
+              />
+            );
+          })}
         </div>
       </div>
     </>
