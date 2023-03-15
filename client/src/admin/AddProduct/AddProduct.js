@@ -9,9 +9,10 @@ function addProduct() {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [imgUrl, setImgUrl] = useState('');
+  const [categoryTitle, setCategoryTitle] = useState('');
 
   async function addProduct() {
-    if (!title || !price || !description || !imgUrl) {
+    if (!title || !price || !description || !imgUrl || !categoryTitle) {
       await swal({
         title: 'Please fill all the fields',
         text: response.data.message,
@@ -26,6 +27,7 @@ function addProduct() {
       price,
       description,
       imgUrl,
+      categoryTitle,
     });
 
     if (response.data.success) {
@@ -43,12 +45,13 @@ function addProduct() {
     setPrice('');
     setDescription('');
     setImgUrl('');
+    setCategoryTitle('');
   }
 
   return (
     <>
-      <h2 className="text-center heading">Add Product </h2>
       <div className="container">
+        <h4 className="text-center heading">Add Product </h4>
         <div className="main-card-div text-center">
           <div className="row">
             <div className="col-md-5 mx-auto d-block">
@@ -56,7 +59,7 @@ function addProduct() {
             </div>
             <div className="col-md-7">
               <form>
-                <div className="mb-4 mt-3">
+                <div className="mb-4 mt-2">
                   <input
                     type="text"
                     className="add-product-form-input"
@@ -104,7 +107,18 @@ function addProduct() {
                     }}
                   />
                 </div>
-
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    className="add-product-form-input"
+                    id="catergory"
+                    placeholder="Category Title"
+                    value={categoryTitle}
+                    onChange={(e) => {
+                      setCategoryTitle(e.target.value);
+                    }}
+                  />
+                </div>
                 <button
                   className="button-add-material w-100 mb-4"
                   type="button"
