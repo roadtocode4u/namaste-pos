@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
 
 import './ProductList.css';
 
@@ -8,9 +9,7 @@ const ProductList = () => {
   const [productItem, setProductItem] = useState([]);
 
   async function fetchAllProducts() {
-    console.log('fetching all items from admin');
     const response = await axios.get('/productItems');
-    console.log(response.data.data);
     setProductItem(response.data.data);
   }
 
@@ -82,7 +81,9 @@ const ProductList = () => {
                 <td>{createdAt}</td>
                 <td>{updatedAt}</td>
                 <td>
-                  <button className="mx-3">Update</button>
+                  <Link to={`/productItem/${item._id}`}>
+                    <button className="mx-3">Update</button>
+                  </Link>
                   <button
                     onClick={() => {
                       deleteProduct(item._id);
