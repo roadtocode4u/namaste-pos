@@ -39,7 +39,7 @@ const ProductList = () => {
 
   return (
     <div style={{ marginTop: '70px' }}>
-      <table className="products-table" cellPadding="20">
+      <table className="products-table" cellPadding="32">
         <thead className="products-table">
           <tr className="text-center">
             <th>NO</th>
@@ -82,13 +82,16 @@ const ProductList = () => {
                 <td>{updatedAt}</td>
                 <td>
                   <Link to={`/productItem/${item._id}`}>
-                    <button className="mx-3">Update</button>
+                    <button className="mx-3 list-update-btn">
+                      <b>Update</b>
+                    </button>
                   </Link>
                   <button
+                    className="list-delete-btn"
                     onClick={() => {
                       deleteProduct(item._id);
                     }}>
-                    Delete
+                    <b>Delete</b>
                   </button>
                 </td>
               </tr>
