@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import AddProduct from './admin/AddProduct/AddProduct';
 import ProductList from './admin/ProductList/ProductList';
 import ProductItems from './views/ProductItems/ProductItems';
+import UpdateProductItem from './admin/UpdateProductItem/UpdateProductItem';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/addProduct" element={<AddProduct />} />
           <Route path="/productList" element={<ProductList />} />
           <Route path="/product-item" element={<ProductItems />} />
+          <Route path="/productItem/:id" element={<UpdateProductItem />} />
         </Routes>
       </BrowserRouter>
     </>

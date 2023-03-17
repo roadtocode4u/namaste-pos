@@ -57,10 +57,26 @@
   justify-content: space-around;
   align-items: center;
 }
+
+.price-category-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .price-rupees {
   font-size: 18px;
-  margin-left: 17px;
 }
+
+.card-category-type {
+  font-size: 15px;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid rgb(38, 126, 62);
+  background-color: rgb(38, 126, 62);
+  padding: 3px;
+}
+
 .plus-minus {
   font-size: 40px;
   margin-top: 5px;

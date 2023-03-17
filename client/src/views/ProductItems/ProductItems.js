@@ -32,6 +32,7 @@ function ProductItems() {
               <ProductCardItem
                 imgUrl={productItem.imgUrl}
                 price={productItem.price}
+                categoryTitle={productItem.categoryTitle}
                 title={productItem.title}
                 key={index}
               />
