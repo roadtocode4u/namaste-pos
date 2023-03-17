@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import './ProductCardItem.css';
 
 function ProductCardItem(props) {
   const [quantity, setQuantity] = useState(1);
+
+  const [searchParams] = useSearchParams();
+  const categoryTitle = searchParams.get('categoryTitle');
 
   const setCount = () => {
     if (quantity <= 0) {
@@ -24,7 +28,12 @@ function ProductCardItem(props) {
             />
             <div className="p-1">
               <h4 className="text-center">{props.title}</h4>
-              <b className="price-rupees">₹{props.price}</b>
+              <div className="price-category-div">
+                <b className="price-rupees mt-2 mb-3">₹{props.price}</b>
+                <b className="card-category-type mt-2 mb-3">
+                  <i className="fa-solid fa-pot-food"></i> {categoryTitle}
+                </b>
+              </div>
 
               <div className="quantity-button">
                 <span className="count-button" onClick={setCount}>
@@ -44,7 +53,9 @@ function ProductCardItem(props) {
                 <button
                   type="button"
                   className="btn-add-to-card text-center mb-2">
-                  <b>Add To Card</b>
+                  <b>
+                    <i className="fa-solid fa-cart-plus"></i> Add To Card
+                  </b>
                 </button>
               </div>
             </div>
