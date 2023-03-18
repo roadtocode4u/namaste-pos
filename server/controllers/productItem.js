@@ -29,7 +29,9 @@ export const postProductItem = async (req, res) => {
 // GET productItem/:id => get productItem by id
 export const getProductItemById = async (req, res) => {
   const { id } = req.params;
-  const productItem = await ProductItem.findById(id);
+  const productItem = await ProductItem.findById(id).populate(
+    'productCategory'
+  );
   responder(res, productItem, 'Product item fetched successfully');
 };
 
@@ -72,7 +74,19 @@ export const getProductItems = async (req, res) => {
 // PUT ProductItem/:id => update productItem by id
 export const putProductItem = async (req, res) => {
   const { id } = req.params;
-  const { title, price, imgUrl, description } = req.body;
+  const { title, price, imgUrl, description, categoryTitle } = req.body;
+
+  const category = await ProductCategory.findOne({
+    categoryTitle: categoryTitle,
+  });
+
+  if (!category) {
+    return res.json({
+      status: false,
+      data: {},
+      message: 'product Category not found',
+    });
+  }
 
   await ProductItem.updateOne(
     {
@@ -84,11 +98,14 @@ export const putProductItem = async (req, res) => {
         price,
         imgUrl,
         description,
+        productCategory: category?._id,
       },
     }
   );
 
-  const updatedProductItem = await ProductItem.findById(id);
+  const updatedProductItem = await ProductItem.findById(id).populate(
+    'productCategory'
+  );
   responder(res, updatedProductItem, 'ProductItem updated successfully');
 };
 

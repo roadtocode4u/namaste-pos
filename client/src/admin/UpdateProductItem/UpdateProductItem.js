@@ -19,8 +19,17 @@ function UpdateProductItem() {
 
   useEffect(() => {
     async function getProductItem() {
-      const response = await axios.get(`/productItem/${id}`);
-      setProductItem(response.data.data);
+      const { data } = await axios.get(`/productItem/${id}`);
+      const apiData = data?.data;
+
+      setProductItem({
+        ...productItem,
+        title: apiData?.title,
+        price: apiData?.price,
+        description: apiData?.description,
+        imgUrl: apiData?.imgUrl,
+        categoryTitle: apiData?.productCategory?.categoryTitle,
+      });
     }
     getProductItem();
   }, []);
@@ -109,7 +118,7 @@ function UpdateProductItem() {
                     className="add-product-form-input"
                     id="catergory"
                     placeholder="Category Title"
-                    value={productItem.categoryTitle}
+                    value={productItem?.categoryTitle}
                     onChange={(e) => {
                       setProductItem({
                         ...productItem,
