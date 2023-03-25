@@ -7,6 +7,10 @@ import ProductList from './admin/views/ProductList/ProductList';
 import ProductItems from './views/ProductItems/ProductItems';
 import UpdateProductItem from './admin/views/UpdateProductItem/UpdateProductItem';
 
+// admin views
+import Admin from './admin/views/Admin/Admin';
+import AdminDashboard from './admin/views/AdminDashboard/AdminDashboard';
+
 function App() {
   return (
     <>
@@ -14,10 +18,16 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/addProduct" element={<AddProduct />} />
-          <Route path="/productList" element={<ProductList />} />
+          {/* User Routes */}
           <Route path="/product-item" element={<ProductItems />} />
-          <Route path="/productItem/:id" element={<UpdateProductItem />} />
+
+          {/* Admin Routes */}
+          <Route path="/admin" element={<Admin />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="addProduct" element={<AddProduct />} />
+            <Route path="productList" element={<ProductList />} />
+            <Route path="productItem/:id" element={<UpdateProductItem />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
