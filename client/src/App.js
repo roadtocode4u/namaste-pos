@@ -2,10 +2,10 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './views/Home/Home';
 import Navbar from './components/Navbar/Navbar';
-import AddProduct from './admin/AddProduct/AddProduct';
-import ProductList from './admin/ProductList/ProductList';
+import AddProduct from './admin/views/AddProduct/AddProduct';
+import ProductList from './admin/views/ProductList/ProductList';
 import ProductItems from './views/ProductItems/ProductItems';
-import UpdateProductItem from './admin/UpdateProductItem/UpdateProductItem';
+import UpdateProductItem from './admin/views/UpdateProductItem/UpdateProductItem';
 
 function App() {
   return (
