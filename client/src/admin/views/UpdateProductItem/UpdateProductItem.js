@@ -17,6 +17,17 @@ function UpdateProductItem() {
     categoryTitle: '',
   });
 
+  const [categories, setCategories] = useState([]);
+
+  async function getCategories() {
+    const { data } = await axios.get('/productCategories');
+    setCategories(data.data);
+  }
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   useEffect(() => {
     async function getProductItem() {
       const { data } = await axios.get(`/productItem/${id}`);
@@ -113,19 +124,23 @@ function UpdateProductItem() {
                   />
                 </div>
                 <div className="mb-4">
-                  <input
-                    type="text"
+                  <select
                     className="add-product-form-input"
-                    id="catergory"
-                    placeholder="Category Title"
-                    value={productItem?.categoryTitle}
+                    id="categoryTitle"
+                    value={productItem.categoryTitle}
                     onChange={(e) => {
                       setProductItem({
                         ...productItem,
                         categoryTitle: e.target.value,
                       });
-                    }}
-                  />
+                    }}>
+                    <option value="">Select Category</option>
+                    {categories.map((category, index) => (
+                      <option value={category.categoryTitle} key={index}>
+                        {category.categoryTitle}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <button
                   className="button-add-material w-100 mb-4"

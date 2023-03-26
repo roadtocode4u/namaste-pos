@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AddProduct.css';
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -10,6 +10,17 @@ function addProduct() {
   const [description, setDescription] = useState('');
   const [imgUrl, setImgUrl] = useState('');
   const [categoryTitle, setCategoryTitle] = useState('');
+
+  const [categories, setCategories] = useState([]);
+
+  async function getCategories() {
+    const { data } = await axios.get('/productCategories');
+    setCategories(data.data);
+  }
+
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   async function addProduct() {
     if (!title || !price || !description || !imgUrl || !categoryTitle) {
@@ -108,16 +119,22 @@ function addProduct() {
                   />
                 </div>
                 <div className="mb-4">
-                  <input
-                    type="text"
-                    className="add-product-form-input"
-                    id="catergory"
-                    placeholder="Category Title"
-                    value={categoryTitle}
-                    onChange={(e) => {
-                      setCategoryTitle(e.target.value);
-                    }}
-                  />
+                  {
+                    <select
+                      className="add-product-form-input"
+                      id="category"
+                      value={categoryTitle}
+                      onChange={(e) => {
+                        setCategoryTitle(e.target.value);
+                      }}>
+                      <option value="">Select Category</option>
+                      {categories?.map((category, index) => (
+                        <option value={category.categoryTitle} key={index}>
+                          {category.categoryTitle}
+                        </option>
+                      ))}
+                    </select>
+                  }
                 </div>
                 <button
                   className="button-add-material w-100 mb-4"
