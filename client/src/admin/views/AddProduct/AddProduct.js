@@ -9,7 +9,7 @@ function addProduct() {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [imgUrl, setImgUrl] = useState('');
-  const [categoryTitle, setCategoryTitle] = useState('');
+  const [categoryId, setCategoryId] = useState('');
 
   const [categories, setCategories] = useState([]);
 
@@ -23,7 +23,7 @@ function addProduct() {
   }, []);
 
   async function addProduct() {
-    if (!title || !price || !description || !imgUrl || !categoryTitle) {
+    if (!title || !price || !description || !imgUrl || !categoryId) {
       await swal({
         title: 'Please fill all the fields',
         text: response.data.message,
@@ -38,7 +38,7 @@ function addProduct() {
       price,
       description,
       imgUrl,
-      categoryTitle,
+      categoryId,
     });
 
     if (response.data.success) {
@@ -56,7 +56,7 @@ function addProduct() {
     setPrice('');
     setDescription('');
     setImgUrl('');
-    setCategoryTitle('');
+    setCategoryId('');
   }
 
   return (
@@ -123,13 +123,13 @@ function addProduct() {
                     <select
                       className="add-product-form-input"
                       id="category"
-                      value={categoryTitle}
+                      value={categoryId}
                       onChange={(e) => {
-                        setCategoryTitle(e.target.value);
+                        setCategoryId(e.target.value);
                       }}>
                       <option value="">Select Category</option>
                       {categories?.map((category, index) => (
-                        <option value={category.categoryTitle} key={index}>
+                        <option value={category._id} key={index}>
                           {category.categoryTitle}
                         </option>
                       ))}

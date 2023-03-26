@@ -14,7 +14,7 @@ function UpdateProductItem() {
     price: '',
     description: '',
     imgUrl: '',
-    categoryTitle: '',
+    categoryId: '',
   });
 
   const [categories, setCategories] = useState([]);
@@ -39,7 +39,7 @@ function UpdateProductItem() {
         price: apiData?.price,
         description: apiData?.description,
         imgUrl: apiData?.imgUrl,
-        categoryTitle: apiData?.productCategory?.categoryTitle,
+        categoryId: apiData?.productCategory?._id,
       });
     }
     getProductItem();
@@ -127,16 +127,16 @@ function UpdateProductItem() {
                   <select
                     className="add-product-form-input"
                     id="categoryTitle"
-                    value={productItem.categoryTitle}
+                    value={productItem.categoryId}
                     onChange={(e) => {
                       setProductItem({
                         ...productItem,
-                        categoryTitle: e.target.value,
+                        categoryId: e.target.value,
                       });
                     }}>
                     <option value="">Select Category</option>
                     {categories.map((category, index) => (
-                      <option value={category.categoryTitle} key={index}>
+                      <option value={category._id} key={index}>
                         {category.categoryTitle}
                       </option>
                     ))}

@@ -81,7 +81,7 @@ const ProductList = () => {
                 <td>{createdAt}</td>
                 <td>{updatedAt}</td>
                 <td>
-                  <Link to={`/productItem/${item._id}`}>
+                  <Link to={`/admin/productItem/${item._id}`}>
                     <button className="mx-3 list-update-btn">
                       <b>Update</b>
                     </button>

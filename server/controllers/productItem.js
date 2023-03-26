@@ -3,9 +3,9 @@ import responder from './../util/responder.js';
 import ProductCategory from './../models/ProductCategory.js';
 
 export const postProductItem = async (req, res) => {
-  const { title, price, description, imgUrl, categoryTitle } = req.body;
+  const { title, price, description, imgUrl, categoryId } = req.body;
 
-  const productCategory = await ProductCategory.findOne({ categoryTitle });
+  const productCategory = await ProductCategory.findById(categoryId);
   if (!productCategory) {
     return res.json({
       status: false,
@@ -74,11 +74,9 @@ export const getProductItems = async (req, res) => {
 // PUT ProductItem/:id => update productItem by id
 export const putProductItem = async (req, res) => {
   const { id } = req.params;
-  const { title, price, imgUrl, description, categoryTitle } = req.body;
+  const { title, price, imgUrl, description, categoryId } = req.body;
 
-  const category = await ProductCategory.findOne({
-    categoryTitle: categoryTitle,
-  });
+  const category = await ProductCategory.findById(categoryId);
 
   if (!category) {
     return res.json({
