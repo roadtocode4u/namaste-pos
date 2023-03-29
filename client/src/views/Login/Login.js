@@ -14,6 +14,7 @@ function Login({ isOpen, closePopupLogin }) {
     });
 
     if (response.data.success) {
+      localStorage.setItem('currentUser', JSON.stringify(response.data.data));
       await swal({
         title: 'Login Successfully !!',
         text: response.data.message,
