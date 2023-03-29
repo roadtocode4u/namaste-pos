@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 
 import marketplaceImg from './marketplace-img.png';
 import './UpdateProductItem.css';
+import Loader from '../../../components/Loader/Loader';
 
 function UpdateProductItem() {
   const { id } = useParams();
@@ -18,10 +19,13 @@ function UpdateProductItem() {
   });
 
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function getCategories() {
+    setIsLoading(true);
     const { data } = await axios.get('/productCategories');
     setCategories(data.data);
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -30,8 +34,11 @@ function UpdateProductItem() {
 
   useEffect(() => {
     async function getProductItem() {
+      setIsLoading(true);
       const { data } = await axios.get(`/productItem/${id}`);
       const apiData = data?.data;
+      setIsLoading(false);
+    
 
       setProductItem({
         ...productItem,
@@ -46,7 +53,9 @@ function UpdateProductItem() {
   }, []);
 
   async function updateProductItem() {
+    setIsLoading(true);
     const response = await axios.put(`/productItem/${id}`, productItem);
+    setIsLoading(false);
     console.log(response);
     if (response.status === 200) {
       swal({
@@ -154,6 +163,7 @@ function UpdateProductItem() {
           </div>
         </div>
       </div>
+      <Loader isLoading={isLoading}/>
     </>
   );
 }
