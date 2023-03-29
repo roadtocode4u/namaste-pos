@@ -35,7 +35,7 @@ function addProduct() {
       });
       return;
     }
-
+    setIsLoading(true);
     const response = await axios.post('/productItem', {
       title,
       price,
@@ -54,6 +54,8 @@ function addProduct() {
     } else {
       swal(response.data.message);
     }
+
+    setIsLoading(false);
 
     setTitle('');
     setPrice('');

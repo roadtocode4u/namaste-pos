@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import './Login.css';
 import axios from 'axios';
 import swal from 'sweetalert';
+import Loader from '../../components/Loader/Loader';
 
 function Login({ isOpen, closePopupLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   async function loginUser() {
+    setIsLoading(true);
     const response = await axios.post('/login', {
       email,
       password,
@@ -31,6 +34,7 @@ function Login({ isOpen, closePopupLogin }) {
         button: '😥',
       });
     }
+    setIsLoading(false);
 
     setEmail('');
     setPassword('');
@@ -89,6 +93,7 @@ function Login({ isOpen, closePopupLogin }) {
           </div>
         </div>
       </div>
+      <Loader isLoading={isLoading}/>
     </>
   );
 }
