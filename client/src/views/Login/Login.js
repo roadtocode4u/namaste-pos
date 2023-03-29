@@ -93,7 +93,7 @@ function Login({ isOpen, closePopupLogin }) {
           </div>
         </div>
       </div>
-      <Loader isLoading={isLoading}/>
+      <Loader isLoading={isLoading} />
     </>
   );
 }

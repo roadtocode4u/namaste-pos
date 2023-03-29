@@ -10,6 +10,7 @@ import UpdateProductItem from './admin/views/UpdateProductItem/UpdateProductItem
 // admin views
 import Admin from './admin/views/Admin/Admin';
 import AdminDashboard from './admin/views/AdminDashboard/AdminDashboard';
+import Tables from './admin/views/Tables/Tables';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="addProduct" element={<AddProduct />} />
             <Route path="productList" element={<ProductList />} />
             <Route path="productItem/:id" element={<UpdateProductItem />} />
+            <Route path="tables" element={<Tables/>} />
           </Route>
         </Routes>
       </BrowserRouter>

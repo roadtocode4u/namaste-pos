@@ -1,28 +1,28 @@
-.loading-container{
-    background-color: black;
-    position: fixed;
-    top: 0;
-    left: 0;
-    opacity: 0.7;
-    width: 100vw;
-    height: 100vh;
-    z-index: 100;
-    display: flex;
-    justify-content: center;
+.loading-container {
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.7;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
 }
 
-.loading-off{
-    display: none;
+.loading-off {
+  display: none;
 }
 
-.loading-box{
-    font-size: 25px;
-    background-color: white;
-    height: 70px;
-    width: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 200px;
-    border-radius: 10px;
+.loading-box {
+  font-size: 25px;
+  background-color: white;
+  height: 70px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+  border-radius: 10px;
 }
