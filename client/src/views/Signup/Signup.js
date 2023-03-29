@@ -3,13 +3,17 @@ import './Signup.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 
+import Loader from './../../components/Loader/Loader';
+
 function Signup({ isOpen, closePopupSignup }) {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   async function addUser() {
+    setIsLoading(true)
     const response = await axios.post('/signup', {
       fullName,
       email,
@@ -39,6 +43,7 @@ function Signup({ isOpen, closePopupSignup }) {
     setEmail('');
     setPassword('');
     setPhone('');
+    setIsLoading(false)
   }
 
   return (
@@ -121,6 +126,7 @@ function Signup({ isOpen, closePopupSignup }) {
             </form>
           </div>
         </div>
+        <Loader isLoading={isLoading}/>
       </div>
     </>
   );
