@@ -86,8 +86,8 @@ app.get('/diningTables', getallDiningTables);
 app.put('/diningTable/:id', putDiningTable);
 app.delete('/diningTable/:id', deleteDiningTable);
 
-app.post('/bookTable', postbookTable);
-app.post('/unbookTable', postunbookTable);
+app.post('/bookTable/:tableNumber', postbookTable);
+app.post('/unbookTable/:tableNumber', postunbookTable);
 app.get('/availableTables', getavailableTables);
 
 app.post('/productCategory', postProductCategory);
