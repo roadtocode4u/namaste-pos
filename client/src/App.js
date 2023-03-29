@@ -28,7 +28,7 @@ function App() {
             <Route path="addProduct" element={<AddProduct />} />
             <Route path="productList" element={<ProductList />} />
             <Route path="productItem/:id" element={<UpdateProductItem />} />
-            <Route path="tables" element={<Tables/>} />
+            <Route path="tables" element={<Tables />} />
           </Route>
         </Routes>
       </BrowserRouter>
