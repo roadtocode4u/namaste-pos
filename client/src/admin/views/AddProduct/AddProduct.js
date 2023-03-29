@@ -3,6 +3,7 @@ import './AddProduct.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 import marketplaceImg from './marketplace-img.png';
+import Loader from '../../../components/Loader/Loader';
 
 function addProduct() {
   const [title, setTitle] = useState('');
@@ -10,12 +11,14 @@ function addProduct() {
   const [description, setDescription] = useState('');
   const [imgUrl, setImgUrl] = useState('');
   const [categoryId, setCategoryId] = useState('');
-
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function getCategories() {
+    setIsLoading(true);
     const { data } = await axios.get('/productCategories');
     setCategories(data.data);
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -148,6 +151,7 @@ function addProduct() {
           </div>
         </div>
       </div>
+      <Loader isLoading={isLoading}/>
     </>
   );
 }
