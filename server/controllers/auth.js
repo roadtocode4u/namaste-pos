@@ -14,19 +14,19 @@ export const postSignup = async (req, res) => {
   if (!password) emptyFields.push('password');
 
   if (emptyFields.length > 0) {
-    responder(res, null, `${emptyFields.join(', ')} is required`, false);
+   return responder(res, null, `${emptyFields.join(', ')} is required`, false);
   }
 
   // validations to check if email already exist start
   const existingUser = await User.findOne({ email: email });
   if (existingUser) {
-    responder(res, null, 'Email already exists', false);
+    return responder(res, null, 'Email already exists', false);
   }
 
   // validations to check if phone already exist start
   const existingUserPhone = await User.findOne({ phone });
   if (existingUserPhone) {
-    responder(res, null, 'Phone already exists', false);
+   return responder(res, null, 'Phone already exists', false);
   }
 
   try {
@@ -41,9 +41,9 @@ export const postSignup = async (req, res) => {
     user.password = await bcrypt.hash(user.password, salt);
 
     const savedUser = await user.save();
-    responder(res, savedUser, 'Signup successfully...');
+    return responder(res, savedUser, 'Signup successfully...');
   } catch (err) {
-    responder(res, null, err.message, false);
+    return responder(res, null, err.message, false);
   }
 };
 
@@ -51,15 +51,15 @@ export const postLogin = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    responder(res, null, 'Email and password are required', false);
+   return  responder(res, null, 'Email and password are required', false);
   }
 
   const user = await User.findOne({ email });
   const validPassword = await bcrypt.compare(password, user.password);
 
   if (validPassword) {
-    responder(res, user, 'User logged in successfully');
+   return responder(res, user, 'User logged in successfully');
   } else {
-    responder(res, null, 'Username or Password is incorrect', false);
+   return responder(res, null, 'Username or Password is incorrect', false);
   }
 };
