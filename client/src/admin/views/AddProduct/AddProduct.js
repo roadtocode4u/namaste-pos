@@ -153,7 +153,7 @@ function addProduct() {
           </div>
         </div>
       </div>
-      <Loader isLoading={isLoading}/>
+      <Loader isLoading={isLoading} />
     </>
   );
 }

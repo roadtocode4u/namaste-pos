@@ -13,7 +13,7 @@ function Signup({ isOpen, closePopupSignup }) {
   const [isLoading, setIsLoading] = useState(false);
 
   async function addUser() {
-    setIsLoading(true)
+    setIsLoading(true);
     const response = await axios.post('/signup', {
       fullName,
       email,
@@ -43,7 +43,7 @@ function Signup({ isOpen, closePopupSignup }) {
     setEmail('');
     setPassword('');
     setPhone('');
-    setIsLoading(false)
+    setIsLoading(false);
   }
 
   return (
@@ -126,7 +126,7 @@ function Signup({ isOpen, closePopupSignup }) {
             </form>
           </div>
         </div>
-        <Loader isLoading={isLoading}/>
+        <Loader isLoading={isLoading} />
       </div>
     </>
   );

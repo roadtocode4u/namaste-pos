@@ -4,7 +4,7 @@ import responder from '../util/responder.js';
 export const postbookTable = async (req, res) => {
   try {
     const { tableNumber } = req.params;
-    const {userId} = req.body
+    const { userId } = req.body;
 
     const existingTable = await DiningTable.findOne({ tableNumber });
     if (existingTable && existingTable.occupied) {

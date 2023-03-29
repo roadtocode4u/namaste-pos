@@ -38,7 +38,6 @@ function UpdateProductItem() {
       const { data } = await axios.get(`/productItem/${id}`);
       const apiData = data?.data;
       setIsLoading(false);
-    
 
       setProductItem({
         ...productItem,
@@ -163,7 +162,7 @@ function UpdateProductItem() {
           </div>
         </div>
       </div>
-      <Loader isLoading={isLoading}/>
+      <Loader isLoading={isLoading} />
     </>
   );
 }
