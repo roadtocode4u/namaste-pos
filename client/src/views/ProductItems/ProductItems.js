@@ -4,21 +4,26 @@ import { useSearchParams } from 'react-router-dom';
 
 import './ProductItems.css';
 import ProductCardItem from '../../components/ProductItemCard/ProductCardItem';
+import Loader from './../../components/Loader/Loader.js'
 
 function ProductItems() {
   const [productItem, setProductItem] = useState();
 
   const [searchParams] = useSearchParams();
   const categoryTitle = searchParams.get('categoryTitle');
+  const [isLoading, setIsLoading] = useState(false);
+
 
   useEffect(() => {
     async function featchProductByCategory() {
+       setIsLoading(true);
       const response = await axios.get(
         `/productItem?categoryTitle=${categoryTitle}`
       );
       if (response) {
         setProductItem(response.data.data);
-      }
+       }
+      setIsLoading(false);
     }
     featchProductByCategory();
   }, []);
@@ -40,6 +45,7 @@ function ProductItems() {
           })}
         </div>
       </div>
+      <Loader isLoading={isLoading}/>
     </>
   );
 }
