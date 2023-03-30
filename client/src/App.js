@@ -6,12 +6,13 @@ import AddProduct from './admin/views/AddProduct/AddProduct';
 import ProductList from './admin/views/ProductList/ProductList';
 import ProductItems from './views/ProductItems/ProductItems';
 import UpdateProductItem from './admin/views/UpdateProductItem/UpdateProductItem';
+import BookTable from './views/BookTable/BookTable';
+import Scanner from './views/Scanner/Scanner';
 
 // admin views
 import Admin from './admin/views/Admin/Admin';
 import AdminDashboard from './admin/views/AdminDashboard/AdminDashboard';
 import Tables from './admin/views/Tables/Tables';
-import BookTable from './views/BookTable/BookTable';
 import AddTable from './admin/views/AddTable/AddTable';
 import UpdateAddTable from './admin/views/UpdateAddTable/UpdateAddTable';
 
@@ -25,6 +26,7 @@ function App() {
           {/* User Routes */}
           <Route path="/product-item" element={<ProductItems />} />
           <Route path="/bookTable/:tableNumber" element={<BookTable />} />
+          <Route path="/scanner" element={<Scanner />} />
 
           {/* Admin Routes */}
           <Route path="/admin" element={<Admin />}>
