@@ -44,7 +44,7 @@ const Tables = () => {
   }, []);
 
   const generateQRCode = async (tableNumber) => {
-    const link = `http://localhost:5000/bookTable/${tableNumber}`;
+    const link = `http://localhost:3000/bookTable/${tableNumber}`;
     try {
       console.log(await QRCode.toDataURL(link));
       // 1. Generate the QR code data URL
@@ -92,7 +92,7 @@ const Tables = () => {
                     onClick={() => {
                       generateQRCode(table.tableNumber);
                     }}>
-                   <b>QR Code</b>
+                    <b>QR Code</b>
                   </button>
                 </div>
 
@@ -107,7 +107,7 @@ const Tables = () => {
                     onClick={() => {
                       deleteProduct(table._id);
                     }}>
-                   <b>Delete</b>
+                    <b>Delete</b>
                   </button>
                 </div>
               </div>
