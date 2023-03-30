@@ -3,12 +3,12 @@
     margin-bottom: 30px;
   }
   
-  /* .add-table-img {
-    width: 100%;
+  .add-table-img {
+    width: 70%;
     display: block;
     margin-left: auto;
     margin-right: auto;
-  } */
+  }
   
   .main-card-div {
     padding: 20px;
@@ -27,6 +27,7 @@
     border: none;
     padding: 10px;
     border-radius: 7px;
+    margin-top: 10px;
   }
   
   .add-product-form-input:focus {

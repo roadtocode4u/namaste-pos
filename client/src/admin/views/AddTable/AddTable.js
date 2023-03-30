@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './AddTable.css';
 import axios from 'axios';
 import swal from 'sweetalert';
-//import marketplaceImg from './marketplace-img.png';
+import addTableImg from './addTable.png';
 
 
 function AddTable() {
@@ -55,7 +55,7 @@ function AddTable() {
         <div className="main-card-div text-center">
           <div className="row">
             <div className="col-md-5 mx-auto d-block">
-              {/* <img src={marketplaceImg} className="add-product-img" /> */}
+               <img src={addTableImg} className="add-product-img" /> 
             </div>
             <div className="col-md-7">
               <form>
