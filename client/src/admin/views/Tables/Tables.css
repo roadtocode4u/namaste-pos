@@ -1,6 +1,53 @@
 .table {
-  width: 70%;
+  width: 50%;
   cursor: pointer;
+}
+
+.table-img-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.qr-code-btn {
+  padding: 5px;
+  margin: 5px;
+  width: 150px;
+  border-radius: 30px;
+  border: none;
+  color: white;
+  background-color: #efad19;
+  box-shadow: 0px 3px 1px -2px rgb(0, 0, 0);
+}
+
+.btn-update-table {
+  padding: 5px;
+  margin: 5px;
+  width: 150px;
+  border-radius: 30px;
+  border: none;
+  color: white;
+  background-color: #4db33d;
+  box-shadow: 0px 3px 1px -2px rgb(0, 0, 0);
+}
+
+.btn-delete-table {
+  padding: 5px;
+  margin-left: 20px;
+  width: 150px;
+  border-radius: 30px;
+  border: none;
+  color: white;
+  background-color: #ef4f5f;
+  box-shadow: 0px 3px 1px -2px rgb(0, 0, 0);
+}
+
+.btn-update-table-delete{
+   display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .tableCard {
@@ -20,5 +67,5 @@
 }
 
 .bg-red {
-  background-color: rgb(239, 79, 95);
+  background-color: #cae9ff;
 }
