@@ -11,6 +11,7 @@ import UpdateProductItem from './admin/views/UpdateProductItem/UpdateProductItem
 import Admin from './admin/views/Admin/Admin';
 import AdminDashboard from './admin/views/AdminDashboard/AdminDashboard';
 import Tables from './admin/views/Tables/Tables';
+import BookTable from './views/BookTable/BookTable';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Home />} />
           {/* User Routes */}
           <Route path="/product-item" element={<ProductItems />} />
+          <Route path="/bookTable/:tableNumber" element={<BookTable />} />
 
           {/* Admin Routes */}
           <Route path="/admin" element={<Admin />}>
@@ -28,7 +30,7 @@ function App() {
             <Route path="addProduct" element={<AddProduct />} />
             <Route path="productList" element={<ProductList />} />
             <Route path="productItem/:id" element={<UpdateProductItem />} />
-            <Route path="tables" element={<Tables/>} />
+            <Route path="tables" element={<Tables />} />
           </Route>
         </Routes>
       </BrowserRouter>
