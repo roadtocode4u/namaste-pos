@@ -59,7 +59,7 @@ const Tables = () => {
                 <p className="tableNumber">
                   <b>Table Number - {table.tableNumber}</b>
                 </p>
-                <div className='table-img-btn'>
+                <div className="table-img-btn">
                   <img src={AvailableTable} className="table" alt="random" />
                   <br></br>
                   <button
@@ -71,9 +71,9 @@ const Tables = () => {
                   </button>
                 </div>
 
-                <div className='btn-update-table-delete'>
-                  <button className='btn-update-table'>Update</button>
-                  <button className='btn-delete-table'>Delete</button>
+                <div className="btn-update-table-delete">
+                  <button className="btn-update-table">Update</button>
+                  <button className="btn-delete-table">Delete</button>
                 </div>
               </div>
             );

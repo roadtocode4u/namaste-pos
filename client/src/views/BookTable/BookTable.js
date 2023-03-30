@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import swal from 'sweetalert';
-import {currentUser} from './../../utils/auth'
+import { currentUser } from './../../utils/auth';
 
 const BookTable = () => {
   const tableBooking = async () => {
