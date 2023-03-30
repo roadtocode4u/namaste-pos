@@ -10,7 +10,6 @@ const diningTableSchema = new Schema(
     capacity: {
       type: Number,
     },
-    numberOfTable: Number,
     occupied: {
       type: Boolean,
     },

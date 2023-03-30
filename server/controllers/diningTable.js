@@ -7,7 +7,6 @@ export const postDiningTable = async (req, res) => {
     const {
       tableNumber,
       capacity,
-      numberOfTable,
       tableLocation,
       tableService,
     } = req.body;
@@ -20,7 +19,6 @@ export const postDiningTable = async (req, res) => {
     const diningTable = new DiningTable({
       tableNumber,
       capacity,
-      numberOfTable,
       tableLocation,
       tableService,
     });
@@ -62,7 +60,6 @@ export const putDiningTable = async (req, res) => {
     const {
       tableNumber,
       capacity,
-      numberOfTable,
       tableLocation,
       tableService,
     } = req.body;
@@ -75,7 +72,6 @@ export const putDiningTable = async (req, res) => {
         $set: {
           tableNumber,
           capacity,
-          numberOfTable,
           tableLocation,
           tableService,
         },
