@@ -57,17 +57,24 @@ const Tables = () => {
                 key={index}
                 className={`col-md-3 tableCard ${table.occupied && 'bg-red'}`}>
                 <p className="tableNumber">
-                  Table Number - {table.tableNumber}
+                  <b>Table Number - {table.tableNumber}</b>
                 </p>
-                <img src={AvailableTable} className="table" alt="random" />
-                <br></br>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => {
-                    generateQRCode(table.tableNumber);
-                  }}>
-                  QR Code
-                </button>
+                <div className="table-img-btn">
+                  <img src={AvailableTable} className="table" alt="random" />
+                  <br></br>
+                  <button
+                    className="text-center qr-code-btn"
+                    onClick={() => {
+                      generateQRCode(table.tableNumber);
+                    }}>
+                    QR Code
+                  </button>
+                </div>
+
+                <div className="btn-update-table-delete">
+                  <button className="btn-update-table">Update</button>
+                  <button className="btn-delete-table">Delete</button>
+                </div>
               </div>
             );
           })}
