@@ -13,9 +13,7 @@ const Tables = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   async function deleteProduct(id) {
-    if (
-      window.confirm('Are you sure that you wanted to delete this product?')
-    ) {
+    if (window.confirm('Are you sure that you wanted to delete this Table?')) {
       setIsLoading(true);
       const response = await axios.delete(`/diningTable/${id}`);
       console.log(response);
@@ -43,7 +41,6 @@ const Tables = () => {
     fetchTalbles();
   }, []);
 
-  
   const generateQRCode = async (tableNumber) => {
     const link = `http://localhost:5000/bookTable/${tableNumber}`;
     try {
@@ -89,12 +86,11 @@ const Tables = () => {
                 <br></br>
 
                 <div className="table-img-btn">
-                 <Link to={`/admin/showInfo/${table._id}`}>
-                 <button
-                    className="text-center table-info-btn">
-                    <b>Show Info</b>
-                  </button>
-                 </Link>
+                  <Link to={`/admin/showInfo/${table._id}`}>
+                    <button className="text-center table-info-btn">
+                      <b>Show Info</b>
+                    </button>
+                  </Link>
 
                   <button
                     className="text-center qr-code-btn"

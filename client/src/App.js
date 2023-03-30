@@ -36,7 +36,7 @@ function App() {
             <Route path="tables" element={<Tables />} />
             <Route path="addTable" element={<AddTable />} />
             <Route path="addTable/:id" element={<UpdateAddTable />} />
-            <Route path="showInfo/:id" element={<ShowTableInfo/>} />
+            <Route path="showInfo/:id" element={<ShowTableInfo />} />
           </Route>
         </Routes>
       </BrowserRouter>
