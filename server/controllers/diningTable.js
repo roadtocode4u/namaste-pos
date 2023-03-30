@@ -4,12 +4,7 @@ import responder from './../util/responder.js';
 // POST creatediningtable =>
 export const postDiningTable = async (req, res) => {
   try {
-    const {
-      tableNumber,
-      capacity,
-      tableLocation,
-      tableService,
-    } = req.body;
+    const { tableNumber, capacity, tableLocation, tableService } = req.body;
 
     const existingTable = await DiningTable.findOne({ tableNumber });
 
@@ -57,12 +52,7 @@ export const getallDiningTables = async (req, res) => {
 export const putDiningTable = async (req, res) => {
   try {
     const { id } = req.params;
-    const {
-      tableNumber,
-      capacity,
-      tableLocation,
-      tableService,
-    } = req.body;
+    const { tableNumber, capacity, tableLocation, tableService } = req.body;
 
     await DiningTable.updateOne(
       {

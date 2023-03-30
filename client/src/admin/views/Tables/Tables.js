@@ -3,15 +3,39 @@ import './Tables.css';
 import axios from 'axios';
 import QRCode from 'qrcode';
 import AvailableTable from './table.png';
+import swal from 'sweetalert';
+
+import Loader from './../../../components/Loader/Loader';
 
 const Tables = () => {
   const [table, setTable] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function deleteProduct(id) {
+    if (
+      window.confirm('Are you sure that you wanted to delete this product?')
+    ) {
+      setIsLoading(true);
+      const response = await axios.delete(`/diningTable/${id}`);
+      console.log(response);
+      if (response.data.success) {
+        await swal({
+          title: 'Deleted Successfully !!',
+          text: response.data.message,
+          icon: 'success',
+          button: 'Okay',
+        });
+      }
+    }
+    location.reload();
+    setIsLoading(false);
+  }
 
   async function fetchTalbles() {
-    console.log('fetching all tables');
+    setIsLoading(true);
     const response = await axios.get('/diningTables');
-    console.log(response.data.data);
     setTable(response.data.data);
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -73,12 +97,19 @@ const Tables = () => {
 
                 <div className="btn-update-table-delete">
                   <button className="btn-update-table">Update</button>
-                  <button className="btn-delete-table">Delete</button>
+                  <button
+                    className="btn-delete-table"
+                    onClick={() => {
+                      deleteProduct(table._id);
+                    }}>
+                    Delete
+                  </button>
                 </div>
               </div>
             );
           })}
         </div>
+        <Loader isLoading={isLoading} />
       </div>
     </>
   );
