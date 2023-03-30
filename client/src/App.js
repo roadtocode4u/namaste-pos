@@ -12,6 +12,8 @@ import Admin from './admin/views/Admin/Admin';
 import AdminDashboard from './admin/views/AdminDashboard/AdminDashboard';
 import Tables from './admin/views/Tables/Tables';
 import BookTable from './views/BookTable/BookTable';
+import AddTable from './admin/views/AddTable/AddTable';
+
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
             <Route path="productList" element={<ProductList />} />
             <Route path="productItem/:id" element={<UpdateProductItem />} />
             <Route path="tables" element={<Tables />} />
+            <Route path="addTable" element={<AddTable />} />
+            
           </Route>
         </Routes>
       </BrowserRouter>
