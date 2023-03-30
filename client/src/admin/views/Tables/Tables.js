@@ -43,6 +43,7 @@ const Tables = () => {
     fetchTalbles();
   }, []);
 
+  
   const generateQRCode = async (tableNumber) => {
     const link = `http://localhost:5000/bookTable/${tableNumber}`;
     try {
@@ -84,15 +85,23 @@ const Tables = () => {
                 <p className="tableNumber">
                   <b>Table Number - {table.tableNumber}</b>
                 </p>
+                <img src={AvailableTable} className="table" alt="random" />
+                <br></br>
+
                 <div className="table-img-btn">
-                  <img src={AvailableTable} className="table" alt="random" />
-                  <br></br>
+                 <Link to={`/admin/showInfo/${table._id}`}>
+                 <button
+                    className="text-center table-info-btn">
+                    <b>Show Info</b>
+                  </button>
+                 </Link>
+
                   <button
                     className="text-center qr-code-btn"
                     onClick={() => {
                       generateQRCode(table.tableNumber);
                     }}>
-                   <b>QR Code</b>
+                    <b>QR Code</b>
                   </button>
                 </div>
 
@@ -107,7 +116,7 @@ const Tables = () => {
                     onClick={() => {
                       deleteProduct(table._id);
                     }}>
-                   <b>Delete</b>
+                    <b>Delete</b>
                   </button>
                 </div>
               </div>
