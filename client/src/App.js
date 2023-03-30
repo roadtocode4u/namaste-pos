@@ -13,7 +13,7 @@ import AdminDashboard from './admin/views/AdminDashboard/AdminDashboard';
 import Tables from './admin/views/Tables/Tables';
 import BookTable from './views/BookTable/BookTable';
 import AddTable from './admin/views/AddTable/AddTable';
-
+import UpdateAddTable from './admin/views/UpdateAddTable/UpdateAddTable';
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
             <Route path="productItem/:id" element={<UpdateProductItem />} />
             <Route path="tables" element={<Tables />} />
             <Route path="addTable" element={<AddTable />} />
-            
+            <Route path="addTable/:id" element={<UpdateAddTable />} />
           </Route>
         </Routes>
       </BrowserRouter>
