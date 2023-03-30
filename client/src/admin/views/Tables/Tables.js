@@ -21,6 +21,7 @@ const Tables = () => {
   const generateQRCode = async (tableNumber) => {
     const link = `http://localhost:5000/bookTable/${tableNumber}`;
     try {
+      console.log(await QRCode.toDataURL(link));
       // 1. Generate the QR code data URL
       const qrCodeDataURL = await QRCode.toDataURL(link);
 

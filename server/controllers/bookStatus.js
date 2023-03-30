@@ -8,7 +8,7 @@ export const postbookTable = async (req, res) => {
 
     const existingTable = await DiningTable.findOne({ tableNumber });
     if (existingTable && existingTable.occupied) {
-      responder(res, existingTable, 'Table already booked...');
+      return responder(res, existingTable, 'Table already booked...');
     }
 
     if (existingTable) {
@@ -19,7 +19,7 @@ export const postbookTable = async (req, res) => {
 
     return responder(res, existingTable, 'Table booked successfully...');
   } catch (err) {
-    responder(res, null, err.message, false);
+    return responder(res, null, err.message, false);
   }
 };
 
