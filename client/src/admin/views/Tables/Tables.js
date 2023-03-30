@@ -92,13 +92,13 @@ const Tables = () => {
                     onClick={() => {
                       generateQRCode(table.tableNumber);
                     }}>
-                    QR Code
+                   <b>QR Code</b>
                   </button>
                 </div>
 
                 <div className="btn-update-table-delete">
                   <Link to={`/admin/addTable/${table._id}`}>
-                    <button className="mx-3 list-update-btn">
+                    <button className="mx-3 btn-update-table">
                       <b>Update</b>
                     </button>
                   </Link>
@@ -107,7 +107,7 @@ const Tables = () => {
                     onClick={() => {
                       deleteProduct(table._id);
                     }}>
-                    Delete
+                   <b>Delete</b>
                   </button>
                 </div>
               </div>
