@@ -4,6 +4,7 @@ import axios from 'axios';
 import QRCode from 'qrcode';
 import AvailableTable from './table.png';
 import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
 
 import Loader from './../../../components/Loader/Loader';
 
@@ -96,7 +97,11 @@ const Tables = () => {
                 </div>
 
                 <div className="btn-update-table-delete">
-                  <button className="btn-update-table">Update</button>
+                  <Link to={`/admin/addTable/${table._id}`}>
+                    <button className="mx-3 list-update-btn">
+                      <b>Update</b>
+                    </button>
+                  </Link>
                   <button
                     className="btn-delete-table"
                     onClick={() => {

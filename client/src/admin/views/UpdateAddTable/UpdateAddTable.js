@@ -1,53 +1,59 @@
-import React, { useState } from 'react';
-import './AddTable.css';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 import addTableImg from './addTable.png';
+import Loader from '../../../components/Loader/Loader';
 
-function AddTable() {
-  const [tableNumber, setTableNumber] = useState('');
-  const [capacity, setCapacity] = useState('');
-  const [tableLocation, setTableLocation] = useState('');
-  const [tableService, setTableService] = useState('');
+function UpdateAddTable() {
+  const { id } = useParams();
 
-  async function addTable() {
-    if (!tableNumber || !capacity || !tableLocation || !tableService) {
-      await swal({
-        title: 'Please fill all the fields',
-        text: response.data.message,
-        icon: 'error',
-        button: '😥',
+  const [addTable, setAddTable] = useState({
+    tableNumber: '',
+    capacity: '',
+    tableLocation: '',
+    tableService: '',
+  });
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    async function getAddTable() {
+      setIsLoading(true);
+      const { data } = await axios.get(`/diningTable/${id}`);
+      const apiData = data?.data;
+      setIsLoading(false);
+
+      setAddTable({
+        ...addTable,
+        tableNumber: apiData?.tableNumber,
+        capacity: apiData?.capacity,
+        tableLocation: apiData?.tableLocation,
+        tableService: apiData?.tableService,
       });
-      return;
     }
-    const response = await axios.post('/createDiningTable', {
-      tableNumber,
-      capacity,
-      tableLocation,
-      tableService,
-    });
+    getAddTable();
+  }, []);
 
-    if (response.data.success) {
-      await swal({
-        title: 'Table Added Successfully!!',
+  async function UpdateAddTable() {
+    setIsLoading(true);
+    const response = await axios.put(`/diningTable/${id}`, addTable);
+    setIsLoading(false);
+    console.log(response);
+    if (response.status === 200) {
+      swal({
+        title: 'Update Successfully !!',
         text: response.data.message,
         icon: 'success',
         button: 'Aww yiss!',
       });
-    } else {
-      swal(response.data.message);
+      window.location.href = '/admin/tables';
     }
-
-    setTableNumber('');
-    setCapacity('');
-    setTableLocation('');
-    setTableService('');
   }
 
   return (
     <>
       <div className="container">
-        <h4 className="text-center heading">Add Table </h4>
+        <h4 className="text-center heading">Update Add Table </h4>
         <div className="main-card-div text-center">
           <div className="row">
             <div className="col-md-5 mx-auto d-block">
@@ -61,9 +67,9 @@ function AddTable() {
                     className="add-table-form-input"
                     id="tableNumber"
                     placeholder="Table Number"
-                    value={tableNumber}
+                    value={addTable.tableNumber}
                     onChange={(e) => {
-                      setTableNumber(e.target.value);
+                      setAddTable({ ...addTable, tableNumber: e.target.value });
                     }}
                   />
                 </div>
@@ -73,9 +79,9 @@ function AddTable() {
                     className="add-table-form-input"
                     id="capacity"
                     placeholder="Capacity"
-                    value={capacity}
+                    value={addTable.capacity}
                     onChange={(e) => {
-                      setCapacity(e.target.value);
+                      setAddTable({ ...addTable, capacity: e.target.value });
                     }}
                   />
                 </div>
@@ -85,9 +91,12 @@ function AddTable() {
                     className="add-table-form-input"
                     id="tableLocation"
                     placeholder="Table Location"
-                    value={tableLocation}
+                    value={addTable.tableLocation}
                     onChange={(e) => {
-                      setTableLocation(e.target.value);
+                      setAddTable({
+                        ...addTable,
+                        tableLocation: e.target.value,
+                      });
                     }}
                   />
                 </div>
@@ -97,25 +106,30 @@ function AddTable() {
                     className="add-table-form-input"
                     id="tableService"
                     placeholder="Table Service"
-                    value={tableService}
+                    value={addTable.tableService}
                     onChange={(e) => {
-                      setTableService(e.target.value);
+                      setAddTable({
+                        ...addTable,
+                        tableService: e.target.value,
+                      });
                     }}
                   />
                 </div>
                 <button
                   className="button-add-material w-100 mb-4"
                   type="button"
-                  onClick={addTable}>
-                  <i className="fa-solid fa-right-to-bracket"></i>{' '}
-                  <b>Add Table</b>
+                  onClick={UpdateAddTable}>
+                  <i className="fa-solid fa-right-to-bracket"></i>
+                  <b> Update AddTable</b>
                 </button>
               </form>
             </div>
           </div>
         </div>
       </div>
+      <Loader isLoading={isLoading} />
     </>
   );
 }
-export default AddTable;
+
+export default UpdateAddTable;
