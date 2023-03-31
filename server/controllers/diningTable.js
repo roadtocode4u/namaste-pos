@@ -29,7 +29,7 @@ export const postDiningTable = async (req, res) => {
 // GET diningTable?id => get diningTable by id
 export const getDiningTableByID = async (req, res) => {
   const { id } = req.params;
-  const diningTable = await DiningTable.findById(id);
+  const diningTable = await DiningTable.findById(id).populate('occupiedBy');
 
   if (!diningTable) {
     responder(res, null, 'DiningTable not found', false);
