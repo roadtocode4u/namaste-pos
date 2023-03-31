@@ -53,7 +53,7 @@ function UpdateAddTable() {
   return (
     <>
       <div className="container">
-        <h4 className="text-center heading">Update Add Table </h4>
+        <h4 className="text-center heading">Update Table </h4>
         <div className="main-card-div text-center">
           <div className="row">
             <div className="col-md-5 mx-auto d-block">
@@ -120,7 +120,7 @@ function UpdateAddTable() {
                   type="button"
                   onClick={UpdateAddTable}>
                   <i className="fa-solid fa-right-to-bracket"></i>
-                  <b> Update AddTable</b>
+                  <b> Update Table</b>
                 </button>
               </form>
             </div>
