@@ -12,23 +12,31 @@ const Tables = () => {
   const [table, setTable] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  async function deleteProduct(id) {
-    if (window.confirm('Are you sure that you wanted to delete this Table?')) {
-      setIsLoading(true);
-      const response = await axios.delete(`/diningTable/${id}`);
-      console.log(response);
-      if (response.data.success) {
-        await swal({
-          title: 'Deleted Successfully !!',
-          text: response.data.message,
-          icon: 'success',
-          button: 'Okay',
-        });
+  const deleteTable = async (id) => {
+    swal({
+      title: 'Are you sure?',
+      text: 'Are you sure that you wanted to delete this Table?!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        setIsLoading(true);
+        const response = await axios.delete(`/diningTable/${id}`);
+        console.log(response);
+        if (response.data.success) {
+          await swal({
+            title: 'Deleted Successfully !!',
+            text: response.data.message,
+            icon: 'success',
+            button: 'Okay',
+          });
+          fetchTalbles();
+        }
+        setIsLoading(false);
       }
-    }
-    location.reload();
-    setIsLoading(false);
-  }
+    });
+  };
 
   async function fetchTalbles() {
     setIsLoading(true);
@@ -110,7 +118,7 @@ const Tables = () => {
                   <button
                     className="btn-delete-table"
                     onClick={() => {
-                      deleteProduct(table._id);
+                      deleteTable(table._id);
                     }}>
                     <b>Delete</b>
                   </button>

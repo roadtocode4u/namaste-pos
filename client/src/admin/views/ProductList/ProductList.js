@@ -10,31 +10,39 @@ const ProductList = () => {
   const [productItem, setProductItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const deleteProduct = async (id) => {
+    swal({
+      title: 'Are you sure?',
+      text: 'Are you sure that you wanted to delete this product?',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        setIsLoading(true);
+        const response = await axios.delete(`/productItem/${id}`);
+        console.log(response);
+        if (response.data.success) {
+          await swal({
+            title: 'Deleted Successfully !!',
+            text: response.data.message,
+            icon: 'success',
+            button: 'Okay',
+          });
+          setProductItem((prevProductItem) =>
+            prevProductItem.filter((item) => item._id !== id)
+          );
+        }
+        setIsLoading(false);
+      }
+    });
+  };
+
   async function fetchAllProducts() {
     setIsLoading(true);
     const response = await axios.get('/productItems');
     setProductItem(response.data.data);
     setIsLoading(false);
-  }
-
-  async function deleteProduct(id) {
-    if (
-      window.confirm('Are you sure that you wanted to delete this product?')
-    ) {
-      const response = await axios.delete(`/productItem/${id}`);
-      if (response.data.success) {
-        await swal({
-          title: 'Deleted Successfully !!',
-          text: response.data.message,
-          icon: 'success',
-          button: 'Okay',
-        });
-      }
-
-      setProductItem((prevProductItem) =>
-        prevProductItem.filter((item) => item._id !== id)
-      );
-    }
   }
 
   useEffect(() => {

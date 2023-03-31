@@ -33,7 +33,10 @@ function ShowTableInfo() {
           <div className="col-md-6 text-center">
             <div className="table-main-div">
               <div className="table-data text-center m-2">
-                <img src={tableNumberImage} className="show-info-images mb-3 mt-2" />
+                <img
+                  src={tableNumberImage}
+                  className="show-info-images mb-3 mt-2"
+                />
                 <br />
                 Table Number :{showInfo?.tableNumber}
               </div>
@@ -48,7 +51,10 @@ function ShowTableInfo() {
               </div>
 
               <div className="table-data text-center m-2">
-                <img src={tableUserImage} className="show-info-images mb-3 mt-2" />
+                <img
+                  src={tableUserImage}
+                  className="show-info-images mb-3 mt-2"
+                />
                 <br />
                 User Name : {showInfo?.occupiedBy.fullName}
               </div>
@@ -75,7 +81,10 @@ function ShowTableInfo() {
               </div>
 
               <div className="table-data text-center m-2">
-                <img src={tablePhoneImage} className="show-info-images mb-3 mt-2" />
+                <img
+                  src={tablePhoneImage}
+                  className="show-info-images mb-3 mt-2"
+                />
                 <br />
                 User Phone : {showInfo?.occupiedBy.phone}
               </div>
