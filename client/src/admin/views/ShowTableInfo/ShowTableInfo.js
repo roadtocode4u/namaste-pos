@@ -16,10 +16,9 @@ function ShowTableInfo() {
   const [showInfo, setShowInfo] = useState();
 
   const showTableInformation = async () => {
-    const data = await axios.get(`/diningTable/${id}`);
-    const apiData = data.data.data;
-    console.log(apiData);
-    setShowInfo(apiData);
+    const { data } = await axios.get(`/diningTable/${id}`);
+    console.log(data.data);
+    setShowInfo(data.data);
   };
 
   useEffect(() => {
@@ -48,12 +47,12 @@ function ShowTableInfo() {
                 Table Service : {showInfo?.tableService}
               </div>
 
-            <div className="table-data text-center m-2">
-              <img src={tableUserImage} className="show-info-images mb-3 mt-2" />
-              <br />
-               User Name : {showInfo?.occupiedBy.fullName}
+              <div className="table-data text-center m-2">
+                <img src={tableUserImage} className="show-info-images mb-3 mt-2" />
+                <br />
+                User Name : {showInfo?.occupiedBy.fullName}
+              </div>
             </div>
-          </div>
           </div>
           <div className="col-md-6">
             <div className="table-main-div">
