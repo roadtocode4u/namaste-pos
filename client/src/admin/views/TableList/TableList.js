@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './TableList.css'
 import axios from 'axios';
 import QRCode from 'qrcode';
+import { Link } from 'react-router-dom';
 
 function TableList() {
     const [table, setTable] = useState([]);
@@ -85,9 +86,11 @@ function TableList() {
                                             <b>QR Code</b>
                                         </button></td>
                                     <td>
-                                        <button className="mx-3 list-update-btn">
-                                            <b>Update</b>
-                                        </button>
+                                        <Link to={`/admin/addTable/${item._id}`}>
+                                            <button className="mx-3 btn-update-table">
+                                                <b>Update</b>
+                                            </button>
+                                        </Link>
                                         <button>
                                             <b>Delete</b>
                                         </button>
