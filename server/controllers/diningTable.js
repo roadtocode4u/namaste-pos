@@ -39,7 +39,7 @@ export const getDiningTableByID = async (req, res) => {
 // GET diningtables => get all diningtables
 export const getallDiningTables = async (req, res) => {
   try {
-    const diningtables = await DiningTable.find();
+    const diningtables = await DiningTable.find().populate('occupiedBy');
 
     responder(res, diningtables, 'DiningTable fetched successfully');
   } catch (err) {
