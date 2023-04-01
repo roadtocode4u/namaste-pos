@@ -1,0 +1,48 @@
+.table-booking-heading {
+    margin-top: 100px;
+}
+
+.table {
+    width: 70%;
+    cursor: pointer;
+}
+
+.table-img-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+.tableCard {
+    border: 1px solid black;
+    padding: 20px;
+    margin: 15px 47px;
+    border-radius: 15px;
+    box-shadow: 0 14px 20px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+@media screen and (max-width: 500px) {
+    .tableCard {
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: none;
+    }
+}
+
+.bg-red {
+    background-color: #ef4f5f;
+}
+
+.table-number-div {
+    background-color: White;
+    padding: 5px;
+    border-radius: 50%;
+    box-shadow: 0px 3px 5px #000;
+    display: block;
+    height: 45px;
+    width: 45px;
+    margin-left: auto;
+    margin-right: auto;
+}

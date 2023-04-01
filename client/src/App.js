@@ -26,7 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           {/* User Routes */}
           <Route path="/product-item" element={<ProductItems />} />
-          <Route path="/bookTable/:tableNumber" element={<BookTable />} />
+          <Route path="/bookTable" element={<BookTable />} />
           <Route path="/scanner" element={<Scanner />} />
 
           {/* Admin Routes */}
