@@ -25,10 +25,7 @@ const Scanner = () => {
       )}
       {showScanner && (
         <div className="text-center">
-          <video
-            ref={videoRef}
-            style={{ height: '100vh', width: '100vw' }}
-          />
+          <video ref={videoRef} style={{ height: '100vh', width: '100vw' }} />
         </div>
       )}
     </div>

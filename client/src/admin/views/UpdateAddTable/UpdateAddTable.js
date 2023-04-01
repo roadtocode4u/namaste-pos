@@ -46,7 +46,7 @@ function UpdateAddTable() {
         icon: 'success',
         button: 'Aww yiss!',
       });
-      window.location.href = '/admin/tables';
+      window.location.href = '/admin/tableList';
     }
   }
 

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import './Tables.css';
+import './TableList.css';
 import axios from 'axios';
 import QRCode from 'qrcode';
-import AvailableTable from './table.png';
-import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
-
+import swal from 'sweetalert';
 import Loader from './../../../components/Loader/Loader';
+import qrCodeImage from './qr-code.png';
 
-const Tables = () => {
+function TableList() {
   const [table, setTable] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -77,60 +76,66 @@ const Tables = () => {
       console.error(err);
     }
   };
-
   return (
     <>
-      <div className="container">
-        <div className="row text-center">
-          {table?.map((table, index) => {
-            return (
-              <div
-                key={index}
-                className={`col-md-3 tableCard ${table.occupied && 'bg-red'}`}>
-                <p className="tableNumber">
-                  <b>Table Number - {table.tableNumber}</b>
-                </p>
-                <img src={AvailableTable} className="table" alt="random" />
-                <br></br>
+      <h4 className="text-center table-list-heading">Table List</h4>
+      <div style={{ marginTop: '40px' }}>
+        <table className="table-list" cellPadding="32">
+          <thead className="table-list">
+            <tr className="text-center">
+              <th>Table No</th>
+              <th>Capacity</th>
+              <th>Service</th>
+              <th>Location</th>
+              <th style={{ width: '250px' }}>User</th>
+              <th style={{ width: '250px' }}>Phone</th>
+              <th style={{ width: '150px' }}>QR Code</th>
+              <th style={{ width: '150px' }}>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {table?.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <td>{item.tableNumber}</td>
+                  <td>{item.capacity}</td>
+                  <td>{item.tableService}</td>
+                  <td>{item.tableLocation}</td>
+                  <td>{item.occupiedBy?.fullName}</td>
+                  <td>{item.occupiedBy?.phone}</td>
 
-                <div className="table-img-btn">
-                  <Link to={`/admin/showInfo/${table._id}`}>
-                    <button className="text-center table-info-btn">
-                      <b>Show Info</b>
+                  <td>
+                    <div
+                      className="text-center list-qr-code-btn"
+                      onClick={() => {
+                        generateQRCode(item.tableNumber);
+                      }}>
+                      <img src={qrCodeImage} />
+                    </div>
+                  </td>
+                  <td>
+                    <Link to={`/admin/addTable/${item._id}`}>
+                      <button className="mx-3 list-update-btn">
+                        <b>Update</b>
+                      </button>
+                    </Link>
+                    <button
+                      className="list-delete-btn"
+                      onClick={() => {
+                        deleteTable(item._id);
+                      }}>
+                      <b>Delete</b>
                     </button>
-                  </Link>
-
-                  <button
-                    className="text-center qr-code-btn"
-                    onClick={() => {
-                      generateQRCode(table.tableNumber);
-                    }}>
-                    <b>QR Code</b>
-                  </button>
-                </div>
-
-                <div className="btn-update-table-delete">
-                  <Link to={`/admin/addTable/${table._id}`}>
-                    <button className="mx-3 btn-update-table">
-                      <b>Update</b>
-                    </button>
-                  </Link>
-                  <button
-                    className="btn-delete-table"
-                    onClick={() => {
-                      deleteTable(table._id);
-                    }}>
-                    <b>Delete</b>
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
         <Loader isLoading={isLoading} />
       </div>
     </>
   );
-};
+}
 
-export default Tables;
+export default TableList;

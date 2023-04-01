@@ -1,12 +1,12 @@
 import DiningTable from '../models/DiningTable.js';
 import responder from '../util/responder.js';
 
-export const postbookTable = async (req, res) => {
+export const bookTablePost = async (req, res) => {
   try {
-    const { tableNumber } = req.params;
-    const { userId } = req.body;
-
-    const existingTable = await DiningTable.findOne({ tableNumber });
+    const { tableNumber, userId } = req.body;
+    const existingTable = await DiningTable.findOne({
+      tableNumber: tableNumber,
+    });
     if (existingTable && existingTable.occupied) {
       return responder(res, existingTable, 'Table already booked...');
     }

@@ -9,7 +9,7 @@ export const postDiningTable = async (req, res) => {
     const existingTable = await DiningTable.findOne({ tableNumber });
 
     if (existingTable) {
-      responder(res, null, 'Table already exists', false);
+      return responder(res, null, 'Table already exists', false);
     }
     const diningTable = new DiningTable({
       tableNumber,
@@ -19,8 +19,7 @@ export const postDiningTable = async (req, res) => {
     });
 
     const savedDiningTable = await diningTable.save();
-
-    responder(res, savedDiningTable, 'DiningTable created successfully');
+    return responder(res, savedDiningTable, 'DiningTable created successfully');
   } catch (err) {
     responder(res, null, err.message, false);
   }
@@ -40,7 +39,7 @@ export const getDiningTableByID = async (req, res) => {
 // GET diningtables => get all diningtables
 export const getallDiningTables = async (req, res) => {
   try {
-    const diningtables = await DiningTable.find();
+    const diningtables = await DiningTable.find().populate('occupiedBy');
 
     responder(res, diningtables, 'DiningTable fetched successfully');
   } catch (err) {

@@ -53,7 +53,7 @@ import {
 } from './controllers/diningTable.js';
 
 import {
-  postbookTable,
+  bookTablePost,
   postunbookTable,
   getavailableTables,
 } from './controllers/bookStatus.js';
@@ -86,7 +86,7 @@ app.get('/diningTables', getallDiningTables);
 app.put('/diningTable/:id', putDiningTable);
 app.delete('/diningTable/:id', deleteDiningTable);
 
-app.post('/bookTable/:tableNumber', postbookTable);
+app.post('/bookTable', bookTablePost);
 app.post('/unbookTable/:tableNumber', postunbookTable);
 app.get('/availableTables', getavailableTables);
 
