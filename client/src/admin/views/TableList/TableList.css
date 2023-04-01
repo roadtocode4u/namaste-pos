@@ -1,3 +1,7 @@
+.table-list-heading{
+    margin-top: 90px;
+}
+
 .table-list{
     border: 1px solid black;
 }
@@ -24,7 +28,7 @@
     box-shadow: 0px 3px 1px -2px rgb(0, 0, 0);
   }
 
-  ..list-update-btn {
+.list-update-btn {
     padding: 5px;
     margin: 5px;
     width: 150px;
@@ -35,6 +39,3 @@
     box-shadow: 0px 3px 1px -2px rgb(0, 0, 0);
   }
   
-  .list-qr-code-btn {
-    
-  }

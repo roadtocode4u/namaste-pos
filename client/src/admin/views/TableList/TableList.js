@@ -38,9 +38,10 @@ function TableList() {
     };
 
     async function fetchTalbles() {
+        setIsLoading(true);
         const response = await axios.get('/diningTables');
         setTable(response.data.data);
-        console.log(response.data.data);
+        setIsLoading(false);
     }
 
     useEffect(() => {
@@ -77,7 +78,8 @@ function TableList() {
     };
     return (
         <>
-            <div style={{ marginTop: '70px' }}>
+        <h4 className='text-center table-list-heading'>Table List</h4>
+            <div style={{ marginTop: '40px' }}>
                 <table className="table-list" cellPadding="32">
                     <thead className="table-list">
                         <tr className="text-center">
