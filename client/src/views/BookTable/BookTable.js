@@ -4,13 +4,17 @@ import axios from 'axios';
 import AvailableTable from './table.png';
 import { currentUser } from './../../utils/auth';
 import swal from 'sweetalert';
+import Loader from './../../components/Loader/Loader';
 
 const BookTable = () => {
   const [table, setTable] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function fetchTables() {
+    setIsLoading(true);
     const response = await axios.get('/diningTables');
     setTable(response.data.data);
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -19,7 +23,7 @@ const BookTable = () => {
 
   const tableBooking = async (e) => {
     const userId = currentUser._id;
-
+    setIsLoading(true);
     const response = await axios.post(`/bookTable`, {
       tableNumber: e.target.value,
       userId: userId,
@@ -29,7 +33,7 @@ const BookTable = () => {
       text: response.data.message,
       button: 'Okay',
     });
-
+    setIsLoading(false);
     window.location.href = '/';
   };
 
@@ -65,6 +69,7 @@ const BookTable = () => {
             );
           })}
         </div>
+        <Loader isLoading={isLoading} />
       </div>
     </>
   );

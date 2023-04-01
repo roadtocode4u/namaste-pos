@@ -44,3 +44,8 @@
 .category-heading {
   font-size: 40px;
 }
+
+.online-booking-btn{
+  text-decoration: none !important;
+  color: white;
+}

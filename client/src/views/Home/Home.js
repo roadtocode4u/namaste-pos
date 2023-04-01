@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 
 import './Home.css';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
@@ -33,7 +34,9 @@ function Home() {
             <div className="text-center">
               <h1 className="homepage-heading">WORK TOGETHER, EAT TOGETHER</h1>
               <button className="order-btn">
-                <b>ORDER ONLINE NOW</b>
+                <Link className='online-booking-btn' to='/booKTable'>
+                <b>ONLINE BOOKING</b>
+                </Link>
               </button>
             </div>
           </div>
