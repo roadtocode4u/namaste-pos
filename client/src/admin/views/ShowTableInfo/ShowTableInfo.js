@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './ShowTableInfo.css';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import tableNumberImage from './images/img-table.png';
 import tableCapacityImage from './images/img-capacity.png';
@@ -90,6 +91,14 @@ function ShowTableInfo() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className='text-center mt-2'>
+        <Link to={`/admin/addTable/${id}`}>
+          <button className="mx-3 btn-update-table">
+            <b>Update</b>
+          </button>
+        </Link>
         </div>
       </div>
     </>

@@ -10,7 +10,7 @@
   display: block;
   position: fixed;
   margin: 2px;
-  height: 450px;
+  height: 465px;
   width: 45%;
   padding: 20px;
   box-shadow: 2px 2px 5px 1px gray;
@@ -37,4 +37,15 @@
   background-color: aliceblue;
   border-radius: 5px;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-update-table {
+  padding: 5px;
+  margin: 3px;
+  width: 100px;
+  border-radius: 30px;
+  border: none;
+  color: white;
+  background-color: #4db33d;
+  box-shadow: 0px 3px 1px -2px rgb(0, 0, 0);
 }
