@@ -93,12 +93,12 @@ function ShowTableInfo() {
           </div>
         </div>
 
-        <div className='text-center mt-2'>
-        <Link to={`/admin/addTable/${id}`}>
-          <button className="mx-3 btn-update-table">
-            <b>Update</b>
-          </button>
-        </Link>
+        <div className="text-center mt-2">
+          <Link to={`/admin/addTable/${id}`}>
+            <button className="mx-3 btn-update-table">
+              <b>Update</b>
+            </button>
+          </Link>
         </div>
       </div>
     </>
