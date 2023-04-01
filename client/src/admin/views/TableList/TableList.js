@@ -3,9 +3,38 @@ import './TableList.css'
 import axios from 'axios';
 import QRCode from 'qrcode';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert'
+import Loader from './../../../components/Loader/Loader';
 
 function TableList() {
     const [table, setTable] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const deleteTable = async (id) => {
+        swal({
+          title: 'Are you sure?',
+          text: 'Are you sure that you wanted to delete this Table?!',
+          icon: 'warning',
+          buttons: true,
+          dangerMode: true,
+        }).then(async (willDelete) => {
+          if (willDelete) {
+            setIsLoading(true);
+            const response = await axios.delete(`/diningTable/${id}`);
+            console.log(response);
+            if (response.data.success) {
+              await swal({
+                title: 'Deleted Successfully !!',
+                text: response.data.message,
+                icon: 'success',
+                button: 'Okay',
+              });
+              fetchTalbles();
+            }
+            setIsLoading(false);
+          }
+        });
+      };    
 
     async function fetchTalbles() {
         const response = await axios.get('/diningTables');
@@ -91,7 +120,11 @@ function TableList() {
                                                 <b>Update</b>
                                             </button>
                                         </Link>
-                                        <button>
+                                        <button
+                                            className="btn-delete-table"
+                                            onClick={() => {
+                                                deleteTable(item._id);
+                                            }}>
                                             <b>Delete</b>
                                         </button>
                                     </td>
@@ -100,6 +133,7 @@ function TableList() {
                         })}
                     </tbody>
                 </table>
+                <Loader isLoading={isLoading} />
             </div>
         </>
     )
