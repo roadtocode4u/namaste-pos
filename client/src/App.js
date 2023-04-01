@@ -12,10 +12,8 @@ import Scanner from './views/Scanner/Scanner';
 // admin views
 import Admin from './admin/views/Admin/Admin';
 import AdminDashboard from './admin/views/AdminDashboard/AdminDashboard';
-import Tables from './admin/views/Tables/Tables';
 import AddTable from './admin/views/AddTable/AddTable';
 import UpdateAddTable from './admin/views/UpdateAddTable/UpdateAddTable';
-import ShowTableInfo from './admin/views/ShowTableInfo/ShowTableInfo';
 import TableList from './admin/views/TableList/TableList';
 
 function App() {
@@ -36,11 +34,9 @@ function App() {
             <Route path="addProduct" element={<AddProduct />} />
             <Route path="productList" element={<ProductList />} />
             <Route path="productItem/:id" element={<UpdateProductItem />} />
-            <Route path="tables" element={<Tables />} />
             <Route path="addTable" element={<AddTable />} />
             <Route path="addTable/:id" element={<UpdateAddTable />} />
-            <Route path="showInfo/:id" element={<ShowTableInfo />} />
-            <Route path='tableList' element={<TableList/>} />
+            <Route path="tableList" element={<TableList />} />
           </Route>
         </Routes>
       </BrowserRouter>

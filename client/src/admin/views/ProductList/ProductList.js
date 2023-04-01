@@ -51,7 +51,7 @@ const ProductList = () => {
 
   return (
     <>
-    <h4 className='text-center product-list-heading'>Product List</h4>
+      <h4 className="text-center product-list-heading">Product List</h4>
       <div style={{ marginTop: '40px' }}>
         <table className="products-table" cellPadding="32">
           <thead className="products-table">
