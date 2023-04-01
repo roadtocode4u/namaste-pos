@@ -5,6 +5,7 @@ import QRCode from 'qrcode';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert'
 import Loader from './../../../components/Loader/Loader';
+import qrCodeImage from './qr-code.png'
 
 function TableList() {
     const [table, setTable] = useState([]);
@@ -12,29 +13,29 @@ function TableList() {
 
     const deleteTable = async (id) => {
         swal({
-          title: 'Are you sure?',
-          text: 'Are you sure that you wanted to delete this Table?!',
-          icon: 'warning',
-          buttons: true,
-          dangerMode: true,
+            title: 'Are you sure?',
+            text: 'Are you sure that you wanted to delete this Table?!',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
         }).then(async (willDelete) => {
-          if (willDelete) {
-            setIsLoading(true);
-            const response = await axios.delete(`/diningTable/${id}`);
-            console.log(response);
-            if (response.data.success) {
-              await swal({
-                title: 'Deleted Successfully !!',
-                text: response.data.message,
-                icon: 'success',
-                button: 'Okay',
-              });
-              fetchTalbles();
+            if (willDelete) {
+                setIsLoading(true);
+                const response = await axios.delete(`/diningTable/${id}`);
+                console.log(response);
+                if (response.data.success) {
+                    await swal({
+                        title: 'Deleted Successfully !!',
+                        text: response.data.message,
+                        icon: 'success',
+                        button: 'Okay',
+                    });
+                    fetchTalbles();
+                }
+                setIsLoading(false);
             }
-            setIsLoading(false);
-          }
         });
-      };    
+    };
 
     async function fetchTalbles() {
         const response = await axios.get('/diningTables');
@@ -107,21 +108,21 @@ function TableList() {
 
 
                                     <td>
-                                        <button
-                                            className="text-center qr-code-btn"
+                                        <div
+                                            className="text-center list-qr-code-btn"
                                             onClick={() => {
                                                 generateQRCode(item.tableNumber);
                                             }}>
-                                            <b>QR Code</b>
-                                        </button></td>
+                                            <img src={qrCodeImage} />
+                                        </div></td>
                                     <td>
                                         <Link to={`/admin/addTable/${item._id}`}>
-                                            <button className="mx-3 btn-update-table">
+                                            <button className="mx-3 list-update-btn">
                                                 <b>Update</b>
                                             </button>
                                         </Link>
                                         <button
-                                            className="btn-delete-table"
+                                            className="list-delete-btn"
                                             onClick={() => {
                                                 deleteTable(item._id);
                                             }}>
