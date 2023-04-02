@@ -1,5 +1,5 @@
 .loading-container {
-  background-color: black;
+  background-color: var(--black);
   position: fixed;
   top: 0;
   left: 0;
@@ -17,7 +17,7 @@
 
 .loading-box {
   font-size: 25px;
-  background-color: white;
+  background-color: var(--white);
   height: 70px;
   width: 200px;
   display: flex;
