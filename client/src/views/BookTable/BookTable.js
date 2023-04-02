@@ -6,6 +6,7 @@ import './BookTable.css';
 import { currentUser } from './../../utils/auth';
 import Loader from './../../components/Loader/Loader';
 import AvailableTable from './table.png';
+import Heading from './../../components/Heading/Heading';
 
 const BookTable = () => {
   const [table, setTable] = useState([]);
@@ -40,7 +41,7 @@ const BookTable = () => {
 
   return (
     <>
-      <h4 className="text-center table-booking-heading">Table Booking</h4>
+     <Heading title={'Table Booking'} />
 
       <div className="container">
         <div className="row text-center">

@@ -8,6 +8,7 @@ import Loader from './../../../components/Loader/Loader';
 import qrCodeImage from './qr-code.png';
 import './../../../style/button.css'
 import './TableList.css';
+import Heading from './../../../components/Heading/Heading';
 
 function TableList() {
   const [table, setTable] = useState([]);
@@ -80,7 +81,7 @@ function TableList() {
   };
   return (
     <>
-      <h4 className="text-center table-list-heading">Table List</h4>
+      <Heading title={'Table List'} />
       <div style={{ marginTop: '40px' }}>
         <table className="table-list" cellPadding="32">
           <thead className="table-list">

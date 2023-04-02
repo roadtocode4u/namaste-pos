@@ -7,6 +7,7 @@ import Loader from '../../../components/Loader/Loader';
 
 import './ProductList.css';
 import './../../../style/button.css'
+import Heading from './../../../components/Heading/Heading';
 
 const ProductList = () => {
   const [productItem, setProductItem] = useState([]);
@@ -53,7 +54,7 @@ const ProductList = () => {
 
   return (
     <>
-      <h4 className="text-center product-list-heading">Product List</h4>
+      <Heading title={'Product List'} />
       <div style={{ marginTop: '40px' }}>
         <table className="products-table" cellPadding="32">
           <thead className="products-table">
