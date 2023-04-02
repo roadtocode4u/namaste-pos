@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import swal from 'sweetalert';
 
-import './Signup.css';
 import Loader from './../../components/Loader/Loader';
+import './Signup.css';
+import './../../style/button.css'
 
 function Signup({ isOpen, closePopupSignup }) {
   const [fullName, setFullName] = useState('');
@@ -117,7 +118,7 @@ function Signup({ isOpen, closePopupSignup }) {
 
               <button
                 type="button"
-                className="signup-page-btn"
+                className="auth-page-btn"
                 onClick={addUser}>
                 <b>
                   <i className="fa-solid fa-user-plus"></i> Sign Up

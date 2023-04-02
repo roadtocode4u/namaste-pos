@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
-import './Login.css';
 import swal from 'sweetalert';
+
 import Loader from '../../components/Loader/Loader';
+import './Login.css';
+import './../../style/button.css'
 
 function Login({ isOpen, closePopupLogin }) {
   const [email, setEmail] = useState('');
@@ -84,7 +85,7 @@ function Login({ isOpen, closePopupLogin }) {
 
               <button
                 type="button"
-                className="login-page-btn"
+                className="auth-page-btn"
                 onClick={loginUser}>
                 <b>
                   <i className="fa-solid fa-user-plus"></i> Login
