@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import QRCode from 'qrcode';
-
 import swal from 'sweetalert';
-import './TableList.css';
+
 import Loader from './../../../components/Loader/Loader';
 import qrCodeImage from './qr-code.png';
+import './../../../style/button.css'
+import './TableList.css';
 
 function TableList() {
   const [table, setTable] = useState([]);

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import swal from 'sweetalert';
-import './AddProduct.css';
 import marketplaceImg from './../../images/marketplace-img.png';
 import Loader from '../../../components/Loader/Loader';
+import './AddProduct.css';
+import './../../../style/button.css'
 
 function addProduct() {
   const [title, setTitle] = useState('');

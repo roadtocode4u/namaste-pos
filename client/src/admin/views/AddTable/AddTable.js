@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import './AddTable.css';
 import swal from 'sweetalert';
 import addTableImg from './../../images/addTable.png';
+import './AddTable.css';
+import './../../../style/button.css'
 
 function AddTable() {
   const [tableNumber, setTableNumber] = useState('');

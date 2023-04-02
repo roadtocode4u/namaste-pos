@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 import Loader from '../../../components/Loader/Loader';
 
 import './ProductList.css';
+import './../../../style/button.css'
 
 const ProductList = () => {
   const [productItem, setProductItem] = useState([]);
