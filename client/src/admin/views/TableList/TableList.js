@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './TableList.css';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import QRCode from 'qrcode';
-import { Link } from 'react-router-dom';
+
 import swal from 'sweetalert';
+import './TableList.css';
 import Loader from './../../../components/Loader/Loader';
 import qrCodeImage from './qr-code.png';
 

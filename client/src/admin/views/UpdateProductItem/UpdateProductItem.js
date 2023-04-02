@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 
-import marketplaceImg from './marketplace-img.png';
+import marketplaceImg from './../../images/marketplace-img.png';
 import './UpdateProductItem.css';
 import Loader from '../../../components/Loader/Loader';
 

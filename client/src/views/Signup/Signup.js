@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './Signup.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 
+import './Signup.css';
 import Loader from './../../components/Loader/Loader';
 
 function Signup({ isOpen, closePopupSignup }) {

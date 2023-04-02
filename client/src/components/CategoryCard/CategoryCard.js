@@ -1,6 +1,7 @@
 import React from 'react';
-import './CategoryCard.css';
 import { Link } from 'react-router-dom';
+
+import './CategoryCard.css';
 
 function CategoryCard({ categoryTitle, itemImgURL }) {
   return (

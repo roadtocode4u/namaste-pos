@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import './AddTable.css';
 import axios from 'axios';
+
+import './AddTable.css';
 import swal from 'sweetalert';
-import addTableImg from './addTable.png';
+import addTableImg from './../../images/addTable.png';
 
 function AddTable() {
   const [tableNumber, setTableNumber] = useState('');
@@ -47,7 +48,7 @@ function AddTable() {
   return (
     <>
       <div className="container">
-        <h4 className="text-center heading">Add Table </h4>
+        <h4 className="text-center add-tableheading">Add Table </h4>
         <div className="main-card-div text-center">
           <div className="row">
             <div className="col-md-5 mx-auto d-block">
