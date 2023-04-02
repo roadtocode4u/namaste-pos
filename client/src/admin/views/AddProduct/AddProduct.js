@@ -6,6 +6,7 @@ import marketplaceImg from './../../images/marketplace-img.png';
 import Loader from '../../../components/Loader/Loader';
 import './AddProduct.css';
 import './../../../style/button.css'
+import Heading from '../../../components/Heading/Heading';
 
 function addProduct() {
   const [title, setTitle] = useState('');
@@ -69,7 +70,7 @@ function addProduct() {
   return (
     <>
       <div className="container">
-        <h4 className="text-center add-product-heading">Add Product </h4>
+        <Heading title={"Add Product"} />
         <div className="main-card-div text-center">
           <div className="row">
             <div className="col-md-5 mx-auto d-block">

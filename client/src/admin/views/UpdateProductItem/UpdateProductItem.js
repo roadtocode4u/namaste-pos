@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 import marketplaceImg from './../../images/marketplace-img.png';
 import './UpdateProductItem.css';
 import Loader from '../../../components/Loader/Loader';
+import Heading from './../../../components/Heading/Heading';
 
 function UpdateProductItem() {
   const { id } = useParams();
@@ -69,7 +70,7 @@ function UpdateProductItem() {
   return (
     <>
       <div className="container">
-        <h4 className="text-center heading">Update Product </h4>
+      <Heading title={'Update Product'} />
         <div className="main-card-div text-center">
           <div className="row">
             <div className="col-md-5 mx-auto d-block">

@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 
 import addTableImg from './../../images/addTable.png';
 import Loader from '../../../components/Loader/Loader';
+import Heading from './../../../components/Heading/Heading';
 
 function UpdateTable() {
   const { id } = useParams();
@@ -54,7 +55,7 @@ function UpdateTable() {
   return (
     <>
       <div className="container">
-        <h4 className="text-center ">Update Table </h4>
+      <Heading title={'Update Table'} />
         <div className="main-card-div text-center">
           <div className="row">
             <div className="col-md-5 mx-auto d-block">

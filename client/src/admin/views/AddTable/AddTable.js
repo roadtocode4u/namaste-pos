@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 import addTableImg from './../../images/addTable.png';
 import './AddTable.css';
 import './../../../style/button.css'
+import Heading from '../../../components/Heading/Heading';
 
 function AddTable() {
   const [tableNumber, setTableNumber] = useState('');
@@ -49,7 +50,7 @@ function AddTable() {
   return (
     <>
       <div className="container">
-        <h4 className="text-center add-tableheading">Add Table </h4>
+        <Heading title={'Add Table'} />
         <div className="main-card-div text-center">
           <div className="row">
             <div className="col-md-5 mx-auto d-block">
