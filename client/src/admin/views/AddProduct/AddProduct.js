@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './AddProduct.css';
 import axios from 'axios';
+
 import swal from 'sweetalert';
-import marketplaceImg from './marketplace-img.png';
+import './AddProduct.css';
+import marketplaceImg from './../../images/marketplace-img.png';
 import Loader from '../../../components/Loader/Loader';
 
 function addProduct() {
@@ -67,7 +68,7 @@ function addProduct() {
   return (
     <>
       <div className="container">
-        <h4 className="text-center heading">Add Product </h4>
+        <h4 className="text-center add-product-heading">Add Product </h4>
         <div className="main-card-div text-center">
           <div className="row">
             <div className="col-md-5 mx-auto d-block">

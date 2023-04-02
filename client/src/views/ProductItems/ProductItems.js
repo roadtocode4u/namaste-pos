@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 
 import './ProductItems.css';

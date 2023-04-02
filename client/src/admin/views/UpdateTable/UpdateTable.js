@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
-import addTableImg from './addTable.png';
+
+import addTableImg from './../../images/addTable.png';
 import Loader from '../../../components/Loader/Loader';
 
-function UpdateAddTable() {
+function UpdateTable() {
   const { id } = useParams();
 
   const [addTable, setAddTable] = useState({
@@ -53,7 +54,7 @@ function UpdateAddTable() {
   return (
     <>
       <div className="container">
-        <h4 className="text-center heading">Update Table </h4>
+        <h4 className="text-center ">Update Table </h4>
         <div className="main-card-div text-center">
           <div className="row">
             <div className="col-md-5 mx-auto d-block">
@@ -132,4 +133,4 @@ function UpdateAddTable() {
   );
 }
 
-export default UpdateAddTable;
+export default UpdateTable;

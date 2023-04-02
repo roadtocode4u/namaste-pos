@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './BookTable.css';
 import axios from 'axios';
-import AvailableTable from './table.png';
-import { currentUser } from './../../utils/auth';
+
 import swal from 'sweetalert';
+import './BookTable.css';
+import { currentUser } from './../../utils/auth';
 import Loader from './../../components/Loader/Loader';
+import AvailableTable from './table.png';
 
 const BookTable = () => {
   const [table, setTable] = useState([]);
@@ -56,7 +57,11 @@ const BookTable = () => {
                     <b className="text-center">Capacity: {table.capacity}</b>
                   </div>
                 </p>
-                <img src={AvailableTable} className="table" alt="random" />
+                <img
+                  src={AvailableTable}
+                  className="table-booing-img"
+                  alt="random"
+                />
 
                 <button
                   className="table-book-btn"

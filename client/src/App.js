@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import Home from './views/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import AddProduct from './admin/views/AddProduct/AddProduct';
@@ -13,7 +14,7 @@ import Scanner from './views/Scanner/Scanner';
 import Admin from './admin/views/Admin/Admin';
 import AdminDashboard from './admin/views/AdminDashboard/AdminDashboard';
 import AddTable from './admin/views/AddTable/AddTable';
-import UpdateAddTable from './admin/views/UpdateAddTable/UpdateAddTable';
+import UpdateAddTable from './admin/views/UpdateTable/UpdateTable';
 import TableList from './admin/views/TableList/TableList';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+
           {/* User Routes */}
           <Route path="/product-item" element={<ProductItems />} />
           <Route path="/bookTable" element={<BookTable />} />
