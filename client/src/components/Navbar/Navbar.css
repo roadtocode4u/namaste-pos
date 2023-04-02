@@ -1,5 +1,5 @@
 .navbar {
-  box-shadow: 0px 0px 0.5px 0.5px gray;
+  box-shadow: 0px 0px 0.5px 0.5px var(--gray);
   z-index: 50 !important;
 }
 .namaste-pas-heading-h1 {
@@ -9,11 +9,11 @@
 }
 
 .nav-color {
-  color: black;
+  color: var(--black);
 }
 
 .navbar-toggler {
-  color: black;
+  color: var(--black);
 }
 
 .btn {

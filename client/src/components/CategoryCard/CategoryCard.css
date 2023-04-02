@@ -1,7 +1,7 @@
 .category-card {
   padding: 5px;
   border-radius: 50%;
-  box-shadow: 0px 3px 5px #000;
+  box-shadow: 0px 3px 5px var(--black);
   height: 140px;
   width: 140px;
   margin-left: auto;
@@ -20,5 +20,5 @@
 
 .category-title-link {
   text-decoration: none;
-  color: black;
+  color: var(--black);
 }
