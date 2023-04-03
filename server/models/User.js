@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema(
       required: [true, 'please enter your password'],
       minlength: [6, 'password must include more than 6 characters'],
     },
+    role: {type:String, default: "user"}
   },
   { timestamps: true }
 );
