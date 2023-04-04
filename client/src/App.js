@@ -30,6 +30,7 @@ function App() {
           <Route path="/product-item" element={<ProductItems />} />
           <Route path="/bookTable" element={<BookTable />} />
           <Route path="/scanner" element={<Scanner />} />
+          <Route path="myProductList" element={<MyProductList />} />
 
           {/* Admin Routes */}
           <Route path="/admin" element={<Admin />}>
@@ -40,8 +41,6 @@ function App() {
             <Route path="addTable" element={<AddTable />} />
             <Route path="addTable/:id" element={<UpdateAddTable />} />
             <Route path="tableList" element={<TableList />} />
-            <Route path="myProductList" element={<MyProductList/>} />
-
           </Route>
         </Routes>
       </BrowserRouter>

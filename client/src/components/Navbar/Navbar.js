@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import Signup from './../../views/Signup/Signup';
 import Login from '../../views/Login/Login';
 import { myProductListCount } from '../../utils/myListItem';
 
-
-
 export default function Navbar() {
   const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
 
-  const [myListItem, setmyListItem] = useState(myProductListCount);
+  const [myListItem, setMyListItem] = useState(myProductListCount);
 
   function closePopupSignup() {
     setIsSignupPopupOpen(false);
@@ -21,6 +19,10 @@ export default function Navbar() {
   function closePopupLogin() {
     setIsLoginPopupOpen(false);
   }
+
+  useEffect(() => {
+    setMyListItem(myProductListCount);
+  }, []);
 
   return (
     <>
@@ -42,7 +44,7 @@ export default function Navbar() {
             <button type="button" className="btn btn-success position-relative">
               💳
               <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              {myListItem}
+                {myListItem}
               </span>
             </button>
           </Link>
@@ -58,7 +60,7 @@ export default function Navbar() {
           aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
- 
+
         <div
           className="collapse navbar-collapse navbar-sizing"
           id="navbarNav"
