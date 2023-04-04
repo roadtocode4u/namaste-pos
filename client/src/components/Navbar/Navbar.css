@@ -28,3 +28,11 @@
 .login-btn {
   cursor: pointer;
 }
+.my-product-list {
+  background-color: var(--red);
+  display: block;
+  padding: 7px;
+  border-radius: 7px;
+  cursor: pointer;
+  color: white;
+}
