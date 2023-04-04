@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import swal from 'sweetalert'
 
 import './ProductCardItem.css';
 
-function ProductCardItem(props) {
+function ProductCardItem({ imgUrl, price, title }) {
   const [quantity, setQuantity] = useState(1);
 
   const [searchParams] = useSearchParams();
@@ -17,20 +18,43 @@ function ProductCardItem(props) {
     }
   };
 
+  async function addToList() {
+    const listObject = {
+      name: title,
+      price: price,
+      quantity: quantity,
+      imgUrl: imgUrl,
+    }
+
+    const existingList = JSON.parse(localStorage.getItem('list')) || []
+
+    existingList.push(listObject)
+
+    localStorage.setItem('list', JSON.stringify(existingList))
+
+    await swal({
+      title: "Added to List 💃",
+      icon: "success",
+    })
+
+    window.location.reload()
+  }
+
+
   return (
     <>
       <div className="product-item-card mt-5">
         <div className="row">
           <div className="col-md-12">
             <img
-              src={props.imgUrl}
+              src={imgUrl}
               className="product-item-card-img"
               alt="..."
             />
             <div className="p-1">
-              <h4 className="text-center">{props.title}</h4>
+              <h4 className="text-center">{title}</h4>
               <div className="price-category-div">
-                <b className="price-rupees mt-2 mb-3">₹{props.price}</b>
+                <b className="price-rupees mt-2 mb-3">₹{price}</b>
                 <b className="card-category-type mt-2 mb-3">
                   <i className="fa-solid fa-pot-food"></i> {categoryTitle}
                 </b>
@@ -53,9 +77,10 @@ function ProductCardItem(props) {
               <div>
                 <button
                   type="button"
+                  onClick={addToList}
                   className="btn-add-to-card text-center mb-2">
                   <b>
-                    <i className="fa-solid fa-cart-plus"></i> Add To Card
+                    <i className="fa-solid fa-cart-plus" ></i> Add To Card
                   </b>
                 </button>
               </div>
