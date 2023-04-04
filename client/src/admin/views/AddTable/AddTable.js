@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import swal from 'sweetalert';
 import addTableImg from './../../images/addTable.png';
 import './AddTable.css';
-import './../../../style/button.css'
+import './../../../style/button.css';
 import Heading from '../../../components/Heading/Heading';
+import { restrictAccessIfNotAdmin } from './../../../utils/role';
 
 function AddTable() {
   const [tableNumber, setTableNumber] = useState('');
@@ -46,6 +47,10 @@ function AddTable() {
     setTableLocation('');
     setTableService('');
   }
+
+  useEffect(() => {
+    restrictAccessIfNotAdmin();
+  }, []);
 
   return (
     <>

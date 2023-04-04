@@ -4,7 +4,7 @@ import swal from 'sweetalert';
 
 import Loader from '../../components/Loader/Loader';
 import './Login.css';
-import './../../style/button.css'
+import './../../style/button.css';
 
 function Login({ isOpen, closePopupLogin }) {
   const [email, setEmail] = useState('');

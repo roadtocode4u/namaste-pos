@@ -7,6 +7,7 @@ import marketplaceImg from './../../images/marketplace-img.png';
 import './UpdateProductItem.css';
 import Loader from '../../../components/Loader/Loader';
 import Heading from './../../../components/Heading/Heading';
+import { restrictAccessIfNotAdmin } from './../../../utils/role';
 
 function UpdateProductItem() {
   const { id } = useParams();
@@ -67,10 +68,14 @@ function UpdateProductItem() {
     }
   }
 
+  useEffect(() => {
+    restrictAccessIfNotAdmin();
+  }, []);
+
   return (
     <>
       <div className="container">
-      <Heading title={'Update Product'} />
+        <Heading title={'Update Product'} />
         <div className="main-card-div text-center">
           <div className="row">
             <div className="col-md-5 mx-auto d-block">

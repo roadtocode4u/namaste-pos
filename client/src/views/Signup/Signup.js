@@ -4,7 +4,7 @@ import swal from 'sweetalert';
 
 import Loader from './../../components/Loader/Loader';
 import './Signup.css';
-import './../../style/button.css'
+import './../../style/button.css';
 
 function Signup({ isOpen, closePopupSignup }) {
   const [fullName, setFullName] = useState('');
@@ -116,10 +116,7 @@ function Signup({ isOpen, closePopupSignup }) {
                 />
               </div>
 
-              <button
-                type="button"
-                className="auth-page-btn"
-                onClick={addUser}>
+              <button type="button" className="auth-page-btn" onClick={addUser}>
                 <b>
                   <i className="fa-solid fa-user-plus"></i> Sign Up
                 </b>

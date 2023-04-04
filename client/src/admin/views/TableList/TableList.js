@@ -6,9 +6,10 @@ import swal from 'sweetalert';
 
 import Loader from './../../../components/Loader/Loader';
 import qrCodeImage from './qr-code.png';
-import './../../../style/button.css'
+import './../../../style/button.css';
 import './TableList.css';
 import Heading from './../../../components/Heading/Heading';
+import { restrictAccessIfNotAdmin } from './../../../utils/role';
 
 function TableList() {
   const [table, setTable] = useState([]);
@@ -49,6 +50,7 @@ function TableList() {
 
   useEffect(() => {
     fetchTalbles();
+    restrictAccessIfNotAdmin();
   }, []);
 
   const generateQRCode = async (tableNumber) => {

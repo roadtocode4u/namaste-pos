@@ -6,8 +6,9 @@ import swal from 'sweetalert';
 import Loader from '../../../components/Loader/Loader';
 
 import './ProductList.css';
-import './../../../style/button.css'
+import './../../../style/button.css';
 import Heading from './../../../components/Heading/Heading';
+import { restrictAccessIfNotAdmin } from './../../../utils/role';
 
 const ProductList = () => {
   const [productItem, setProductItem] = useState([]);
@@ -50,6 +51,7 @@ const ProductList = () => {
 
   useEffect(() => {
     fetchAllProducts();
+    restrictAccessIfNotAdmin();
   }, []);
 
   return (
