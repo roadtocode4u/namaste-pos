@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import swal from 'sweetalert'
+import swal from 'sweetalert';
 
 import './ProductCardItem.css';
 
@@ -24,33 +24,28 @@ function ProductCardItem({ imgUrl, price, title }) {
       price: price,
       quantity: quantity,
       imgUrl: imgUrl,
-    }
+    };
 
-    const existingList = JSON.parse(localStorage.getItem('list')) || []
+    const existingList = JSON.parse(localStorage.getItem('list')) || [];
 
-    existingList.push(listObject)
+    existingList.push(listObject);
 
-    localStorage.setItem('list', JSON.stringify(existingList))
+    localStorage.setItem('list', JSON.stringify(existingList));
 
     await swal({
-      title: "Added to List 💃",
-      icon: "success",
-    })
+      title: 'Added to List 💃',
+      icon: 'success',
+    });
 
-    window.location.reload()
+    window.location.reload();
   }
-
 
   return (
     <>
       <div className="product-item-card mt-5">
         <div className="row">
           <div className="col-md-12">
-            <img
-              src={imgUrl}
-              className="product-item-card-img"
-              alt="..."
-            />
+            <img src={imgUrl} className="product-item-card-img" alt="..." />
             <div className="p-1">
               <h4 className="text-center">{title}</h4>
               <div className="price-category-div">
@@ -80,7 +75,7 @@ function ProductCardItem({ imgUrl, price, title }) {
                   onClick={addToList}
                   className="btn-add-to-card text-center mb-2">
                   <b>
-                    <i className="fa-solid fa-cart-plus" ></i> Add To Card
+                    <i className="fa-solid fa-cart-plus"></i> Add To Card
                   </b>
                 </button>
               </div>

@@ -7,6 +7,7 @@ import { currentUser } from './../../utils/auth';
 import Loader from './../../components/Loader/Loader';
 import AvailableTable from './table.png';
 import Heading from './../../components/Heading/Heading';
+import { loginRequired } from '../../utils/loginRequired';
 
 const BookTable = () => {
   const [table, setTable] = useState([]);
@@ -20,6 +21,7 @@ const BookTable = () => {
   }
 
   useEffect(() => {
+    loginRequired();
     fetchTables();
   }, []);
 
