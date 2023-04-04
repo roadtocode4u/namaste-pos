@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 import Signup from './../../views/Signup/Signup';
 import Login from '../../views/Login/Login';
@@ -25,6 +25,24 @@ export default function Navbar() {
             <b>NamastePos🙏</b>
           </h4>
         </a>
+        <div
+          className="collapse navbar-collapse navbar-sizing"
+          id="navbarNav"
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+          }}>
+          <Link to="/myProductList" className="text-decoration-none">
+            <button type="button" className="btn btn-success position-relative">
+              💳
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                10+
+              </span>
+            </button>
+          </Link>
+        </div>
+
         <button
           className="navbar-toggler nav-color"
           type="button"
@@ -35,6 +53,7 @@ export default function Navbar() {
           aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
+
         <div
           className="collapse navbar-collapse navbar-sizing"
           id="navbarNav"
