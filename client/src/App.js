@@ -16,6 +16,7 @@ import AdminDashboard from './admin/views/AdminDashboard/AdminDashboard';
 import AddTable from './admin/views/AddTable/AddTable';
 import UpdateAddTable from './admin/views/UpdateTable/UpdateTable';
 import TableList from './admin/views/TableList/TableList';
+import MyProductList from './views/MyProductList/MyProductList';
 
 function App() {
   return (
@@ -39,6 +40,8 @@ function App() {
             <Route path="addTable" element={<AddTable />} />
             <Route path="addTable/:id" element={<UpdateAddTable />} />
             <Route path="tableList" element={<TableList />} />
+            <Route path="myProductList" element={<MyProductList/>} />
+
           </Route>
         </Routes>
       </BrowserRouter>
