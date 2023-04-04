@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-import './Heading.css'
+import './Heading.css';
 
-function Heading({title}) {
-    return (
-        <>
-        <div className='heading-container mb-3'>
-            <h3 className='text-center'>{title}</h3>
-        </div>
-        </>
-    )
+function Heading({ title }) {
+  return (
+    <>
+      <div className="heading-container mb-3">
+        <h3 className="text-center">{title}</h3>
+      </div>
+    </>
+  );
 }
 
-export default Heading
+export default Heading;

@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 import addTableImg from './../../images/addTable.png';
 import Loader from '../../../components/Loader/Loader';
 import Heading from './../../../components/Heading/Heading';
+import { restrictAccessIfNotAdmin } from './../../../utils/role';
 
 function UpdateTable() {
   const { id } = useParams();
@@ -52,10 +53,14 @@ function UpdateTable() {
     }
   }
 
+  useEffect(() => {
+    restrictAccessIfNotAdmin();
+  }, []);
+
   return (
     <>
       <div className="container">
-      <Heading title={'Update Table'} />
+        <Heading title={'Update Table'} />
         <div className="main-card-div text-center">
           <div className="row">
             <div className="col-md-5 mx-auto d-block">

@@ -41,7 +41,7 @@ const BookTable = () => {
 
   return (
     <>
-     <Heading title={'Table Booking'} />
+      <Heading title={'Table Booking'} />
 
       <div className="container">
         <div className="row text-center">

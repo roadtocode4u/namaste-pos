@@ -5,8 +5,9 @@ import swal from 'sweetalert';
 import marketplaceImg from './../../images/marketplace-img.png';
 import Loader from '../../../components/Loader/Loader';
 import './AddProduct.css';
-import './../../../style/button.css'
+import './../../../style/button.css';
 import Heading from '../../../components/Heading/Heading';
+import { restrictAccessIfNotAdmin } from './../../../utils/role';
 
 function addProduct() {
   const [title, setTitle] = useState('');
@@ -26,6 +27,7 @@ function addProduct() {
 
   useEffect(() => {
     getCategories();
+    restrictAccessIfNotAdmin();
   }, []);
 
   async function addProduct() {
@@ -70,7 +72,7 @@ function addProduct() {
   return (
     <>
       <div className="container">
-        <Heading title={"Add Product"} />
+        <Heading title={'Add Product'} />
         <div className="main-card-div text-center">
           <div className="row">
             <div className="col-md-5 mx-auto d-block">
