@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './AddTable.css';
 import axios from 'axios';
 import swal from 'sweetalert';
+
 import addTableImg from './addTable.png';
 
 
@@ -11,7 +12,6 @@ function AddTable() {
   const [tableLocation, setTableLocation] = useState('');
   const [tableService, setTableService] = useState('');
   
-
   async function addTable() {
     if (!tableNumber || !capacity || !tableLocation || !tableService) {
       await swal({
@@ -39,9 +39,6 @@ function AddTable() {
     } else {
       swal(response.data.message);
     }
-
-
-
     setTableNumber('');
     setCapacity('');
     setTableLocation('');
