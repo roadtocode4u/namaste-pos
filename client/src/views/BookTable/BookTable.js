@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import swal from 'sweetalert';
 import './BookTable.css';
-import { currentUser } from './../../utils/auth';
 import Loader from './../../components/Loader/Loader';
 import AvailableTable from './table.png';
 import Heading from './../../components/Heading/Heading';
 import { loginRequired } from '../../utils/loginRequired';
+import { Link } from 'react-router-dom';
 
 const BookTable = () => {
   const [table, setTable] = useState([]);
@@ -24,22 +23,6 @@ const BookTable = () => {
     loginRequired();
     fetchTables();
   }, []);
-
-  const tableBooking = async (e) => {
-    const userId = currentUser._id;
-    setIsLoading(true);
-    const response = await axios.post(`/bookTable`, {
-      tableNumber: e.target.value,
-      userId: userId,
-    });
-
-    await swal({
-      text: response.data.message,
-      button: 'Okay',
-    });
-    setIsLoading(false);
-    window.location.href = '/';
-  };
 
   return (
     <>
@@ -66,12 +49,9 @@ const BookTable = () => {
                   alt="random"
                 />
 
-                <button
-                  className="table-book-btn"
-                  value={table.tableNumber}
-                  onClick={tableBooking}>
-                  Book Now
-                </button>
+                <Link to={`/bookTable/${table.tableNumber}`}>
+                  <button className="table-book-btn">Book Now</button>
+                </Link>
                 <br></br>
               </div>
             );

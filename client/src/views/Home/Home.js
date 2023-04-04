@@ -34,7 +34,7 @@ function Home() {
             <div className="text-center">
               <h1 className="homepage-heading">WORK TOGETHER, EAT TOGETHER</h1>
               <button className="order-btn">
-                <Link className="online-booking-btn" to="/booKTable">
+                <Link className="online-booking-btn" to="/bookTable">
                   <b>ONLINE BOOKING</b>
                 </Link>
               </button>
