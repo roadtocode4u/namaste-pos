@@ -17,7 +17,7 @@
   margin: 30px;
   padding: 15px;
   max-width: 600px;
-  height: 150px;
+  height: 160px;
   border: 1px solid rgb(95, 95, 95);
   border-radius: 5px;
   box-shadow: 2px 3px rgb(73, 73, 73);
@@ -53,7 +53,7 @@
   width: 100px;
   bottom: 7px;
   border-radius: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 22px;
 }
 
 .product-card-price {
@@ -61,7 +61,7 @@
   right: 150px;
 }
 
-.remove-btn{
+.remove-btn {
   padding: 5px;
   margin: 3px;
   width: 150px;
@@ -73,7 +73,7 @@
   box-shadow: 0px 3px 1px -2px rgb(43, 42, 42);
 }
 
-.add-btn{
+.add-btn {
   padding: 5px;
   margin: 3px;
   width: 150px;
@@ -85,16 +85,39 @@
   box-shadow: 0px 3px 1px -2px rgb(43, 42, 42);
 }
 
-.remove-btn:hover{
+.remove-btn:hover {
   box-shadow: 2px 3px rgb(73, 73, 73);
   transition: 0.5s;
 }
 
-.add-btn:hover{
+.add-btn:hover {
   box-shadow: 2px 3px rgb(73, 73, 73);
   transition: 0.5s;
 }
+@media screen and (max-width: 735px) {
+  .remove-btn {
+    padding: 5px;
+    margin: 3px;
+    width: 150px;
+    margin-top: 5px;
+    border-radius: 30px;
+    border: none;
+    background-color: #ff0000;
+    color: white;
+    box-shadow: 0px 3px 1px -2px rgb(43, 42, 42);
+  }
+}
 
-
-
-
+@media screen and (max-width: 735px) {
+  .add-btn {
+    padding: 5px;
+    margin: 3px;
+    width: 150px;
+    margin-top: 5px;
+    border-radius: 30px;
+    border: none;
+    background-color: #00cc00;
+    color: white;
+    box-shadow: 0px 3px 1px -2px rgb(43, 42, 42);
+  }
+}
