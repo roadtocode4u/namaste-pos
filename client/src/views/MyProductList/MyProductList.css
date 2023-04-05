@@ -16,8 +16,8 @@
     background-color: transparent;
     margin: 30px;
     padding: 15px;
-    max-width: 400px;
-    height: 100px;
+    max-width: 350px;
+    height: 120px;
     border: 1px solid rgb(95, 95, 95);
     border-radius: 5px;
     box-shadow: 2px 3px rgb(73, 73, 73);
@@ -51,14 +51,20 @@
 
 .product-img{
     position: absolute;
-    right: 15px;
+    right: 30px;
     height: 85px;
     width: 85px;
     bottom: 7px;
     border-radius: 20px;
 }
 
-.product-card-price{
+.deleteIcon{
+    width: 25px;
     position: absolute;
-    right: 150px;
+    top: 5px;
+    right: 10px;
+}
+.deleteIcon:hover{
+    border-radius: 50%;
+    box-shadow: 0 0 1.5px 2px rgb(165, 36, 36);
 }
