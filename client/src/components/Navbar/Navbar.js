@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import Signup from './../../views/Signup/Signup';
 import Login from '../../views/Login/Login';
+import Shopping from './shoppingcart.png';
 import { myProductListCount } from '../../utils/myListItem';
 
 export default function Navbar() {
@@ -32,17 +33,14 @@ export default function Navbar() {
             <b>NamastePos🙏</b>
           </h4>
         </a>
-        <div
-          className="collapse navbar-collapse navbar-sizing"
-          id="navbarNav"
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-          }}>
+        <div>
           <Link to="/myProductList" className="text-decoration-none">
-            <button type="button" className="btn btn-success position-relative">
-              💳
+            <button type="button" className="position-relative">
+              <img
+                className="shopping-card"
+                src={Shopping}
+                alt="shopping card"
+              />
               <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 {myListItem}
               </span>

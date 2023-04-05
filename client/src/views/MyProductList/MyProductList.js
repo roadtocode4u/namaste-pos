@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+
 
 import './MyProductList.css'
 import { myProductListItems } from './../../utils/myListItem.js'
@@ -14,7 +15,7 @@ function MyProductList() {
                         return (
                             <div key={index} className='product-card'>
                                 <h4>{item.name}</h4>
-                                <b>Quantity: {item.quantity}</b> <br/>
+                                <b>Quantity: {item.quantity}</b> <br />
                                 <b className='mb-2 product-card-price'>₹{item.price}</b>
                                 <img className='deleteIcon' src={deleteIcon} />
                                 <img className='product-img' src={item.imgUrl} />
@@ -23,11 +24,12 @@ function MyProductList() {
                     })
                 }
                 <div className='text-center'>
-                    <button className='btn btn-success confirm-btn'><b>Confirm Orders</b></button>
+                    <button className='btn btn-success confirm-btn'><b>Confirm Orders</b>
+                    </button>
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-export default MyProductList
+export default MyProductList;

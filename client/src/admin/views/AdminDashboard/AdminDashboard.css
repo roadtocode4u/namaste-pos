@@ -41,9 +41,7 @@
   margin: 20px;
   text-align: center;
   padding: 10px;
-}
-
-.menu-items:hover {
+  width: 130px;
   background-color: aliceblue;
   border-radius: 5px;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);

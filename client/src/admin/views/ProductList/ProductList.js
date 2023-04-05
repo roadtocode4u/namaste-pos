@@ -56,17 +56,17 @@ const ProductList = () => {
 
   return (
     <>
-      <Heading title={'Product List'} />
-      <div style={{ marginTop: '40px' }}>
-        <table className="products-table" cellPadding="32">
-          <thead className="products-table">
+      <div>
+        <Heading title={'Product List'} />
+        <table className="mb-1 product-table-container" cellPadding="25">
+          <thead>
             <tr className="text-center">
-              <th>NO</th>
-              <th>Title</th>
+              <th>No</th>
+              <th style={{ width: '180px' }}>Title</th>
               <th>Price</th>
-              <th style={{ width: '320px' }}>Description</th>
-              <th style={{ width: '150px' }}>Created At</th>
-              <th style={{ width: '150px' }}>Updated At</th>
+              <th style={{ width: '360px' }}>Description</th>
+              <th style={{ width: '160px' }}>Created At</th>
+              <th style={{ width: '160px' }}>Updated At</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -107,16 +107,14 @@ const ProductList = () => {
                   <td>{updatedAt}</td>
                   <td>
                     <Link to={`/admin/productItem/${item._id}`}>
-                      <button className="mx-3 list-update-btn">
-                        <b>Update</b>
-                      </button>
+                      <button className="mx-3 list-update-btn">Update</button>
                     </Link>
                     <button
                       className="list-delete-btn"
                       onClick={() => {
                         deleteProduct(item._id);
                       }}>
-                      <b>Delete</b>
+                      Delete
                     </button>
                   </td>
                 </tr>

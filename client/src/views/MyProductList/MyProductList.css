@@ -1,15 +1,26 @@
-.heading{
-    margin-top: 150px;
+.my-product-list-heading {
+  margin-top: 100px;
 }
 
-.confirm-btn{
-    padding: 5px;
-    margin: 3px;
-    width: 180px;
-    margin-top: 20px;
-    border-radius: 30px;
-    border: none;
-    box-shadow: 0px 3px 1px -2px rgb(43, 42, 42);
+.confirm-btn {
+  padding: 5px;
+  margin: 3px;
+  width: 200px;
+  margin-top: 20px;
+  border-radius: 30px;
+  border: none;
+  color: white;
+  box-shadow: 0px 3px 1px -2px rgb(43, 42, 42);
+}
+.Addmore-btn {
+  padding: 5px;
+  margin: 3px;
+  width: 200px;
+  margin-top: 20px;
+  border-radius: 30px;
+  border: none;
+  box-shadow: 0px 3px 1px -2px rgb(43, 42, 42);
+  margin-right: 30px;
 }
 
 .product-card {
@@ -28,25 +39,22 @@
 }
 
 .product-card:hover {
-    box-shadow: 5px 4px rgb(73, 73, 73);;
-    transition: 0.5s;
-  }
-
-
-@media screen and (max-width:735px) {
-
-    .product-card{
-        margin-left: auto;
-        margin-right: auto;
-    }
+  box-shadow: 5px 4px rgb(73, 73, 73);
+  transition: 0.5s;
 }
 
-@media screen and (max-width:1080px) {
+@media screen and (max-width: 735px) {
+  .product-card {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
-    .product-card{
-        margin-left: auto;
-        margin-right: auto;
-    }
+@media screen and (max-width: 1080px) {
+  .product-card {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .product-img{
