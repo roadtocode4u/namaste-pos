@@ -1,3 +1,20 @@
-.products-table {
-  border: 1px solid var(--black);
+.product-table-container {
+  font-family: 'Poppins', sans-serif;
+}
+.product-table-container thead {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+.product-table-container tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.product-table-container tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.product-table-container tbody tr:last-of-type {
+  border-bottom: 4px solid #009879;
 }

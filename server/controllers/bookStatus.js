@@ -3,7 +3,8 @@ import responder from '../util/responder.js';
 
 export const bookTablePost = async (req, res) => {
   try {
-    const { tableNumber, userId } = req.body;
+    const { userId } = req.body;
+    const { tableNumber } = req.params;
     const existingTable = await DiningTable.findOne({
       tableNumber: tableNumber,
     });
