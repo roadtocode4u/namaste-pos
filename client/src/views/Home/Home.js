@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './Home.css';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
+import { pendingBooking } from '../../utils/auth';
 
 function Home() {
   const [productCategory, setProductCategory] = useState();
@@ -33,11 +34,19 @@ function Home() {
             </div>
             <div className="text-center">
               <h1 className="homepage-heading">WORK TOGETHER, EAT TOGETHER</h1>
-              <button className="order-btn">
-                <Link className="online-booking-btn" to="/bookTable">
-                  <b>ONLINE BOOKING</b>
+              {pendingBooking ? (
+                <Link className="online-booking-btn" to={`${pendingBooking}`}>
+                  <button className="order-btn">
+                    <b>Book Table</b>
+                  </button>
                 </Link>
-              </button>
+              ) : (
+                <Link className="online-booking-btn" to="/bookTable">
+                  <button className="order-btn">
+                    <b>Book Table</b>
+                  </button>
+                </Link>
+              )}
             </div>
           </div>
         </div>
