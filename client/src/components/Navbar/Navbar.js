@@ -40,6 +40,14 @@ export default function Navbar() {
             flexDirection: 'row',
             justifyContent: 'flex-start',
           }}>
+            <Link to="/myProductList" className="text-decoration-none">
+            <button type="button" className="btn btn-success position-relative">
+              💳
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {myListItem}
+              </span>
+            </button>
+          </Link>
         </div>
 
         <button
