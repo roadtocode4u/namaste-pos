@@ -84,16 +84,16 @@ function TableList() {
   return (
     <>
       <Heading title={'Table List'} />
-      <div style={{ marginTop: '40px' }}>
-        <table className="table-list" cellPadding="32">
-          <thead className="table-list">
+      <div>
+        <table className="table-list-container" cellPadding="25">
+          <thead>
             <tr className="text-center">
-              <th>Table No</th>
+              <th style={{ width: '180px' }}>Table No</th>
               <th>Capacity</th>
-              <th>Service</th>
-              <th>Location</th>
+              <th style={{ width: '200px' }}>Service</th>
+              <th style={{ width: '250px' }}>Location</th>
               <th style={{ width: '250px' }}>User</th>
-              <th style={{ width: '250px' }}>Phone</th>
+              <th style={{ width: '150px' }}>Phone</th>
               <th style={{ width: '150px' }}>QR Code</th>
               <th style={{ width: '150px' }}>Actions</th>
             </tr>
@@ -101,7 +101,7 @@ function TableList() {
           <tbody>
             {table?.map((item, index) => {
               return (
-                <tr key={index}>
+                <tr key={index} className="text-center">
                   <td>{item.tableNumber}</td>
                   <td>{item.capacity}</td>
                   <td>{item.tableService}</td>
@@ -120,16 +120,14 @@ function TableList() {
                   </td>
                   <td>
                     <Link to={`/admin/addTable/${item._id}`}>
-                      <button className="mx-3 list-update-btn">
-                        <b>Update</b>
-                      </button>
+                      <button className="mx-3 list-update-btn">Update</button>
                     </Link>
                     <button
                       className="list-delete-btn"
                       onClick={() => {
                         deleteTable(item._id);
                       }}>
-                      <b>Delete</b>
+                      Delete
                     </button>
                   </td>
                 </tr>
