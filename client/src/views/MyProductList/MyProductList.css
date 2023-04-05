@@ -1,64 +1,61 @@
-.heading{
-    margin-top: 150px;
+.heading {
+  margin-top: 150px;
 }
 
-.confirm-btn{
-    padding: 5px;
-    margin: 3px;
-    width: 180px;
-    margin-top: 20px;
-    border-radius: 30px;
-    border: none;
-    box-shadow: 0px 3px 1px -2px rgb(43, 42, 42);
+.confirm-btn {
+  padding: 5px;
+  margin: 3px;
+  width: 180px;
+  margin-top: 20px;
+  border-radius: 30px;
+  border: none;
+  box-shadow: 0px 3px 1px -2px rgb(43, 42, 42);
 }
 
 .product-card {
-    background-color: transparent;
-    margin: 30px;
-    padding: 15px;
-    max-width: 400px;
-    height: 100px;
-    border: 1px solid rgb(95, 95, 95);
-    border-radius: 5px;
-    box-shadow: 2px 3px rgb(73, 73, 73);
-    cursor: pointer;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
+  background-color: transparent;
+  margin: 30px;
+  padding: 15px;
+  max-width: 400px;
+  height: 100px;
+  border: 1px solid rgb(95, 95, 95);
+  border-radius: 5px;
+  box-shadow: 2px 3px rgb(73, 73, 73);
+  cursor: pointer;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .product-card:hover {
-    box-shadow: 5px 4px rgb(73, 73, 73);;
-    transition: 0.5s;
+  box-shadow: 5px 4px rgb(73, 73, 73);
+  transition: 0.5s;
+}
+
+@media screen and (max-width: 735px) {
+  .product-card {
+    margin-left: auto;
+    margin-right: auto;
   }
-
-
-@media screen and (max-width:735px) {
-
-    .product-card{
-        margin-left: auto;
-        margin-right: auto;
-    }
 }
 
-@media screen and (max-width:1080px) {
-
-    .product-card{
-        margin-left: auto;
-        margin-right: auto;
-    }
+@media screen and (max-width: 1080px) {
+  .product-card {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
-.product-img{
-    position: absolute;
-    right: 15px;
-    height: 85px;
-    width: 85px;
-    bottom: 7px;
-    border-radius: 20px;
+.product-img {
+  position: absolute;
+  right: 15px;
+  height: 85px;
+  width: 85px;
+  bottom: 7px;
+  border-radius: 20px;
 }
 
-.product-card-price{
-    position: absolute;
-    right: 150px;
+.product-card-price {
+  position: absolute;
+  right: 150px;
 }

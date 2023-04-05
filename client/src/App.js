@@ -17,6 +17,7 @@ import AddTable from './admin/views/AddTable/AddTable';
 import UpdateAddTable from './admin/views/UpdateTable/UpdateTable';
 import TableList from './admin/views/TableList/TableList';
 import MyProductList from './views/MyProductList/MyProductList';
+import BookTableLogic from './views/BookTable/BookTableLogic';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           {/* User Routes */}
           <Route path="/product-item" element={<ProductItems />} />
           <Route path="/bookTable" element={<BookTable />} />
+          <Route path="/bookTable/:tableNumber" element={<BookTableLogic />} />
           <Route path="/scanner" element={<Scanner />} />
           <Route path="myProductList" element={<MyProductList />} />
 
