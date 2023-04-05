@@ -1,4 +1,4 @@
-import Swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 export const isAdmin = () => {
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
