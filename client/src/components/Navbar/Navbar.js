@@ -55,11 +55,11 @@ export default function Navbar() {
           }}>
           <div>
             <Link to="/myProductList" className="text-decoration-none">
-              <button type="button" className="position-relative">
+              <button type="button" className="position-relative cart-btn">
                 <img
-                  className="shopping-card"
+                  className="shopping-cart"
                   src={Shopping}
-                  alt="shopping card"
+                  alt="shopping cart"
                 />
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                   {myListItem}
