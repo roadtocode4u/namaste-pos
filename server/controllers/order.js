@@ -9,7 +9,7 @@ export const postOrder = async (req, res) => {
   const orderId = totalOrders + 1;
 
   // validations to check if all the required fields are filled or not
-  const requiredFields = ['tableNumber', 'items', 'orderType'];
+  const requiredFields = ['tableNumber', 'items'];
   const emptyFields = requiredFields.filter((field) => !req.body[field]);
 
   if (emptyFields.length > 0) {
