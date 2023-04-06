@@ -1,7 +1,6 @@
-import React from 'react';
-
+ import React from 'react';
 import './MyProductList.css';
-import { myProductListItems } from './../../utils/myListItem.js';
+import { myFoodListItems } from './../../util/myList';
 function MyProductList() {
   return (
     <>
@@ -28,7 +27,7 @@ function MyProductList() {
           <button className="btn btn-success Addmore-btn">
             <b>Add More Items</b>
           </button>
-          <button className="btn btn-warning confirm-btn">
+          <button className="btn btn-warning confirm-btn" onClick={confirmOrder}>
             <b>Confirm Orders</b>
           </button>
         </div>
