@@ -36,7 +36,13 @@
   cursor: pointer;
   color: white;
 }
-.shopping-card {
+
+.cart-btn{
+  border-radius: 5px;
+  padding: 3px 7px 3px 7px;
+}
+
+.shopping-cart {
   height: 25px;
   width: 25px;
 }
