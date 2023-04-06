@@ -13,7 +13,7 @@ function MyProductList() {
     const response = await axios.post('/order', {
         userId: currentUser,
         items: myProductListItems,
-        tableNumber: localStorage.getItem("tableNumber") || 1,
+        tableNumber: localStorage.getItem("tableNumber"),
     })
 
     if (response.data.success) {
