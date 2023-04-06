@@ -53,7 +53,6 @@ export default function Navbar() {
             flexDirection: 'row',
             justifyContent: 'flex-end',
           }}>
-
           <div>
             <Link to="/myProductList" className="text-decoration-none">
               <button type="button" className="position-relative">
