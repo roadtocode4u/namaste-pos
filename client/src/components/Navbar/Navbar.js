@@ -33,20 +33,6 @@ export default function Navbar() {
             <b>NamastePos🙏</b>
           </h4>
         </a>
-        <div>
-          <Link to="/myProductList" className="text-decoration-none">
-            <button type="button" className="position-relative">
-              <img
-                className="shopping-card"
-                src={Shopping}
-                alt="shopping card"
-              />
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {myListItem}
-              </span>
-            </button>
-          </Link>
-        </div>
 
         <button
           className="navbar-toggler nav-color"
@@ -67,6 +53,21 @@ export default function Navbar() {
             flexDirection: 'row',
             justifyContent: 'flex-end',
           }}>
+          <div>
+            <Link to="/myProductList" className="text-decoration-none">
+              <button type="button" className="position-relative">
+                <img
+                  className="shopping-card"
+                  src={Shopping}
+                  alt="shopping card"
+                />
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {myListItem}
+                </span>
+              </button>
+            </Link>
+          </div>
+
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <span
@@ -74,7 +75,7 @@ export default function Navbar() {
                 onClick={() => {
                   setIsLoginPopupOpen(true);
                 }}>
-                <i className="fa-solid fa-right-to-bracket"></i>
+                <i className="fa-solid fa-right-to-bracket ms-3"></i>
                 <b> Login</b>
               </span>
 

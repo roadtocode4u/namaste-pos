@@ -1,3 +1,20 @@
-.table-list {
-  border: 1px solid var(--black);
+.table-list-container {
+  font-family: 'Poppins', sans-serif;
+}
+.table-list-container thead {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+.table-list-container tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.table-list-container tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.table-list-container tbody tr:last-of-type {
+  border-bottom: 4px solid #009879;
 }

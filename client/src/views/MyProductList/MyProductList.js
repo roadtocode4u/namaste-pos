@@ -2,24 +2,39 @@
 import './MyProductList.css';
 import { myFoodListItems } from './../../util/myList';
 function MyProductList() {
+  function removemylist(myproductindex) {
+    const myProductListItems = localStorage.getItem('list');
+    if (myProductListItems) {
+      const temp = JSON.parse(myProductListItems);
+      temp.splice(myproductindex, 1);
+      localStorage.setItem('list', JSON.stringify(temp));
+    }
+
+    swal({
+      title: 'Deleted!',
+      text: 'Your product Item has been deleted',
+      icon: 'success',
+    });
+
+    window.location.reload();
+  }
+
   return (
     <>
-      <div>
-        <h1 className="text-center my-product-list-heading">🍽 MyList</h1>
+      <div className="row">
+        <h1 className="text-center heading mb-5">🍽 MyList</h1>
         {myProductListItems.map((item, index) => {
           return (
-            <div key={index} className="container">
-              <div key={index} className="product-card">
-                <h4>{item.name}</h4>
-                <b>Quantity: {item.quantity}</b>{' '}
-                <b className="mb-2 product-card-price">{item.price}</b>
-                <img className="product-img" src={item.imgUrl} />
-                <div className="text-center">
-                  <button className="btn btn-danger remove-btn">
-                    <b>Remove</b>
-                  </button>
-                </div>
-              </div>
+            <div key={index} className="product-card">
+              <h4>{item.name}</h4>
+              <b>Quantity: {item.quantity}</b> <br />
+              <b className="mb-2 product-card-price">₹{item.price}</b>
+              <img
+                className="deleteIcon"
+                src={deleteIcon}
+                onClick={removemylist}
+              />
+              <img className="product-img" src={item.imgUrl} />
             </div>
           );
         })}
