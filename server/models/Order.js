@@ -37,7 +37,6 @@ const orderSchema = new Schema({
   orderType: {
     type: String,
     enum: ['dine-in', 'take-out', 'delivery'],
-    required: [true, 'orderType cannot be empty'],
   },
 
   orderComments: String,

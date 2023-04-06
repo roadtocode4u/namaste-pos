@@ -1,11 +1,32 @@
 import React from 'react';
 import swal from 'sweetalert';
 
+import axios from 'axios';
+
+import {currentUser} from './../../utils/auth.js';
+
+
 import './MyProductList.css';
 import { myProductListItems } from './../../utils/myListItem.js';
 import deleteIcon from './../MyProductList/delete-icon.png';
 
 function MyProductList() {
+
+  async function placeConfirmOrder() {
+    const response = await axios.post('/order', {
+        userId: currentUser,
+        items: myProductListItems,
+        tableNumber: localStorage.getItem("tableNumber"),
+    })
+
+    if (response.data.success) {
+        await swal("Order Placed", response.data.message, "success")
+        localStorage.removeItem("list")
+        window.location.href = "/"
+    }
+}
+
+
   function removemylist(myproductindex) {
     const myProductListItems = localStorage.getItem('list');
     if (myProductListItems) {
@@ -43,7 +64,8 @@ function MyProductList() {
           );
         })}
         <div className="text-center">
-          <button className="btn btn-success confirm-btn">
+          <button className="btn btn-success confirm-btn" onClick={placeConfirmOrder}>
+
             <b>Confirm Orders</b>
           </button>
         </div>
