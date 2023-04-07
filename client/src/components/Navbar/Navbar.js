@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+import Shopping from './shoppingcart.png';
+import UserImage from './userimage.png'
 import './Navbar.css';
+import './../../style/button.css';
 import Signup from './../../views/Signup/Signup';
 import Login from '../../views/Login/Login';
-import Shopping from './shoppingcart.png';
 import { myProductListCount } from '../../utils/myListItem';
+import { currentUser } from './../../utils/auth'
 
 export default function Navbar() {
   const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
@@ -24,6 +28,12 @@ export default function Navbar() {
   useEffect(() => {
     setMyListItem(myProductListCount);
   }, []);
+
+  function logOut() {
+    localStorage.removeItem('currentUser');
+    window.location.href = '/login'
+  }
+
 
   return (
     <>
@@ -67,26 +77,48 @@ export default function Navbar() {
               </button>
             </Link>
           </div>
+          <div className='profile-container'>
+            {currentUser && (
+              <div className='text-center mt-3'>
+                <img className='user-profile-img' src={UserImage} />
+                <p>{currentUser.fullName}</p>
+              </div>
+            )}
+          </div>
 
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <span
-                className="nav_register nav-color login-btn"
-                onClick={() => {
-                  setIsLoginPopupOpen(true);
-                }}>
-                <i className="fa-solid fa-right-to-bracket ms-3"></i>
-                <b> Login</b>
-              </span>
+              {currentUser && (
+                <Link className="nav-link" to="/">
+                  <button type="button" className='logout-btn' onClick={logOut}> <i className="fa-solid fa-right-from-bracket"></i> <b> Logout</b></button>
+                </Link>
+              )
+              }
+            </li>
+          </ul>
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              {!currentUser && (
+                <span
+                  className="nav_register nav-color login-btn"
+                  onClick={() => {
+                    setIsLoginPopupOpen(true);
+                  }}>
+                  <i className="fa-solid fa-right-to-bracket ms-3"></i>
+                  <b> Login</b>
+                </span>
+              )}
 
-              <span
-                className="nav_register nav-color signup-btn"
-                onClick={() => {
-                  setIsSignupPopupOpen(true);
-                }}>
-                <i className="fa-solid fa-user-plus"></i>
-                <b> Signup</b>
-              </span>
+              {!currentUser && (
+                <span
+                  className="nav_register nav-color signup-btn"
+                  onClick={() => {
+                    setIsSignupPopupOpen(true);
+                  }}>
+                  <i className="fa-solid fa-user-plus"></i>
+                  <b> Signup</b>
+                </span>
+              )}
             </li>
           </ul>
           <ul className="navbar-nav ml-auto">
