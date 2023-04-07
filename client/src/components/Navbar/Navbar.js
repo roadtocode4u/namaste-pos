@@ -76,11 +76,13 @@ export default function Navbar() {
               </button>
             </Link>
           </div>
-          <div className="profile-container">
+          <div className='profile-container'>
             {currentUser && (
-              <div className="text-center mt-3">
-                <img className="user-profile-img" src={UserImage} />
+              <div className='text-center mt-3'>
+                <Link className='profile-link-tag' to={`/order/${currentUser._id}`}>
+                <img className='user-profile-img' src={UserImage} />
                 <p>{currentUser.fullName}</p>
+                  </Link>
               </div>
             )}
           </div>
@@ -90,7 +92,6 @@ export default function Navbar() {
               {currentUser && (
                 <Link className="nav-link" to="/">
                   <button type="button" className="logout-btn" onClick={logOut}>
-                    {' '}
                     <i className="fa-solid fa-right-from-bracket"></i>{' '}
                     <b> Logout</b>
                   </button>

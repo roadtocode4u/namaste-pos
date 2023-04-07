@@ -59,3 +59,8 @@
   align-items: center;
   margin: 10px;
 }
+
+.profile-link-tag{
+  text-decoration: none;
+  color: black;
+}

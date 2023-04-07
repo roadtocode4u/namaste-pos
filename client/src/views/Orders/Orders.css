@@ -1,0 +1,14 @@
+.product-card {
+    background-color: transparent;
+    margin: 30px;
+    padding: 15px;
+    max-width: 350px;
+    height: 120px;
+    border: 1px solid rgb(95, 95, 95);
+    border-radius: 5px;
+    box-shadow: 2px 3px rgb(73, 73, 73);
+    cursor: pointer;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+  }
