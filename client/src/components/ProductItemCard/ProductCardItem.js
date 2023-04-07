@@ -51,7 +51,8 @@ function ProductCardItem({ imgUrl, price, title, categoryTitle }) {
               <div className="price-category-div">
                 <p className="price-rupees mt-2 mb-3">₹{price}</p>
                 <span className="card-category-type mt-2 mb-3">
-                  <i className="fa-solid fa-pot-food"></i> {categoryTitle || categoryTitleparam}
+                  <i className="fa-solid fa-pot-food"></i>{' '}
+                  {categoryTitle || categoryTitleparam}
                 </span>
               </div>
 
@@ -69,12 +70,12 @@ function ProductCardItem({ imgUrl, price, title, categoryTitle }) {
                 </span>
               </div>
 
-              <div className='text-center'>
+              <div className="text-center">
                 <button
                   type="button"
                   onClick={addToList}
                   className="btn-add-to-cart text-center mb-2">
-                    <i className="fa-solid fa-cart-plus"></i> Add To Cart
+                  <i className="fa-solid fa-cart-plus"></i> Add To Cart
                 </button>
               </div>
             </div>

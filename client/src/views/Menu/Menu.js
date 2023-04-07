@@ -36,18 +36,18 @@ const Menu = () => {
           );
         })}
       </div>
-      <div className='row container-fluid'>
-      {productItem?.map((productItem, index) => {
-            return (
-              <ProductCardItem
-                imgUrl={productItem.imgUrl}
-                price={productItem.price}
-                title={productItem.title}
-                key={index}
-                categoryTitle={productItem.productCategory.categoryTitle}
-              />
-            );
-          })}
+      <div className="row container-fluid">
+        {productItem?.map((productItem, index) => {
+          return (
+            <ProductCardItem
+              imgUrl={productItem.imgUrl}
+              price={productItem.price}
+              title={productItem.title}
+              key={index}
+              categoryTitle={productItem.productCategory.categoryTitle}
+            />
+          );
+        })}
       </div>
     </div>
   );
