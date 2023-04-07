@@ -80,6 +80,18 @@ export const getOrderTableNumber = async (req, res) => {
   }
 };
 
+// 2.2-GET order/:userId => get order by userId
+export const getOrdersUserId = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const order = await Order.find({ userId: userId });
+    responder(res, order, 'Orders fetched successfully');
+  } catch (err) {
+    responder(res, null, err.message, false);
+  }
+};
+
 /*----- 3-update orders API -----*/
 // UPDATE order/:id => update order by id
 export const putOrder = async (req, res) => {

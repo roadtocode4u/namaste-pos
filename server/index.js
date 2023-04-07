@@ -38,6 +38,7 @@ import {
 import {
   deleteOrder,
   getOrderId,
+  getOrdersUserId,
   getOrders,
   getOrderTableNumber,
   postOrder,
@@ -107,6 +108,7 @@ app.delete('/productItem/:id', deleteProductItem);
 app.post('/order', postOrder);
 app.get('/orders', getOrders);
 app.get('/order/:id', getOrderId);
+app.get('/orders/:userId', getOrdersUserId);
 app.get('/order', getOrderTableNumber);
 app.put('/order/:id', putOrder);
 app.delete('/order/:id', deleteOrder);
