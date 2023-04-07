@@ -37,7 +37,7 @@ function App() {
           <Route path="/bookTable/:tableNumber" element={<BookTableLogic />} />
           <Route path="/scanner" element={<Scanner />} />
           <Route path="myProductList" element={<MyProductList />} />
-          <Route path='/order/:userId' element={<Orders/>} />
+          <Route path="/order/:userId" element={<Orders />} />
 
           {/* Admin Routes */}
           <Route path="/admin" element={<Admin />}>

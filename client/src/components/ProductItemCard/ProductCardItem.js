@@ -4,11 +4,11 @@ import swal from 'sweetalert';
 
 import './ProductCardItem.css';
 
-function ProductCardItem({ imgUrl, price, title }) {
+function ProductCardItem({ imgUrl, price, title, categoryTitle }) {
   const [quantity, setQuantity] = useState(1);
 
   const [searchParams] = useSearchParams();
-  const categoryTitle = searchParams.get('categoryTitle');
+  const categoryTitleparam = searchParams.get('categoryTitle');
 
   const setCount = () => {
     if (quantity <= 1) {
@@ -51,7 +51,8 @@ function ProductCardItem({ imgUrl, price, title }) {
               <div className="price-category-div">
                 <p className="price-rupees mt-2 mb-3">₹{price}</p>
                 <span className="card-category-type mt-2 mb-3">
-                  <i className="fa-solid fa-pot-food"></i> {categoryTitle}
+                  <i className="fa-solid fa-pot-food"></i>{' '}
+                  {categoryTitle || categoryTitleparam}
                 </span>
               </div>
 
@@ -69,12 +70,12 @@ function ProductCardItem({ imgUrl, price, title }) {
                 </span>
               </div>
 
-              <div className='text-center'>
+              <div className="text-center">
                 <button
                   type="button"
                   onClick={addToList}
                   className="btn-add-to-cart text-center mb-2">
-                    <i className="fa-solid fa-cart-plus"></i> Add To Cart
+                  <i className="fa-solid fa-cart-plus"></i> Add To Cart
                 </button>
               </div>
             </div>

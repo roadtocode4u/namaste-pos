@@ -67,7 +67,7 @@ export const getProductItemTitle = async (req, res) => {
 
 // GET productItems => get all productItems
 export const getProductItems = async (req, res) => {
-  const productItems = await ProductItem.find();
+  const productItems = await ProductItem.find().populate('productCategory');
   responder(res, productItems, 'ProductItems fetched successfully');
 };
 
