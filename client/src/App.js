@@ -9,6 +9,7 @@ import ProductItems from './views/ProductItems/ProductItems';
 import UpdateProductItem from './admin/views/UpdateProductItem/UpdateProductItem';
 import BookTable from './views/BookTable/BookTable';
 import Scanner from './views/Scanner/Scanner';
+import Menu from './views/Menu/Menu';
 
 // admin views
 import Admin from './admin/views/Admin/Admin';
@@ -31,6 +32,7 @@ function App() {
           {/* User Routes */}
           <Route path="/product-item" element={<ProductItems />} />
           <Route path="/bookTable" element={<BookTable />} />
+          <Route path="/menu" element={<Menu />} />
           <Route path="/bookTable/:tableNumber" element={<BookTableLogic />} />
           <Route path="/scanner" element={<Scanner />} />
           <Route path="myProductList" element={<MyProductList />} />

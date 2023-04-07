@@ -48,12 +48,12 @@
   width: 25px;
 }
 
-.user-profile-img{
+.user-profile-img {
   height: 30px;
   width: 30px;
 }
 
-.profile-container{
+.profile-container {
   display: flex;
   flex-direction: column;
   align-items: center;
