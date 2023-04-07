@@ -37,6 +37,7 @@ function Orders() {
                   return (
                     <div key={i} className="product-card">
                       <h5>{item.name}</h5>
+                      <img className='img-card' src= {item.imgUrl} />
                        Quantity: {item.quantity} <br/>
                        {createdAt} <br/>
                       {item.price}
