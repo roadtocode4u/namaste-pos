@@ -11,7 +11,7 @@ function ProductCardItem({ imgUrl, price, title }) {
   const categoryTitle = searchParams.get('categoryTitle');
 
   const setCount = () => {
-    if (quantity <= 0) {
+    if (quantity <= 1) {
       return;
     } else {
       setQuantity(quantity - 1);
@@ -47,15 +47,15 @@ function ProductCardItem({ imgUrl, price, title }) {
           <div className="col-md-12">
             <img src={imgUrl} className="product-item-card-img" alt="..." />
             <div className="p-1">
-              <h4 className="text-center">{title}</h4>
+              <h5 className="text-center mt-2">{title}</h5>
               <div className="price-category-div">
-                <b className="price-rupees mt-2 mb-3">₹{price}</b>
-                <b className="card-category-type mt-2 mb-3">
+                <p className="price-rupees mt-2 mb-3">₹{price}</p>
+                <span className="card-category-type mt-2 mb-3">
                   <i className="fa-solid fa-pot-food"></i> {categoryTitle}
-                </b>
+                </span>
               </div>
 
-              <div className="quantity-button">
+              <div className="quantity-button-container">
                 <span className="count-button" onClick={setCount}>
                   <p className="plus-minus">-</p>
                 </span>
@@ -69,14 +69,12 @@ function ProductCardItem({ imgUrl, price, title }) {
                 </span>
               </div>
 
-              <div>
+              <div className='text-center'>
                 <button
                   type="button"
                   onClick={addToList}
-                  className="btn-add-to-card text-center mb-2">
-                  <b>
-                    <i className="fa-solid fa-cart-plus"></i> Add To Card
-                  </b>
+                  className="btn-add-to-cart text-center mb-2">
+                    <i className="fa-solid fa-cart-plus"></i> Add To Cart
                 </button>
               </div>
             </div>
