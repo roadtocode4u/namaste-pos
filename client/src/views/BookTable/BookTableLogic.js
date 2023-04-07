@@ -24,7 +24,10 @@ const BookTableLogic = () => {
 
     if (response.data.data.occupied) {
       localStorage.removeItem('tableBooking');
-      localStorage.setItem('tableNumber', JSON.stringify(response.data.data.tableNumber));
+      localStorage.setItem(
+        'tableNumber',
+        JSON.stringify(response.data.data.tableNumber)
+      );
     }
   };
 

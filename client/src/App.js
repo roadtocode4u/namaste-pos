@@ -18,6 +18,7 @@ import UpdateAddTable from './admin/views/UpdateTable/UpdateTable';
 import TableList from './admin/views/TableList/TableList';
 import MyProductList from './views/MyProductList/MyProductList';
 import BookTableLogic from './views/BookTable/BookTableLogic';
+import UserOrders from './admin/views/UserOrders/UserOrders';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route path="addTable" element={<AddTable />} />
             <Route path="addTable/:id" element={<UpdateAddTable />} />
             <Route path="tableList" element={<TableList />} />
+            <Route path="Orders" element={<UserOrders />} />
           </Route>
         </Routes>
       </BrowserRouter>

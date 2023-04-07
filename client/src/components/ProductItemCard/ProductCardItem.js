@@ -9,7 +9,7 @@ function ProductCardItem({ imgUrl, price, title }) {
 
   const [searchParams] = useSearchParams();
   const categoryTitle = searchParams.get('categoryTitle');
- 
+
   const setCount = () => {
     if (quantity <= 0) {
       return;
