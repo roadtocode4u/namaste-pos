@@ -20,9 +20,9 @@ const orderSchema = new Schema(
     items: [
       {
         imgUrl: {
-      type: String,
-      required: [true, 'imgUrl cannot be empty'],
-    },
+          type: String,
+          required: [true, 'imgUrl cannot be empty'],
+        },
         name: {
           type: String,
           required: [true, 'item name cannot be empty'],

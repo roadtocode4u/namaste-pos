@@ -37,11 +37,11 @@ function Orders() {
                   return (
                     <>
                       <div key={i} className="order-card">
-                        <h5>{item.name}</h5>
+                        <h5>📛{item.name}</h5>
                         <img className="img-card" src={item.imgUrl} />
-                        Quantity: {item.quantity} <br />₹{item.price}
+                        🔢Quantity:{item.quantity} <br />₹{item.price}
                         <br />
-                        {createdAt}
+                        📅 {createdAt}
                       </div>
                     </>
                   );

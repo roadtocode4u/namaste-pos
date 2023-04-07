@@ -69,12 +69,12 @@ function ProductCardItem({ imgUrl, price, title }) {
                 </span>
               </div>
 
-              <div className='text-center'>
+              <div className="text-center">
                 <button
                   type="button"
                   onClick={addToList}
                   className="btn-add-to-cart text-center mb-2">
-                    <i className="fa-solid fa-cart-plus"></i> Add To Cart
+                  <i className="fa-solid fa-cart-plus"></i> Add To Cart
                 </button>
               </div>
             </div>

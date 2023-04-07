@@ -76,13 +76,15 @@ export default function Navbar() {
               </button>
             </Link>
           </div>
-          <div className='profile-container'>
+          <div className="profile-container">
             {currentUser && (
-              <div className='text-center mt-3'>
-                <Link className='profile-link-tag' to={`/order/${currentUser._id}`}>
-                <img className='user-profile-img' src={UserImage} />
-                <p>{currentUser.fullName}</p>
-                  </Link>
+              <div className="text-center mt-3">
+                <Link
+                  className="profile-link-tag"
+                  to={`/order/${currentUser._id}`}>
+                  <img className="user-profile-img" src={UserImage} />
+                  <p>{currentUser.fullName}</p>
+                </Link>
               </div>
             )}
           </div>
