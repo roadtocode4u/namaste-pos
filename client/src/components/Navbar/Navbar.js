@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Shopping from './shoppingcart.png';
-import UserImage from './userimage.png'
+import UserImage from './userimage.png';
 import './Navbar.css';
 import './../../style/button.css';
 import Signup from './../../views/Signup/Signup';
 import Login from '../../views/Login/Login';
 import { myProductListCount } from '../../utils/myListItem';
-import { currentUser } from './../../utils/auth'
+import { currentUser } from './../../utils/auth';
 
 export default function Navbar() {
   const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
@@ -31,9 +31,8 @@ export default function Navbar() {
 
   function logOut() {
     localStorage.removeItem('currentUser');
-    window.location.href = '/login'
+    window.location.href = '/login';
   }
-
 
   return (
     <>
@@ -77,10 +76,10 @@ export default function Navbar() {
               </button>
             </Link>
           </div>
-          <div className='profile-container'>
+          <div className="profile-container">
             {currentUser && (
-              <div className='text-center mt-3'>
-                <img className='user-profile-img' src={UserImage} />
+              <div className="text-center mt-3">
+                <img className="user-profile-img" src={UserImage} />
                 <p>{currentUser.fullName}</p>
               </div>
             )}
@@ -90,10 +89,13 @@ export default function Navbar() {
             <li className="nav-item">
               {currentUser && (
                 <Link className="nav-link" to="/">
-                  <button type="button" className='logout-btn' onClick={logOut}> <i className="fa-solid fa-right-from-bracket"></i> <b> Logout</b></button>
+                  <button type="button" className="logout-btn" onClick={logOut}>
+                    {' '}
+                    <i className="fa-solid fa-right-from-bracket"></i>{' '}
+                    <b> Logout</b>
+                  </button>
                 </Link>
-              )
-              }
+              )}
             </li>
           </ul>
           <ul className="navbar-nav ml-auto">
