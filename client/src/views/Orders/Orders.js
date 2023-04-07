@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { currentUser } from './../../utils/auth';
 import axios from 'axios';
 
-import './Orders.css'
+import './Orders.css';
 
 function Orders() {
-
-  const [order, setOrder] = useState([])
+  const [order, setOrder] = useState([]);
 
   async function fetchOrder() {
     const response = await axios.get(`/orders/${currentUser._id}`);
@@ -21,9 +20,10 @@ function Orders() {
   return (
     <>
       <div className="container">
-        <div className='row'>
+        <div className="row">
+          <h1 className="text-center order-heading">My Order</h1>
           {order?.map((order, index) => {
-             const createdAt = new Date(order.createdAt).toLocaleString(
+            const createdAt = new Date(order.createdAt).toLocaleString(
               'en-US',
               {
                 month: 'long',
@@ -32,17 +32,19 @@ function Orders() {
               }
             );
             return (
-              <div key={index} >
-                {order.items?.map((item, i) => {                  
+              <div key={index}>
+                {order.items?.map((item, i) => {
                   return (
-                    <div key={i} className="product-card">
-                      <h5>{item.name}</h5>
-                      <img className='img-card' src= {item.imgUrl} />
-                       Quantity: {item.quantity} <br/>
-                       {createdAt} <br/>
-                      {item.price}
-                    </div>
-                  )
+                    <>
+                      <div key={i} className="order-card">
+                        <h5>{item.name}</h5>
+                        <img className="img-card" src={item.imgUrl} />
+                        Quantity: {item.quantity} <br />₹{item.price}
+                        <br />
+                        {createdAt}
+                      </div>
+                    </>
+                  );
                 })}
               </div>
             );
@@ -50,7 +52,7 @@ function Orders() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Orders
+export default Orders;
