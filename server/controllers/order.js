@@ -80,7 +80,7 @@ export const getOrderTableNumber = async (req, res) => {
   }
 };
 
-// 2.2-GET order/:userId => get order by userId
+// 2.2-GET orders/:userId => get orders by userId
 export const getOrdersUserId = async (req, res) => {
   const { userId } = req.params;
 

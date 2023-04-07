@@ -49,7 +49,11 @@ const orderSchema = new Schema({
   },
 
   feedback: String,
-});
+},
+{
+  timestamps: true,
+}
+);
 
 const Order = model('Order', orderSchema);
 
