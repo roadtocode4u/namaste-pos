@@ -1,7 +1,7 @@
 .product-item-card {
   background-color: #fff;
   margin-top: 40px;
-  border-radius: 12px;
+  border-radius: 7px;
   margin-left: auto;
   margin-right: auto;
   width: 265px;
@@ -10,27 +10,27 @@
 }
 
 .product-item-card-img {
-  border-radius: 10px;
+  border-radius: 7px;
   margin-top: 22px;
   margin-left: auto;
   margin-right: auto;
-  width: 200px;
+  width: 220px;
   height: 180px;
   display: block;
   box-shadow: 1px 1px 3px 1px var(--gray);
 }
 
-.btn-add-to-card {
+.btn-add-to-cart {
   border-radius: 125px;
   background-color: var(--red);
-  padding: 8px;
-  width: 100%;
+  padding: 6px;
+  width: 70%;
   color: var(--white);
   margin-top: 20px;
   border: none;
 }
 
-.btn-add-to-card:hover {
+.btn-add-to-cart:hover {
   box-shadow: 2px 3px 2px -2px var(--black);
 }
 
@@ -38,21 +38,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
   background-color: var(--red);
   color: var(--white);
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   cursor: pointer;
-  padding: 10px;
+  padding: 7px;
 }
 
 .count-text {
-  font-size: 30px;
+  font-size: 25px;
 }
 
-.quantity-button {
+.quantity-button-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -71,13 +70,13 @@
 .card-category-type {
   font-size: 15px;
   color: var(--white);
-  border-radius: 10px;
+  border-radius: 7px;
   border: 1px solid var(--green);
   background-color: var(--green);
-  padding: 3px;
+  padding: 2px 7px;
 }
 
 .plus-minus {
-  font-size: 35px;
-  margin-top: 20px;
+  font-size: 25px;
+  margin-top: 16px;
 }
