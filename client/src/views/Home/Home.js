@@ -24,24 +24,21 @@ function Home() {
         <div className="container-fluid">
           <div className="row">
             <div className="text-center">
-            <div className='text-center namstePOS-container'>
-              <h1 className='namastePOS-heading'>NamastePOS</h1>
-            </div>
-              <h1 className="homepage-heading">WORK TOGETHER, <br/>EAT TOGETHER</h1>
-              <button className="order-btn me-5">
-                    Menu
-              </button>
+              <div className="text-center namstePOS-container">
+                <h1 className="namastePOS-heading">NamastePOS</h1>
+              </div>
+              <h1 className="homepage-heading">
+                WORK TOGETHER, <br />
+                EAT TOGETHER
+              </h1>
+              <button className="order-btn me-5">Menu</button>
               {pendingBooking ? (
                 <Link className="online-booking-btn" to={`${pendingBooking}`}>
-                  <button className="order-btn">
-                    Book Table
-                  </button>
+                  <button className="order-btn">Book Table</button>
                 </Link>
               ) : (
                 <Link className="online-booking-btn" to="/bookTable">
-                  <button className="order-btn">
-                    Book Table
-                  </button>
+                  <button className="order-btn">Book Table</button>
                 </Link>
               )}
             </div>

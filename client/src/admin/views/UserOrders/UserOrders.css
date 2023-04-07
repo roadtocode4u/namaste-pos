@@ -1,0 +1,75 @@
+.faq-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.container-faq {
+  width: 80%;
+}
+
+.accordion-header {
+  background-color: #f8f9fa;
+  color: #212529;
+  border: none;
+  text-align: left;
+}
+
+.accordion-button {
+  width: 100%;
+  text-align: left;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+.accordion-body {
+  padding: 10px;
+}
+
+.order-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.child-item-1 {
+  background-color: var(--white);
+  padding: 5px;
+  border-radius: 50%;
+  box-shadow: 0px 3px 5px var(--black);
+  height: 45px;
+  width: 45px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.child-item-1 {
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.child-item-2 {
+  font-size: 1rem;
+  margin-left: 500px;
+  padding: 5px;
+  width: 150px;
+  border-radius: 30px;
+  border: none;
+  color: var(--white);
+  background-color: var(--red);
+  box-shadow: 0px 3px 1px -2px rgb(0, 0, 0);
+}
+
+.order-item-1 {
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.order-item-2 {
+  font-size: 1rem;
+  margin-left: 500px;
+}
