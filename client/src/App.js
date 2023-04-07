@@ -10,6 +10,7 @@ import UpdateProductItem from './admin/views/UpdateProductItem/UpdateProductItem
 import BookTable from './views/BookTable/BookTable';
 import Scanner from './views/Scanner/Scanner';
 import Menu from './views/Menu/Menu';
+import Orders from './views/Orders/Orders';
 
 // admin views
 import Admin from './admin/views/Admin/Admin';
@@ -36,6 +37,7 @@ function App() {
           <Route path="/bookTable/:tableNumber" element={<BookTableLogic />} />
           <Route path="/scanner" element={<Scanner />} />
           <Route path="myProductList" element={<MyProductList />} />
+          <Route path='/order/:userId' element={<Orders/>} />
 
           {/* Admin Routes */}
           <Route path="/admin" element={<Admin />}>
@@ -46,7 +48,7 @@ function App() {
             <Route path="addTable" element={<AddTable />} />
             <Route path="addTable/:id" element={<UpdateAddTable />} />
             <Route path="tableList" element={<TableList />} />
-            <Route path="Orders" element={<UserOrders />} />
+            <Route path="Orders/:id" element={<UserOrders />} />
           </Route>
         </Routes>
       </BrowserRouter>
