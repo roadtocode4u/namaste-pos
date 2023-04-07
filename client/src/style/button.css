@@ -50,3 +50,15 @@
 .auth-page-btn:hover {
   box-shadow: 3px 4px 2px -2px var(--black);
 }
+
+.logout-btn{
+  padding: 5px;
+  margin: 5px;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  color: var(--white);
+  background-color: var(--red);
+  box-shadow: 0px 3px 1px -2px var(--black);
+}

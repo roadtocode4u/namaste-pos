@@ -1,6 +1,7 @@
 .navbar {
   box-shadow: 0px 0px 0.5px 0.5px var(--gray);
   z-index: 50 !important;
+  height: 60px;
 }
 .namaste-pas-heading-h1 {
   font-family: 'Lobster', cursive;
@@ -45,4 +46,16 @@
 .shopping-cart {
   height: 25px;
   width: 25px;
+}
+
+.user-profile-img{
+  height: 30px;
+  width: 30px;
+}
+
+.profile-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
 }
