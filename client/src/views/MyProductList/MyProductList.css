@@ -13,10 +13,6 @@
   box-shadow: 0px 3px 1px -2px rgb(43, 42, 42);
 }
 
-.product-card-price {
-  margin-left: 5px;
-}
-
 .product-card {
   background-color: transparent;
   margin: 30px;
@@ -58,6 +54,7 @@
   width: 90px;
   bottom: 10px;
   border-radius: 15px;
+
 }
 
 .deleteIcon {
@@ -69,4 +66,9 @@
 .deleteIcon:hover {
   border-radius: 50%;
   box-shadow: 0 0 1.5px 2px rgb(165, 36, 36);
+}
+
+.product-card-information-container {
+  display: flex;
+  justify-content: space-around;
 }
