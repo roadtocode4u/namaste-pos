@@ -21,7 +21,6 @@ function Orders() {
     <>
       <div className="container">
         <div className="row">
-          <h1 className="text-center order-heading">My Order</h1>
           {order?.map((order, index) => {
             const createdAt = new Date(order.createdAt).toLocaleString(
               'en-US',
