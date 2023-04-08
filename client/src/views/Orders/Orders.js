@@ -34,7 +34,6 @@ function Orders() {
             );
             return (
               <div key={index} className="row">
-                {/* <div className='created-date text-center mb-2'>{createdAt}</div> */}
                 {order.items?.map((item, i) => {
                   return (
                     <>
