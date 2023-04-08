@@ -46,30 +46,32 @@ function MyProductList() {
 
   return (
     <>
-      <div className="row">
-       <Heading title={'🍽 MyList'} />
-        {myProductListItems.map((item, index) => {
-          return (
-            <div key={index} className="product-card">
-              <h4>📛{item.name}</h4>
-              🔢Quantity: {item.quantity}
-              <br />
-              <p className="mb-2 product-card-price">₹{item.price}</p>
-              <img
-                className="deleteIcon"
-                src={deleteIcon}
-                onClick={removemylist}
-              />
-              <img className="product-img" src={item.imgUrl} />
-            </div>
-          );
-        })}
-        <div className="text-center">
-          <button
-            className="btn btn-success confirm-btn"
-            onClick={placeConfirmOrder}>
-            <b>Confirm Orders</b>
-          </button>
+      <div className="container">
+        <Heading title={'🍽 MyList'} />
+        <div className="row">
+          {myProductListItems.map((item, index) => {
+            return (
+              <div key={index} className="product-card">
+                <h4>📛{item.name}</h4>
+                🔢Quantity: {item.quantity}
+                <br />
+                <p className="mb-2 product-card-price">₹{item.price}</p>
+                <img
+                  className="deleteIcon"
+                  src={deleteIcon}
+                  onClick={removemylist}
+                />
+                <img className="product-img" src={item.imgUrl} />
+              </div>
+            );
+          })}
+          <div className="text-center">
+            <button
+              className="btn btn-success confirm-btn"
+              onClick={placeConfirmOrder}>
+              <b>Confirm Orders</b>
+            </button>
+          </div>
         </div>
       </div>
     </>
