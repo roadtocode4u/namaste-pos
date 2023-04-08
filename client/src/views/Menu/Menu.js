@@ -36,6 +36,7 @@ const Menu = () => {
           );
         })}
       </div>
+      <h2 className="text-center mb-5 category-heading">Explore Our Menu</h2>
       <div className="row container-fluid">
         {productItem?.map((productItem, index) => {
           return (
