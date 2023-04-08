@@ -54,7 +54,7 @@ function MyProductList() {
               <div key={index} className="product-card">
                 <img className="product-img" src={item.imgUrl} />
                 <h5 className="text-center mt-3">{item.name}</h5>
-                <div className="product-card-information-container">
+                <div className="d-flex justify-content-around">
                   <span>{item.price}₹</span>{' '}
                   <span>Quantity: {item.quantity}</span>
                 </div>

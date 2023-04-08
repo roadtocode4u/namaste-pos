@@ -43,7 +43,7 @@ function Orders() {
                         </div>
                         <img className="order-img-card" src={item.imgUrl} />
                         <h5 className="text-center mt-3">{item.name}</h5>
-                        <div className="order-card-information-container">
+                        <div className="d-flex justify-content-around">
                           <span>{item.price}₹</span>
                           <span>Quantity: {item.quantity}</span>
                         </div>

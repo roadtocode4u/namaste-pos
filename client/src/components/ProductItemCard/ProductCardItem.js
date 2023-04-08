@@ -42,10 +42,14 @@ function ProductCardItem({ imgUrl, price, title, categoryTitle }) {
 
   return (
     <>
-      <div className="product-item-card mt-2">
+      <div className="product-item-card mt-5">
         <div className="row">
           <div className="col-md-12">
-            <img src={imgUrl} className="product-item-card-img" alt="..." />
+            <img
+              src={imgUrl}
+              className="product-item-card-img mt-4"
+              alt="..."
+            />
             <div className="p-1">
               <h5 className="text-center mt-2">{title}</h5>
               <div className="price-category-div">
