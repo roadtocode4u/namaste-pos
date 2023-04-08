@@ -42,10 +42,10 @@ function Orders() {
                           {createdAt}
                         </div>
                         <img className="order-img-card" src={item.imgUrl} />
-                        <h5 className="text-center mt-3">📛{item.name}</h5>
+                        <h5 className="text-center mt-3">{item.name}</h5>
                         <div className="order-card-information-container">
-                          <span>🪙{item.price}₹</span>
-                          <span>🔢Quantity: {item.quantity}</span>
+                          <span>{item.price}₹</span>
+                          <span>Quantity: {item.quantity}</span>
                         </div>
                       </div>
                     </>

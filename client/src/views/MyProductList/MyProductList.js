@@ -53,10 +53,10 @@ function MyProductList() {
             return (
               <div key={index} className="product-card">
                 <img className="product-img" src={item.imgUrl} />
-                <h5 className="text-center mt-3">📛{item.name}</h5>
+                <h5 className="text-center mt-3">{item.name}</h5>
                 <div className="product-card-information-container">
-                  <span>🪙{item.price}₹</span>{' '}
-                  <span>🔢Quantity: {item.quantity}</span>
+                  <span>{item.price}₹</span>{' '}
+                  <span>Quantity: {item.quantity}</span>
                 </div>
                 <img
                   className="deleteIcon"
