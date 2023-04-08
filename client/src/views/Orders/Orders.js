@@ -34,13 +34,15 @@ function Orders() {
               <div key={index}>
                 {order.items?.map((item, i) => {
                   return (
-                    <div key={i} className="product-card">
-                      <h5>{item.name}</h5>
-                      <img className="img-card" src={item.imgUrl} />
-                      Quantity: {item.quantity} <br />
-                      {createdAt} <br />
-                      {item.price}
-                    </div>
+                    <>
+                      <div key={i} className="order-card">
+                        <h5>📛{item.name}</h5>
+                        <img className="img-card" src={item.imgUrl} />
+                        🔢Quantity:{item.quantity} <br />₹{item.price}
+                        <br />
+                        📅 {createdAt}
+                      </div>
+                    </>
                   );
                 })}
               </div>

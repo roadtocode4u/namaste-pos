@@ -50,9 +50,10 @@ function MyProductList() {
         {myProductListItems.map((item, index) => {
           return (
             <div key={index} className="product-card">
-              <h4>{item.name}</h4>
-              <b>Quantity: {item.quantity}</b> <br />
-              <b className="mb-2 product-card-price">₹{item.price}</b>
+              <h4>📛{item.name}</h4>
+              🔢Quantity: {item.quantity}
+              <br />
+              <p className="mb-2 product-card-price">₹{item.price}</p>
               <img
                 className="deleteIcon"
                 src={deleteIcon}
