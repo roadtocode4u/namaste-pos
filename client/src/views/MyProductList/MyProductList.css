@@ -13,16 +13,11 @@
   box-shadow: 0px 3px 1px -2px rgb(43, 42, 42);
 }
 
-.product-card-price {
-  margin-left: 5px;
-}
-
 .product-card {
   background-color: transparent;
   margin: 30px;
   padding: 15px;
-  max-width: 350px;
-  height: 120px;
+  width: 300px;
   border: 1px solid rgb(95, 95, 95);
   border-radius: 5px;
   box-shadow: 2px 3px rgb(73, 73, 73);
@@ -52,11 +47,10 @@
 }
 
 .product-img {
-  position: absolute;
-  right: 30px;
-  height: 85px;
-  width: 85px;
-  bottom: 7px;
+  height: 120px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 20px;
 }
 
@@ -69,4 +63,9 @@
 .deleteIcon:hover {
   border-radius: 50%;
   box-shadow: 0 0 1.5px 2px rgb(165, 36, 36);
+}
+
+.product-card-information-container {
+  display: flex;
+  justify-content: space-around;
 }

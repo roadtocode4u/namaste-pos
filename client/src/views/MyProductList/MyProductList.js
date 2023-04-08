@@ -47,20 +47,21 @@ function MyProductList() {
   return (
     <>
       <div className="row">
-       <Heading title={'🍽 MyList'} />
+        <Heading title={'🍽 MyList'} />
         {myProductListItems.map((item, index) => {
           return (
             <div key={index} className="product-card">
-              <h4>📛{item.name}</h4>
-              🔢Quantity: {item.quantity}
-              <br />
-              <p className="mb-2 product-card-price">₹{item.price}</p>
+              <img className="product-img" src={item.imgUrl} />
+              <h5 className="text-center mt-3">{item.name}</h5>
+              <div className="product-card-information-container">
+                <sapn>₹{item.price}</sapn>{' '}
+                <span>Quantity: {item.quantity}</span>
+              </div>
               <img
                 className="deleteIcon"
                 src={deleteIcon}
                 onClick={removemylist}
               />
-              <img className="product-img" src={item.imgUrl} />
             </div>
           );
         })}
@@ -68,7 +69,7 @@ function MyProductList() {
           <button
             className="btn btn-success confirm-btn"
             onClick={placeConfirmOrder}>
-            <b>Confirm Orders</b>
+            Confirm Orders
           </button>
         </div>
       </div>
