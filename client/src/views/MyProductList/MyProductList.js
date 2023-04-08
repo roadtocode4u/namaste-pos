@@ -8,6 +8,7 @@ import './MyProductList.css';
 import { myProductListItems } from './../../utils/myListItem.js';
 import deleteIcon from './../MyProductList/delete-icon.png';
 import { myProductListCount } from './../../utils/myListItem.js';
+import Heading from '../../components/Heading/Heading.js';
 
 function MyProductList() {
   async function placeConfirmOrder() {
@@ -46,7 +47,7 @@ function MyProductList() {
   return (
     <>
       <div className="row">
-        <h1 className="text-center heading mb-5">🍽 MyList</h1>
+       <Heading title={'🍽 MyList'} />
         {myProductListItems.map((item, index) => {
           return (
             <div key={index} className="product-card">

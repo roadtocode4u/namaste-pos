@@ -12,16 +12,7 @@
   color: white;
   box-shadow: 0px 3px 1px -2px rgb(43, 42, 42);
 }
-.Addmore-btn {
-  padding: 5px;
-  margin: 3px;
-  width: 200px;
-  margin-top: 20px;
-  border-radius: 30px;
-  border: none;
-  box-shadow: 0px 3px 1px -2px rgb(43, 42, 42);
-  margin-right: 30px;
-}
+
 .product-card-price {
   margin-left: 5px;
 }
