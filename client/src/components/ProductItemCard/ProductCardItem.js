@@ -42,7 +42,7 @@ function ProductCardItem({ imgUrl, price, title, categoryTitle }) {
 
   return (
     <>
-      <div className="product-item-card mt-5">
+      <div className="product-item-card mt-2">
         <div className="row">
           <div className="col-md-12">
             <img src={imgUrl} className="product-item-card-img" alt="..." />
