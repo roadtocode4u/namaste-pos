@@ -17,7 +17,7 @@
   background-color: transparent;
   margin: 30px;
   padding: 15px;
-  width: 300px;
+  width: 285px;
   border: 1px solid rgb(95, 95, 95);
   border-radius: 5px;
   box-shadow: 2px 3px rgb(73, 73, 73);
@@ -47,11 +47,12 @@
 }
 
 .product-img {
-  height: 120px;
+  height: 130px;
   display: block;
   margin-left: auto;
   margin-right: auto;
   border-radius: 20px;
+  box-shadow: 2px 0px 2px 0px gray;
 }
 
 .deleteIcon {

@@ -46,31 +46,33 @@ function MyProductList() {
 
   return (
     <>
-      <div className="row">
-        <Heading title={'🍽 MyList'} />
-        {myProductListItems.map((item, index) => {
-          return (
-            <div key={index} className="product-card">
-              <img className="product-img" src={item.imgUrl} />
-              <h5 className="text-center mt-3">{item.name}</h5>
-              <div className="product-card-information-container">
-                <sapn>₹{item.price}</sapn>{' '}
-                <span>Quantity: {item.quantity}</span>
+      <div className="container-fluid">
+        <div className="row">
+          <Heading title={'🍽️MyList'} />
+          {myProductListItems.map((item, index) => {
+            return (
+              <div key={index} className="product-card">
+                <img className="product-img" src={item.imgUrl} />
+                <h5 className="text-center mt-3">📛{item.name}</h5>
+                <div className="product-card-information-container">
+                  <span>🪙{item.price}₹</span>{' '}
+                  <span>🔢Quantity: {item.quantity}</span>
+                </div>
+                <img
+                  className="deleteIcon"
+                  src={deleteIcon}
+                  onClick={removemylist}
+                />
               </div>
-              <img
-                className="deleteIcon"
-                src={deleteIcon}
-                onClick={removemylist}
-              />
-            </div>
-          );
-        })}
-        <div className="text-center">
-          <button
-            className="btn btn-success confirm-btn"
-            onClick={placeConfirmOrder}>
-            Confirm Orders
-          </button>
+            );
+          })}
+          <div className="text-center">
+            <button
+              className="btn btn-success confirm-btn"
+              onClick={placeConfirmOrder}>
+              Confirm Orders
+            </button>
+          </div>
         </div>
       </div>
     </>

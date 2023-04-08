@@ -1,10 +1,8 @@
 .order-card {
-  display: block;
   background-color: transparent;
   margin: 30px;
   padding: 15px;
-  max-width: 350px;
-  height: 120px;
+  width: 300px;
   border: 1px solid rgb(95, 95, 95);
   border-radius: 5px;
   box-shadow: 2px 3px rgb(73, 73, 73);
@@ -19,12 +17,21 @@
   transition: 0.5s;
 }
 
-.img-card {
-  position: absolute;
-  right: 20px;
-  height: 85px;
-  width: 85px;
-  bottom: 13px;
+.order-img-card {
+  height: 130px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 20px;
+  box-shadow: 2px 0px 2px 0px gray;
 }
-
+.order-card-information-container {
+  display: flex;
+  justify-content: space-around;
+}
+.created-date {
+  background-color: aliceblue;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
