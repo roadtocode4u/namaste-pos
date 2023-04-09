@@ -9,7 +9,7 @@ import { pendingBooking } from '../../utils/auth';
 function Home() {
   return (
     <>
-      <div className="main-div mt-5">
+      <div className="main-div">
         <div className="container-fluid">
           <div className="row">
             <div className="text-center">
