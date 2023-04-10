@@ -17,11 +17,10 @@ const Scanner = () => {
 
   return (
     <div>
-      <br></br>
-      <br></br>
-      <br></br>
       {!showScanner && (
-        <button onClick={() => setShowScanner(true)}>Open Scanner</button>
+        <div className='text-center mt-5'>
+           <button className='mt-5' onClick={() => setShowScanner(true)}>Open Scanner</button>
+        </div>
       )}
       {showScanner && (
         <div className="text-center">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Shopping from './shoppingcart.png';
+import QRCocde from './qr-code.png'
 import './Navbar.css';
 import './../../style/button.css';
 import Signup from './../../views/Signup/Signup';
@@ -53,6 +54,11 @@ export default function Navbar() {
               <li className="nav-item mt-2">
                 <Link className="homepage-route" to="/">
                   Home
+                </Link>
+              </li>
+              <li className="nav-item mt-2">
+                <Link className="homepage-route" to="/scanner">
+                 <img style={{width: '32px'}} src={QRCocde}/>
                 </Link>
               </li>
               <li className="nav-item mt-2">
