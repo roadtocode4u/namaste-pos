@@ -3,24 +3,27 @@ import { Link } from 'react-router-dom';
 
 import './Home.css';
 import { pendingBooking } from '../../utils/auth';
-import HomePage from './background-img.jpg'
+import HomePage from './background-img.jpg';
 
 function Home() {
   return (
     <>
-      <div className='main-div'>
-        <div className='container-fluid'>
-          <div className='row'>
-          <h3 className='text-center namastePOS-heading'>NamastePOS</h3>
-            <div className='col-md-6'>
-              <div className='text-center'>
-                <img className='home-page-img mb-5' src={HomePage} />
+      <div className="main-div">
+        <div className="container-fluid">
+          <div className="row">
+            <h3 className="text-center namastePOS-heading mt-4">NamastePOS</h3>
+            <div className="col-md-6">
+              <div className="text-center">
+                <img className="home-page-img mb-5 mt-5" src={HomePage} />
               </div>
             </div>
-            <div className='col-md-6 item'>
-              <h4 className='text-center homepage-heading'>  WORK TOGETHER, <br />
-                EAT TOGETHER</h4>
-              <div className='order-btn-container d-flex justify-content-evenly'>
+            <div className="col-md-6 item mt-4">
+              <h4 className="text-center homepage-heading mt-5">
+                {' '}
+                WORK TOGETHER, <br />
+                EAT TOGETHER
+              </h4>
+              <div className="order-btn-container d-flex justify-content-evenly mt-5">
                 <Link to="/menu">
                   <button className="order-btn">Menu</button>
                 </Link>

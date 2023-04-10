@@ -2,20 +2,18 @@
   background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)),
     url(background-img.jpg);
   background-size: cover;
-  height: 100vh;
+  height: 90vh;
   width: 100%;
 }
 
 .namastePOS-heading {
   font-size: 70px;
   color: #fff;
-  margin-top: 70px;
 }
 
 .homepage-heading {
   color: #fff;
   text-align: center;
-  margin-top: 80px;
   font-size: 40px;
   letter-spacing: 4px;
   line-height: 1.5;
@@ -33,27 +31,21 @@
   box-shadow: 0px 3px 1px -2px var(--black);
 }
 
-.order-btn-container {
-  margin-top: 100px;
-}
-
 .home-page-img {
   width: 80%;
-  margin-top: 60px;
   border-radius: 20px;
   align-items: center;
 }
 
 @media screen and (min-width: 280px) and (max-width: 481px) {
   .main-div {
-    height:130vh ;
+    height: 130vh;
   }
 }
 
-
 @media screen and (min-width: 490px) and (max-width: 800px) {
   .main-div {
-    height:200vh ;
+    height: 200vh;
   }
 }
 
@@ -91,4 +83,3 @@
     margin-left: 70px;
   }
 }
-
