@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Shopping from './shoppingcart.png';
-import UserImage from './userimage.png';
 import './Navbar.css';
 import './../../style/button.css';
 import Signup from './../../views/Signup/Signup';
@@ -51,29 +50,33 @@ export default function Navbar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
-              <li className='nav-item mt-2'>
-                <Link className='homepage-route' to='/'>
+              <li className="nav-item mt-2">
+                <Link className="homepage-route" to="/">
                   Home
                 </Link>
               </li>
-              <li className='nav-item mt-2'>
+              <li className="nav-item mt-2">
                 <div className="profile-container">
                   {currentUser && (
                     <div className="">
                       <Link
                         className="profile-link-tag"
                         to={`/order/${currentUser._id}`}>
-                        <p className='current-user-name'>{currentUser.fullName}</p>
+                        <p className="current-user-name">
+                          {currentUser.fullName}
+                        </p>
                       </Link>
                     </div>
                   )}
                 </div>
               </li>
               <li className="nav-item">
-                <div className='shopping-conatiner'>
+                <div className="shopping-conatiner">
                   {currentUser && (
                     <Link to="/myProductList" className="text-decoration-none">
-                      <button type="button" className="position-relative cart-btn">
+                      <button
+                        type="button"
+                        className="position-relative cart-btn">
                         <img
                           className="shopping-cart"
                           src={Shopping}
@@ -90,7 +93,7 @@ export default function Navbar() {
               <li className="nav-item">
                 {currentUser && (
                   <Link className="nav-link">
-                    <span className='loggout-span' onClick={logOut}>
+                    <span className="loggout-span" onClick={logOut}>
                       Logout
                     </span>
                   </Link>
@@ -122,9 +125,9 @@ export default function Navbar() {
             <div className="d-flex"></div>
           </div>
         </div>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-
-        </div>
+        <div
+          className="collapse navbar-collapse"
+          id="navbarSupportedContent"></div>
       </nav>
       <Signup isOpen={isSignupPopupOpen} closePopupSignup={closePopupSignup} />
       <Login isOpen={isLoginPopupOpen} closePopupLogin={closePopupLogin} />
