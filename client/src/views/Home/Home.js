@@ -14,25 +14,33 @@ function Home() {
           <div className="row">
             <div className="text-center">
               <div className="text-center namstePOS-container">
-                <h1 className="namastePOS-heading">NamastePOS</h1>
+                <p className="namastePOS-heading">NamastePOS</p>
               </div>
-              <h1 className="homepage-heading">
-                WORK TOGETHER, <br />
-                EAT TOGETHER
-              </h1>
-              <Link to="/menu">
-                <button className="order-btn me-5">Menu</button>
-              </Link>
+              <div className='row'>
+                <div className='col-md-6'>
+                  <h5 className="homepage-heading">
+                    WORK TOGETHER, <br />
+                    EAT TOGETHER
+                  </h5>
+                </div>
+                <div className='col-md-6'>
+                 <div className='order-btn-container d-flex justify-content-evenly'>
+                 <Link to="/menu">
+                    <button className="order-btn">Menu</button>
+                  </Link>
 
-              {pendingBooking ? (
-                <Link to={`${pendingBooking}`}>
-                  <button className="order-btn">Book Table</button>
-                </Link>
-              ) : (
-                <Link to="/bookTable">
-                  <button className="order-btn">Book Table</button>
-                </Link>
-              )}
+                  {pendingBooking ? (
+                    <Link to={`${pendingBooking}`}>
+                      <button className="order-btn">Book Table</button>
+                    </Link>
+                  ) : (
+                    <Link to="/bookTable">
+                      <button className="order-btn">Book Table</button>
+                    </Link>
+                  )}
+                 </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
