@@ -48,7 +48,7 @@ function App() {
             <Route path="addTable" element={<AddTable />} />
             <Route path="addTable/:id" element={<UpdateAddTable />} />
             <Route path="tableList" element={<TableList />} />
-            <Route path="Orders/:id" element={<UserOrders />} />
+            <Route path="Orders" element={<UserOrders />} />
           </Route>
         </Routes>
       </BrowserRouter>

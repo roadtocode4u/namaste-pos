@@ -8,8 +8,10 @@ function UserOrders() {
 
   async function fetchAllOrders() {
     const response = await axios.get('/orders');
-    setOrders(response.data.data);
-    console.log(response.data.data);
+    const sortedOrders = response.data.data.sort((a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+    setOrders(sortedOrders);
   }
 
   useEffect(() => {
@@ -21,6 +23,18 @@ function UserOrders() {
       <div className="faq-div">
         <div className="container-faq" id="faq">
           {orders?.map((order, index) => {
+            const createdAt = new Date(order.createdAt).toLocaleString(
+              'en-US',
+              {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true,
+              }
+            );
             return (
               <div
                 className="accordion accordion-flush"
@@ -38,6 +52,7 @@ function UserOrders() {
                       <div className="order-content">
                         <p className="child-item-1">{order.tableNumber}</p>
                         <p className="child-item-2"> {order.status}</p>
+                        <p className=''>{createdAt}</p>
                       </div>
                     </button>
                   </h6>
