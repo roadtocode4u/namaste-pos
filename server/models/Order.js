@@ -48,7 +48,7 @@ const orderSchema = new Schema(
 
     status: {
       type: String,
-      enum: ['pending', 'preparing', 'ready', 'delivered', 'cancelled'],
+      enum: ['pending', 'delivered', 'cancelled'],
       default: 'pending',
       required: [true, 'status cannot be empty'],
     },
