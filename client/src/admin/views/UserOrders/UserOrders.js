@@ -14,6 +14,20 @@ function UserOrders() {
     setOrders(sortedOrders);
   }
 
+  async function updateOrderStatus(orderId, status) {
+    try {
+      const response = await axios.put('/orders/update-status', {
+        orderId,
+        status,
+      });
+      console.log(response.data.message);
+      // Refresh the orders list after updating the status
+      fetchAllOrders();
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
   useEffect(() => {
     fetchAllOrders();
   }, []);
@@ -52,7 +66,11 @@ function UserOrders() {
                       <div className="order-content">
                         <p className="child-item-1">{order.tableNumber}</p>
                         <p className="child-item-2"> {order.status}</p>
-                        <p className=''>{createdAt}</p>
+                        {/* <p className=''>{createdAt}</p> */}
+                        <button className="btn btn-primary" 
+                        onClick={() => updateOrderStatus(order.orderId, 'delivered')} >
+                          Mark as Delivered
+                        </button>
                       </div>
                      </button>
                   </h6>

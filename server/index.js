@@ -43,6 +43,7 @@ import {
   getOrderTableNumber,
   postOrder,
   putOrder,
+  updateOrderStatus,
 } from './controllers/order.js';
 
 import {
@@ -111,6 +112,7 @@ app.get('/order/:id', getOrderId);
 app.get('/orders/:userId', getOrdersUserId);
 app.get('/order', getOrderTableNumber);
 app.put('/order/:id', putOrder);
+app.put('/orders/update-status', updateOrderStatus);
 app.delete('/order/:id', deleteOrder);
 
 app.post('/invoice', postInvoice);

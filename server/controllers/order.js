@@ -120,6 +120,27 @@ export const putOrder = async (req, res) => {
   }
 };
 
+// 3.1-Update order status API
+export const updateOrderStatus = async (req, res) => {
+  const { orderId, status } = req.body;
+
+  try {
+    const order = await Order.findOne({ orderId });
+
+    if (!order) {
+      return responder(res, null, 'Order not found', false);
+    }
+
+    order.status = status;
+    const updatedOrder = await order.save();
+
+    responder(res, updatedOrder, 'Order status updated successfully');
+  } catch (err) {
+    responder(res, null, err.message, false);
+  }
+};
+
+
 /*----- 4-delete order API -----*/
 // DELETE order/:id => delete order by id
 export const deleteOrder = async (req, res) => {
