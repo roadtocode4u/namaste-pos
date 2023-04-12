@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
 import './UserOrders.css';
 import Heading from './../../../components/Heading/Heading';
 
 function UserOrders() {
   const [orders, setOrders] = useState([]);
+  const [openAccordionItemId, setOpenAccordionItemId] = useState(null);
 
   async function fetchAllOrders() {
     const response = await axios.get('/orders');
@@ -14,9 +16,44 @@ function UserOrders() {
     setOrders(sortedOrders);
   }
 
+  async function updateOrderStatus(orderId, status) {
+    try {
+      const response = await axios.put('/orders/update-status', {
+        orderId,
+        status,
+      });
+
+      if (response.data.success) {
+        await swal({
+          title: 'Status Updated',
+          text: response.data.message,
+          icon: 'success',
+          button: 'Aww yiss!',
+        });
+      } else {
+        await swal({
+          title: 'Error',
+          text: response.data.message,
+          icon: 'error',
+          button: '😥',
+        });
+      }
+      console.log(response.data.message);
+      // Refresh the orders list after updating the status
+      fetchAllOrders();
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
   useEffect(() => {
     fetchAllOrders();
   }, []);
+
+  const handleAccordionItemClick = (itemId) => {
+    setOpenAccordionItemId(itemId === openAccordionItemId ? null : itemId);
+  };
+
   return (
     <>
       <Heading title={'Orders'} />
@@ -41,28 +78,42 @@ function UserOrders() {
                 id="faq-parent"
                 key={index}>
                 <div className="accordion-item">
-                  <h6 className="accordion-header" id="flush-headingOne">
+                  <h6
+                    className={`accordion-header ${
+                      openAccordionItemId === index ? 'active' : ''
+                    }`}
+                    id={`flush-heading-${index}`}>
                     <button
-                      className="accordion-button collapsed  fs-4"
+                      className={`accordion-button fs-4 ${
+                        openAccordionItemId !== index ? 'collapsed' : ''
+                      } ${openAccordionItemId === index ? 'active' : ''}`}
                       type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#flush-collapseOne"
-                      aria-expanded="false"
-                      aria-controls="flush-collapseOne">
+                      onClick={() => handleAccordionItemClick(index)}
+                      aria-expanded={openAccordionItemId === index}
+                      aria-controls={`flush-collapse-${index}`}>
                       <div className="order-content">
                         <p className="child-item-1">{order.tableNumber}</p>
                         <p className="child-item-2"> {order.status}</p>
-                        <p className=''>{createdAt}</p>
+                        <p className="child-item-1">{createdAt}</p>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() =>
+                            updateOrderStatus(order.orderId, 'delivered')
+                          }>
+                          Mark as Delivered
+                        </button>
                       </div>
-                     </button>
+                    </button>
                   </h6>
                   {order.items.map((item, i) => {
                     return (
                       <div
                         key={i}
-                        id="flush-collapseOne"
-                        className="accordion-collapse collapse"
-                        aria-labelledby="flush-headingOne"
+                        id={`flush-collapse-${index}`}
+                        className={`accordion-collapse collapse ${
+                          openAccordionItemId === index ? 'show' : ''
+                        }`}
+                        aria-labelledby={`flush-heading-${index}`}
                         data-bs-parent="#faq-parent">
                         <div className="accordion-body fs-5">
                           <div className="order-content">

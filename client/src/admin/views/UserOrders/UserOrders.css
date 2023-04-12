@@ -36,16 +36,16 @@
   text-align: center;
 }
 
-.child-item-1 {
+/* .child-item-1 {
   background-color: var(--white);
   padding: 5px;
   border-radius: 50%;
   box-shadow: 0px 3px 5px var(--black);
-  height: 45px;
+  height: 15px;
   width: 45px;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 
 .child-item-1 {
   font-size: 1rem;
