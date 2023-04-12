@@ -3,7 +3,7 @@ import './Menu.css';
 import axios from 'axios';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
 import ProductCardItem from '../../components/ProductItemCard/ProductCardItem';
-import {featchtableNumber } from './../../utils/tableNumber'
+import { featchtableNumber } from './../../utils/tableNumber';
 
 const Menu = () => {
   const [productCategory, setProductCategory] = useState();
@@ -24,8 +24,8 @@ const Menu = () => {
   }, []);
 
   useEffect(() => {
-    featchtableNumber()
-  },[])
+    featchtableNumber();
+  }, []);
 
   return (
     <div>

@@ -140,7 +140,6 @@ export const updateOrderStatus = async (req, res) => {
   }
 };
 
-
 /*----- 4-delete order API -----*/
 // DELETE order/:id => delete order by id
 export const deleteOrder = async (req, res) => {

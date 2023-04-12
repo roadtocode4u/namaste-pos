@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
 import './UserOrders.css';
 import Heading from './../../../components/Heading/Heading';
 
@@ -20,6 +21,22 @@ function UserOrders() {
         orderId,
         status,
       });
+
+      if (response.data.success) {
+        await swal({
+          title: 'Status Updated',
+          text: response.data.message,
+          icon: 'success',
+          button: 'Aww yiss!',
+        });
+      } else {
+        await swal({
+          title: 'Error',
+          text: response.data.message,
+          icon: 'error',
+          button: '😥',
+        });
+      }
       console.log(response.data.message);
       // Refresh the orders list after updating the status
       fetchAllOrders();
@@ -66,13 +83,16 @@ function UserOrders() {
                       <div className="order-content">
                         <p className="child-item-1">{order.tableNumber}</p>
                         <p className="child-item-2"> {order.status}</p>
-                        {/* <p className=''>{createdAt}</p> */}
-                        <button className="btn btn-primary" 
-                        onClick={() => updateOrderStatus(order.orderId, 'delivered')} >
+                        <p className="child-item-1">{createdAt}</p>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() =>
+                            updateOrderStatus(order.orderId, 'delivered')
+                          }>
                           Mark as Delivered
                         </button>
                       </div>
-                     </button>
+                    </button>
                   </h6>
                   {order.items.map((item, i) => {
                     return (
