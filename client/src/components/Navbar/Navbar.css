@@ -1,16 +1,22 @@
-.shopping-conatiner {
-  margin-right: 80px;
-  margin-top: 10px;
+.navbar-heading{
+margin-left: 30px;
+}
+
+.homepage-route{
+  margin-left: 50px;
+}
+
+.login-btn{
+  margin-right: 15px;
+}
+
+.signup-btn{
+  margin-right: 15px;
 }
 
 .shopping-cart {
   height: 25px;
   width: 25px;
-}
-
-.user-profile-img {
-  height: 15px;
-  width: 15px;
 }
 
 .current-user-name {
@@ -32,4 +38,8 @@
   color: black;
   font-size: 15px;
   margin-right: 80px;
+}
+
+.shopping-conatiner{
+  margin-right: 30px;
 }
