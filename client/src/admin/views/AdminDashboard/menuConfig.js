@@ -2,6 +2,7 @@ import AddProductImg from './images/add-product.png';
 import AddTableImg from './images/dining-table.png';
 import ProductListImg from './images/show-list.png';
 import TableListImg from './images/table-list.png';
+import UserOrderImg from './images/userOrderImg.png';
 
 const MENU_ITEM = [
   {
@@ -23,6 +24,11 @@ const MENU_ITEM = [
     title: 'Table List',
     icon: TableListImg,
     path: '/admin/tableList',
+  },
+  {
+    title: 'User Orders',
+    icon: UserOrderImg,
+    path: '/admin/orders',
   },
 ];
 
