@@ -4,13 +4,13 @@
 
 ![Home Page](./images/screenshot-1.png)
 
-![Home Page](./images/screenshot-2.png)
+![Book Table](./images/screenshot-2.png)
 
-![Home Page](./images/screenshot-3.png)
+![Product By Category](./images/screenshot-3.png)
 
-![Home Page](./images/screenshot-4.png)
+![All Product](./images/screenshot-4.png)
 
-![Home Page](./images/screenshot-5.png)
+![Card Page](./images/screenshot-5.png)
 
 1. **User Registration and Login:**
 
@@ -59,15 +59,15 @@ On successful order placement, you can store the order details in the database a
 
 ## Admin Side 
 
-![Home Page](./images/sscreenshot-6.png)
+![Admin Dashboard](./images/sscreenshot-6.png)
 
-![Home Page](./images/screenshot-7.png)
+![Add Product](./images/screenshot-7.png)
 
-![Home Page](./images/screenshot-8.png)
+![Add Table](./images/screenshot-8.png)
 
-![Home Page](./images/screenshot-9.png)
+![Product List](./images/screenshot-9.png)
 
-![Home Page](./images/screenshot-10.png)
+![Product Table](./images/screenshot-10.png)
 
 1. **Admin Dashboard:**
 
