@@ -1,6 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import path from 'path';
 import dotenv from 'dotenv';
+const __dirname = path.resolve();
 
 dotenv.config();
 mongoose.set('strictQuery', false);
@@ -121,6 +123,14 @@ app.get('/invoice', getInvoiceByInvoiceNumber);
 app.get('/invoice/:id', getInvoiceId);
 app.put('/invoice/:id', putInvoice);
 app.delete('/invoice/:id', deleteInvoice);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`The server is Running on Port ${PORT} 🚀`);

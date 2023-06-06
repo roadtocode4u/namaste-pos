@@ -120,7 +120,7 @@ function UserOrders() {
                             <p className="order-item-1 "> {item.name}</p>
                             <p className="order-item-2">{item.quantity}</p>
                           </div>
-                        </div>
+                        </div> 
                       </div>
                     );
                   })}
